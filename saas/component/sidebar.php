@@ -53,26 +53,26 @@
             </li>
 
             <li class="side-nav-item">
-                <a href="" class="side-nav-link">
+                <a href="categories.php" class="side-nav-link">
                     <i class="ri-layout-masonry-line"></i>
                     <span>Categories</span>
                     
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="" class="side-nav-link">
+                <a href="file-manager.php" class="side-nav-link">
                     <i class="uil-folder-plus"></i>
                     <span> File Managers </span>
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="" class="side-nav-link">
+                <a href="pages-profile-2.html" class="side-nav-link">
                     <i class="mdi mdi-account-circle"></i>
                     <span>Profile </span>
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="" class="side-nav-link">
+                <a href="pages-login-2.html" class="side-nav-link">
                     <i class="mdi mdi-logout"></i>
                     <span>Log Out </span>
                 </a>
