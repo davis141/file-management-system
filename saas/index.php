@@ -64,14 +64,9 @@
                                             <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Total Number of Documents
                                             </h5>
                                             <h3 class="mt-3 mb-3">36,254</h3>
-                                            <p class="mb-0 text-muted">
-                                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
-                                                    5.27%</span>
-                                                <span class="text-nowrap">Since last month</span>
-                                            </p>
-                                        </div> <!-- end card-body-->
-                                    </div> <!-- end card-->
-                                </div> <!-- end col-->
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="col-sm-6">
                                     <div class="card widget-flat">
@@ -81,15 +76,10 @@
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Pending Document</h5>
                                             <h3 class="mt-3 mb-3">5,543</h3>
-                                            <p class="mb-0 text-muted">
-                                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
-                                                    1.08%</span>
-                                                <span class="text-nowrap">Since last month</span>
-                                            </p>
-                                        </div> <!-- end card-body-->
-                                    </div> <!-- end card-->
-                                </div> <!-- end col-->
-                            </div> <!-- end row -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-sm-6">
@@ -100,14 +90,9 @@
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Approved Document</h5>
                                             <h3 class="mt-3 mb-3">$6,254</h3>
-                                            <p class="mb-0 text-muted">
-                                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
-                                                    7.00%</span>
-                                                <span class="text-nowrap">Since last month</span>
-                                            </p>
-                                        </div> <!-- end card-body-->
-                                    </div> <!-- end card-->
-                                </div> <!-- end col-->
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="col-sm-6">
                                     <div class="card widget-flat">
@@ -117,14 +102,9 @@
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Growth">Categories</h5>
                                             <h3 class="mt-3 mb-3">+ 30.56%</h3>
-                                            <p class="mb-0 text-muted">
-                                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
-                                                    4.87%</span>
-                                                <span class="text-nowrap">Since last month</span>
-                                            </p>
-                                        </div> <!-- end card-body-->
-                                    </div> <!-- end card-->
-                                </div> <!-- end col-->
+                                        </div>
+                                    </div>
+                                </div>
                             </div> 
                         </div> 
                     </div>
@@ -134,10 +114,8 @@
                         <div class="col-xl-12 col-lg-12 order-lg-2 order-xl-1">
                             <div class="card">
                                 <div class="d-flex card-header justify-content-between align-items-center">
-                                    <h4 class="header-title">Top Selling Products</h4>
-                                    
+                                    <h4 class="header-title">Activity Timeline</h4>
                                 </div>
-
                                 <div class="card-body pt-0">
                                     <div class="table-responsive">
                                         <table class="table table-centered table-nowrap table-hover mb-0">
@@ -162,9 +140,9 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div> <!-- end table-responsive-->
-                                </div> <!-- end card-body-->
-                            </div> <!-- end card-->
+                                    </div>
+                                </div>
+                            </div>
                         </div> 
                     </div>
                 
@@ -172,38 +150,16 @@
                 
             </div>
          <?php include_once "component/footer.php"?>
-
-        <!-- ============================================================== -->
-        <!-- End Page content -->
-        <!-- ============================================================== -->
-
     </div>
-    <!-- END wrapper -->
-
    
-
-    <!-- Vendor js -->
     <script src="assets/js/vendor.min.js"></script>
-
-    <!-- Daterangepicker js -->
     <script src="assets/vendor/daterangepicker/moment.min.js"></script>
     <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
-
-    <!-- Apex Charts js -->
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-
-    <!-- Vector Map js -->
     <script src="assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="assets/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
-
-    <!-- Dashboard App js -->
     <script src="assets/js/pages/demo.dashboard.js"></script>
-
-    <!-- App js -->
     <script src="assets/js/app.min.js"></script>
 
 </body>
-
-<!-- Mirrored from coderthemes.com/hyper/saas/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 10 May 2024 09:54:45 GMT -->
-
 </html>
