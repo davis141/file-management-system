@@ -89,7 +89,7 @@
                          <i class="mdi mdi-account-circle me-1"></i>
                          <span>My Account</span>
                      </a>
-                     <a href="log-out.php" class="dropdown-item">
+                     <a href="login.php" class="dropdown-item">
                          <i class="mdi mdi-logout me-1"></i>
                          <span>Logout</span>
                      </a>

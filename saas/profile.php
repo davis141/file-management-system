@@ -26,9 +26,6 @@
                                     <h4 class="mb-0 mt-2">Dominic Keller</h4>
                                     <p class="text-muted font-14">Founder</p>
 
-                                    <button type="button" class="btn btn-success btn-sm mb-2">Follow</button>
-                                    <button type="button" class="btn btn-danger btn-sm mb-2">Message</button>
-
                                     <div class="text-start mt-3">
                                         <h4 class="font-13 text-uppercase">About Me :</h4>
                                         <p class="text-muted font-13 mb-3">
