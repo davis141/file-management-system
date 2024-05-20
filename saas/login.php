@@ -9,8 +9,6 @@
     <div class="auth-fluid">
         <div class="auth-fluid-form-box">
             <div class="card-body d-flex flex-column h-100 gap-3">
-
-                <!-- Logo -->
                 <div class="auth-brand text-center text-lg-start">
                     <a href="#" class="logo-dark fw-bold fs-3">
                         <span>FileTrax</span>
@@ -21,11 +19,8 @@
                 </div>
 
                 <div class="my-auto">
-                    <!-- title-->
                     <h4 class="mt-0">Sign In</h4>
                     <p class="text-muted mb-4">Please enter your credentials</p>
-
-                    <!-- form -->
                     <form action="#">
                         <div class="mb-3">
                             <label for="emailaddress" class="form-label">Email address</label>

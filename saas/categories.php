@@ -7,17 +7,11 @@
 
 <body>
     <div class="wrapper">
-
         <?php include_once "component/top-bar.php" ?>
-
         <?php include_once "component/sidebar.php" ?>
-
         <div class="content-page">
             <div class="content">
-
                 <div class="container-fluid">
-
-                    <!-- start page title -->
                     <div class="row">
                         <div class="col-lg-6 col-sm-12">
                             <div class="page-title-box">
@@ -34,9 +28,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- end page title -->
-
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -49,7 +40,6 @@
                                         <div class="tab-pane show active" id="input-types-preview">
                                             <div class="row">
                                                 <div class="col-lg-12">
-
                                                     <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                                         <thead>
                                                             <tr>
@@ -79,11 +69,10 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                </div> <!-- end col -->
+                                                </div> 
                                             </div>
-                                            <!-- end row-->
-                                        </div> <!-- end preview-->
-                                    </div> <!-- end tab-content-->
+                                        </div> 
+                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -93,9 +82,7 @@
             <?php include_once "component/footer.php" ?>
         </div>
     </div>
-    <!-- END wrapper -->
-
-    <!-- Vendor js -->
+   
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/vendor/highlightjs/highlight.pack.min.js"></script>
     <script src="assets/vendor/clipboard/clipboard.min.js"></script>

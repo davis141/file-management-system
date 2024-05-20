@@ -67,15 +67,11 @@
                                             <h5 class="mb-2">Shared Documents</h5>
                                         </div>
                                         <div class="mt-3">
-
-
-                                            <!-- File Upload -->
                                             <form action="/" method="post" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
                                                 <div class="dropzone">
                                                     <div class="fallback">
                                                         <input name="file" type="file" multiple />
                                                     </div>
-
                                                     <div class="dz-message needsclick">
                                                         <i class="h1 text-muted ri-upload-cloud-2-line"></i>
                                                         <h3>Drop files here or click to upload.</h3>
@@ -101,11 +97,7 @@
                                                     <input type="submit" value="Send File" class="btn btn-primary">
                                                 </div>
                                             </form>
-
-                                            <!-- Preview -->
                                             <div class="dropzone-previews mt-3" id="file-previews"></div>
-
-                                            <!-- file preview template -->
                                             <div class="d-none" id="uploadPreviewTemplate">
                                                 <div class="card mt-1 mb-0 shadow-none border">
                                                     <div class="p-2">
@@ -118,7 +110,6 @@
                                                                 <p class="mb-0" data-dz-size></p>
                                                             </div>
                                                             <div class="col-auto">
-                                                                <!-- Button -->
                                                                 <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
                                                                     <i class="ri-close-line"></i>
                                                                 </a>
@@ -144,7 +135,6 @@
     <script src="assets/js/app.min.js"></script>
     <script src="assets/vendor/select2/js/select2.min.js"></script>
     <script src="assets/vendor/dropzone/min/dropzone.min.js"></script>
-    <!-- init js -->
     <script src="assets/js/ui/component.fileupload.js"></script>
     <script>
         document.getElementById('filterInput').addEventListener('focus', function() {

@@ -14,11 +14,7 @@
 
         <div class="content-page">
             <div class="content">
-
-                <!-- Start Content-->
                 <div class="container-fluid">
-
-                    <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
@@ -26,8 +22,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- end page title -->
-
+                  
                     <div class="row">
                         <div class="col-6">
                             <div class="card">
@@ -54,41 +49,25 @@
                                                             <input type="submit" value="Add" class="btn btn-primary">
                                                         </div>
                                                     </form>
-                                                </div> <!-- end col -->
-
+                                                </div> 
                                             </div>
-                                            <!-- end row-->
-                                        </div> <!-- end preview-->
-                                    </div> <!-- end tab-content-->
-                                </div> <!-- end card-body -->
-                            </div> <!-- end card -->
-                        </div><!-- end col -->
-                    </div><!-- end row -->
-
-                </div> <!-- container -->
-
-            </div> <!-- content -->
-
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <?php include_once "component/footer.php" ?>
-
         </div>
-
     </div>
-    <!-- END wrapper -->
-
-    <!-- Vendor js -->
+  
     <script src="assets/js/vendor.min.js"></script>
-
-    <!-- Code Highlight js -->
     <script src="assets/vendor/highlightjs/highlight.pack.min.js"></script>
     <script src="assets/vendor/clipboard/clipboard.min.js"></script>
     <script src="assets/js/hyper-syntax.js"></script>
-
-    <!-- App js -->
     <script src="assets/js/app.min.js"></script>
 
 </body>
-
-<!-- Mirrored from coderthemes.com/hyper/saas/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 10 May 2024 09:57:51 GMT -->
-
 </html>

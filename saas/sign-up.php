@@ -7,11 +7,8 @@
 <body class="authentication-bg pb-0">
 
     <div class="auth-fluid">
-        <!--Auth fluid left content -->
         <div class="auth-fluid-form-box">
             <div class="card-body d-flex flex-column h-100 gap-3">
-
-                <!-- Logo -->
                 <div class="auth-brand text-center text-lg-start">
                     <a href="#" class="logo-dark fw-bold fs-3">
                         <span>FIleTrax</span>
@@ -22,7 +19,6 @@
                 </div>
 
                 <div class="my-auto">
-                    <!-- title-->
                     <h4 class="mt-3">Free Sign Up</h4>
 
                     <form action="#">
@@ -60,8 +56,6 @@
     </div>
     
     <script src="assets/js/vendor.min.js"></script>
-
-    <!-- App js -->
     <script src="assets/js/app.min.js"></script>
 
 </body>

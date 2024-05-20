@@ -125,9 +125,7 @@
                     </div>
                 </div>
             </div>
-
             <?php include_once "component/footer.php" ?>
-
         </div>
     </div>
     <script src="assets/js/vendor.min.js"></script>

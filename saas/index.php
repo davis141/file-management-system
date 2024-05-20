@@ -6,26 +6,17 @@
 </head>
 
 <body>
-    <!-- Begin page -->
     <div class="wrapper">
 
 
        <?php include_once "component/top-bar.php"?>
 
-        <!-- ========== Left Sidebar Start ========== -->
        <?php include_once "component/sidebar.php"?>
-        <!-- ========== Left Sidebar End ========== -->
-
-        <!-- ============================================================== -->
-        <!-- Start Page Content here -->
-        <!-- ============================================================== -->
-
+        
         <div class="content-page">
             <div class="content">
 
-                <!-- Start Content-->
                 <div class="container-fluid">
-
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
@@ -50,10 +41,8 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-xl-12 col-lg-12">
-
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="card widget-flat">
@@ -67,7 +56,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-6">
                                     <div class="card widget-flat">
                                         <div class="card-body">
@@ -93,7 +81,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-6">
                                     <div class="card widget-flat">
                                         <div class="card-body">
@@ -108,8 +95,6 @@
                             </div> 
                         </div> 
                     </div>
-                 
-
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 order-lg-2 order-xl-1">
                             <div class="card">
