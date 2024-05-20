@@ -16,3 +16,18 @@
 <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<style>
+  .select-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .select-container input,
+  .select-container select {
+    width: 100%;
+  }
+  .select-container select {
+    display: none;
+    height: auto;
+  }
+</style>

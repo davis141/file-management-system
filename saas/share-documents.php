@@ -68,42 +68,67 @@
                                             <h5 class="mb-2">Shared Documents</h5>
                                         </div>
                                         <div class="mt-3">
-                                            <!-- <div class="table-responsive">
-                                                <table class="table table-centered table-nowrap mb-0">
-                                                    <thead class="table-light">
-                                                        <tr>
-                                                            <th class="border-0">File Name</th>
-                                                            <th class="border-0">Date</th>
-                                                            <th class="border-0">Senders Name</th>
-                                                            <th class="border-0" style="width: 80px;">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ms-2 fw-semibold"><a href="javascript: void(0);" class="text-reset">App Design &
-                                                                        Development</a></span>
-                                                            </td>
-                                                            <td>
-                                                                <p class="mb-0">Jan 03, 2020</p>
-                                                            </td>
-                                                            <td>
-                                                                Danielle Thompson
-                                                            </td>
-                                                            <td class="">
-                                                                <div class="btn-group dropdown">
-                                                                    <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2 text-muted vertical-middle"></i>View</a>
-                                                                        <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
-                                                                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete Document</a>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div> -->
+
+
+                                            <!-- File Upload -->
+                                            <form action="/" method="post" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
+                                                <div class="dropzone">
+                                                    <div class="fallback">
+                                                        <input name="file" type="file" multiple />
+                                                    </div>
+
+                                                    <div class="dz-message needsclick">
+                                                        <i class="h1 text-muted ri-upload-cloud-2-line"></i>
+                                                        <h3>Drop files here or click to upload.</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 mt-2">
+                                                    <label for="" class="mb-1 fw-bold">Addiitional Note</label>
+                                                    <textarea name="" id="" cols="20" rows="2" class="form-control"></textarea>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <label for="" class="mb-1">Receiver</label>
+                                                    <div class="select-container">
+                                                        <input type="text" id="filterInput" class="form-control mb-2" placeholder="Type to search...">
+                                                        <select id="filteredSelect" class="form-control " size="5">
+                                                            <option value="Apple">Apple</option>
+                                                            <option value="Banana">Banana</option>
+                                                            <option value="Cherry">Cherry</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <input type="submit" value="Send File" class="btn btn-primary">
+                                                </div>
+                                            </form>
+
+                                            <!-- Preview -->
+                                            <div class="dropzone-previews mt-3" id="file-previews"></div>
+
+                                            <!-- file preview template -->
+                                            <div class="d-none" id="uploadPreviewTemplate">
+                                                <div class="card mt-1 mb-0 shadow-none border">
+                                                    <div class="p-2">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-auto">
+                                                                <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
+                                                            </div>
+                                                            <div class="col ps-0">
+                                                                <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
+                                                                <p class="mb-0" data-dz-size></p>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <!-- Button -->
+                                                                <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                                                    <i class="ri-close-line"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -119,6 +144,45 @@
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.min.js"></script>
     <script src="assets/vendor/select2/js/select2.min.js"></script>
+    <script src="assets/vendor/dropzone/min/dropzone.min.js"></script>
+    <!-- init js -->
+    <script src="assets/js/ui/component.fileupload.js"></script>
+    <script>
+        document.getElementById('filterInput').addEventListener('focus', function() {
+            document.getElementById('filteredSelect').style.display = 'block';
+        });
+
+        document.getElementById('filterInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const select = document.getElementById('filteredSelect');
+            const options = select.options;
+
+            for (let i = 0; i < options.length; i++) {
+                const option = options[i];
+                const text = option.text.toLowerCase();
+                if (text.includes(filter)) {
+                    option.style.display = '';
+                } else {
+                    option.style.display = 'none';
+                }
+            }
+        });
+
+        document.getElementById('filteredSelect').addEventListener('change', function() {
+            const selectedText = this.options[this.selectedIndex].text;
+            document.getElementById('filterInput').value = selectedText;
+            this.style.display = 'none';
+        });
+
+        document.addEventListener('click', function(event) {
+            const filterInput = document.getElementById('filterInput');
+            const filteredSelect = document.getElementById('filteredSelect');
+            if (!filterInput.contains(event.target) && !filteredSelect.contains(event.target)) {
+                filteredSelect.style.display = 'none';
+            }
+        });
+    </script>
+
 </body>
 
 </html>
