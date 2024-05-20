@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
-                                <h4 class="page-title">File Manager</h4>
+                                <h4 class="page-title">Shared Documents</h4>
                             </div>
                         </div>
                     </div>
@@ -56,9 +56,16 @@
                                                     </div>
                                                 </form>
                                             </div>
+                                            <div class="">
+                                                <a href="share-documents.php">
+                                                    <button class="btn btn-primary">
+                                                        Share Document
+                                                    </button>
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="mt-3">
-                                            <h5 class="mb-2">All Documents</h5>
+                                            <h5 class="mb-2">Shared Documents</h5>
                                         </div>
                                         <div class="mt-3">
                                             <div class="table-responsive">
@@ -67,8 +74,7 @@
                                                         <tr>
                                                             <th class="border-0">File Name</th>
                                                             <th class="border-0">Date</th>
-                                                            <th class="border-0">Creators Name</th>
-                                                            <th class="border-0">Status</th>
+                                                            <th class="border-0">Senders Name</th>
                                                             <th class="border-0" style="width: 80px;">Action</th>
                                                         </tr>
                                                     </thead>
@@ -83,25 +89,6 @@
                                                             </td>
                                                             <td>
                                                                 Danielle Thompson
-                                                            </td>
-                                                            <td id="tooltip-container">
-                                                                <div class="avatar-group">
-                                                                    <a href="javascript: void(0);" class="avatar-group-item mb-0" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Mat Helme">
-                                                                        <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                                                    </a>
-
-                                                                    <a href="javascript: void(0);" class="avatar-group-item mb-0" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Michael Zenaty">
-                                                                        <img src="assets/images/users/avatar-2.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                                                    </a>
-
-                                                                    <a href="javascript: void(0);" class="avatar-group-item mb-0" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="James Anderson">
-                                                                        <img src="assets/images/users/avatar-3.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                                                    </a>
-
-                                                                    <a href="javascript: void(0);" class="avatar-group-item mb-0" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Username">
-                                                                        <img src="assets/images/users/avatar-5.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                                                    </a>
-                                                                </div>
                                                             </td>
                                                             <td class="">
                                                                 <div class="btn-group dropdown">

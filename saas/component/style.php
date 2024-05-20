@@ -6,7 +6,6 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico">
 <link rel="stylesheet" href="assets/vendor/daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css">
-<!-- <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" /> -->
 <script src="assets/js/hyper-config.js"></script>
 <link href="assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
 <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />

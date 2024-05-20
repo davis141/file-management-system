@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
-                                <h4 class="page-title">File Manager</h4>
+                                <h4 class="page-title">Approved Documents</h4>
                             </div>
                         </div>
                     </div>
@@ -27,12 +27,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="page-aside-left">
-
                                         <div class="btn-group d-block mb-2">
                                             <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-plus"></i> Create New </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#"><i class="mdi mdi-upload me-1"></i>
-                                                    Choose File</a>
+                                                <a class="dropdown-item" href="#"><i class="mdi mdi-upload me-1"></i> Choose File</a>
                                             </div>
                                         </div>
                                         <div class="email-menu-list mt-3">
@@ -47,6 +45,7 @@
                                         </div>
                                     </div>
                                     <div class="page-aside-right">
+
                                         <div class="d-lg-flex justify-content-between align-items-center">
                                             <div class="app-search">
                                                 <form>
@@ -58,7 +57,7 @@
                                             </div>
                                         </div>
                                         <div class="mt-3">
-                                            <h5 class="mb-2">All Documents</h5>
+                                            <h5 class="mb-2">Approved Files</h5>
                                         </div>
                                         <div class="mt-3">
                                             <div class="table-responsive">
@@ -68,40 +67,19 @@
                                                             <th class="border-0">File Name</th>
                                                             <th class="border-0">Date</th>
                                                             <th class="border-0">Creators Name</th>
-                                                            <th class="border-0">Status</th>
                                                             <th class="border-0" style="width: 80px;">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <span class="ms-2 fw-semibold"><a href="javascript: void(0);" class="text-reset">App Design &
-                                                                        Development</a></span>
+                                                                <span class="ms-2 fw-semibold"><a href="javascript: void(0);" class="text-reset">App Design & Development</a></span>
                                                             </td>
                                                             <td>
                                                                 <p class="mb-0">Jan 03, 2020</p>
                                                             </td>
                                                             <td>
                                                                 Danielle Thompson
-                                                            </td>
-                                                            <td id="tooltip-container">
-                                                                <div class="avatar-group">
-                                                                    <a href="javascript: void(0);" class="avatar-group-item mb-0" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Mat Helme">
-                                                                        <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                                                    </a>
-
-                                                                    <a href="javascript: void(0);" class="avatar-group-item mb-0" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Michael Zenaty">
-                                                                        <img src="assets/images/users/avatar-2.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                                                    </a>
-
-                                                                    <a href="javascript: void(0);" class="avatar-group-item mb-0" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="James Anderson">
-                                                                        <img src="assets/images/users/avatar-3.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                                                    </a>
-
-                                                                    <a href="javascript: void(0);" class="avatar-group-item mb-0" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Username">
-                                                                        <img src="assets/images/users/avatar-5.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                                                    </a>
-                                                                </div>
                                                             </td>
                                                             <td class="">
                                                                 <div class="btn-group dropdown">
