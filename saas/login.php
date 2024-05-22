@@ -29,7 +29,7 @@
                             <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email" name="email">
                         </div>
                         <div class="mb-3">
-                            <a href="pages-recoverpw-2.html" class="text-muted float-end"><small>Forgot your password?</small></a>
+                            <a href="forgot-password.php" class="text-muted float-end"><small>Forgot your password?</small></a>
                             <label class="form-label">Password</label>
                             <input class="form-control" type="password" required="" id="password" placeholder="Enter your password" name="password">
                         </div>

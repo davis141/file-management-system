@@ -59,7 +59,7 @@ $("#myForm").on("submit", function (e) {
             '<div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">';
           notification += "logged In, Please wait redirecting...";
           notification +=
-            '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+            '<button type="button" class="close btn btn-success" data-dismiss="alert" aria-label="Close">';
           notification +=
             '<span aria-hidden="true">&times;</span></button></div>';
           $("#notificationContainer").append(notification);
@@ -72,7 +72,7 @@ $("#myForm").on("submit", function (e) {
             '<div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">';
           notification += "Email and  password is incorrect";
           notification +=
-            '<button type="button" class="btn btn-danger" data-dismiss="alert" aria-label="Close">';
+            '<button type="button" class="close btn btn-danger" data-dismiss="alert" aria-label="Close">';
           notification +=
             '<span aria-hidden="true">&times;</span></button></div>';
           $("#notificationContainer").append(notification);

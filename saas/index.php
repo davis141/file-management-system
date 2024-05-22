@@ -1,3 +1,4 @@
+<?php include_once "inc/checkers.php"?>
 <!DOCTYPE html>
 <html lang="en">
 

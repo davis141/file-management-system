@@ -1,31 +1,30 @@
 <?php
 session_start();
-include_once "config/controller.php";
-include "sql/sql.php";
-$app = new controller;
-$users_ids = $_SESSION['email'];
-$user_log = $app->checkLogin();
-if ($user_log == "logged") {
-    // echo "ok";
-} else {
+include_once __DIR__ . "/controller.php";
+include_once __DIR__ . "/../sql/sql.php";  // Corrected path
+$app = new controller();
+
+// Check login status and user access level
+if (!isset($_SESSION['login_user']) || $app->checkLogin() !== "logged") {
     $app->logout();
-    echo '<script>window.location.href="../sign-in";</script>';
+    header("Location: /file-management-system/saas/login.php");
+    exit();
 }
-//Get user info
-$query = "select id,access_level_id,username,photo,staff_id from staffs_accounts where email_address='$users_ids'";
+
+// Get user info
+$users_ids = $_SESSION['email'];
+$query = "SELECT id, access_level_id, full_name, email, user_id FROM user WHERE email='$users_ids'";
+
 $userInfos = $app->fetch_query($query);
 foreach ($userInfos as $userInfo);
-// var_dump($userInfo);
+
 $id = $userInfo['id'];
-$access_level_id = $userInfo['access_level_id']; //access
-$username = $userInfo['username']; //username
-$photo = $userInfo['photo']; //photo
-$staff_ids = $userInfo['staff_id']; //photo
+$user_id = $userInfo['user_id'];
+$access_level_id = $userInfo['access_level_id'];
+$full_name = $userInfo['full_name'];
 
-if($access_level_id==1){
-
-}else{
+if ($access_level_id != 1) {
     $app->logout();
-    echo '<script>window.location.href="../sign-in";</script>';
+    header("Location: /file-management-system/saas/login");
+    exit();
 }
-
