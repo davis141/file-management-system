@@ -110,7 +110,7 @@
                     btn.attr('disabled', true).html("<i class='fa fa-spin fa-spinner'></i> Processing");
                     var datas = new FormData(this);
                     $.ajax({
-                        url: "ajax/register.php",
+                        url: "ajax/register",
                         type: "post",
                         data: datas,
                         contentType: false,

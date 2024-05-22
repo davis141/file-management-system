@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <?php include_once "component/style.php"?>
+    <?php include_once "component/style.php" ?>
 </head>
 
 <body class="authentication-bg pb-0">
@@ -20,16 +21,17 @@
 
                 <div class="my-auto">
                     <h4 class="mt-0">Sign In</h4>
+                    <div id="notificationContainer"></div>
                     <p class="text-muted mb-4">Please enter your credentials</p>
-                    <form action="#">
+                    <form name="myForm" id="myForm" method="post">
                         <div class="mb-3">
-                            <label for="emailaddress" class="form-label">Email address</label>
-                            <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                            <label class="form-label">Email address</label>
+                            <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email" name="email">
                         </div>
                         <div class="mb-3">
                             <a href="pages-recoverpw-2.html" class="text-muted float-end"><small>Forgot your password?</small></a>
-                            <label for="password" class="form-label">Password</label>
-                            <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
+                            <label class="form-label">Password</label>
+                            <input class="form-control" type="password" required="" id="password" placeholder="Enter your password" name="password">
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
@@ -38,7 +40,7 @@
                             </div>
                         </div>
                         <div class="d-grid mb-0 text-center">
-                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-login"></i> Log In </button>
+                            <button class="btn btn-primary" type="submit" id="reset-btn"><i class="mdi mdi-login"></i> Log In </button>
                         </div>
                     </form>
                 </div>
@@ -58,6 +60,8 @@
 
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.min.js"></script>
-
+    <script src="auth.js"></script>
+    
 </body>
+
 </html>

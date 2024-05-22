@@ -10,7 +10,7 @@ $user_id = uniqid();
 $hashed_password = sha1($password);
 
 if (isset($full_name) && isset($email) && isset($hashed_password)) {
-    $query = "INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `user_id`) VALUES (NULL, '$full_name', '$email', '$hashed_password', '$user_id')";
+    $query = "INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `user_id`, `access_level_id`) VALUES (NULL, '$full_name', '$email', '$hashed_password', '$user_id', '1')";
     $get_category = $app->direct_insert($query);
     if ($get_category == "success") {
         echo "success";
