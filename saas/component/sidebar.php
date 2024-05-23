@@ -7,12 +7,12 @@
             F.T
         </span>
     </a>
-    <a href="index.html" class="logo logo-dark">
-        <span class="logo-lg">
-            <img src="assets/images/logo-black.png" alt="dark logo">
+    <a href="index.php" class="logo logo-dark">
+        <span class="logo-lg fw-bold fs-3 text-white">
+            FileTrax
         </span>
-        <span class="logo-sm">
-            <img src="assets/images/logo-black.png" alt="small logo">
+        <span class="logo-sm fw-bold fs-3 text-white">
+            F.T
         </span>
     </a>
     <div class="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
@@ -31,7 +31,7 @@
         <ul class="side-nav">
             <li class="side-nav-title">Navigation</li>
             <li class="side-nav-item">
-                <a href="index.php" class="side-nav-link">
+                <a href="dashboard.php" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span> Dashboards </span>
                 </a>
@@ -55,7 +55,7 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="login.php" class="side-nav-link">
+                <a href="logout/logout.php" class="side-nav-link">
                     <i class="mdi mdi-logout"></i>
                     <span>Log Out </span>
                 </a>

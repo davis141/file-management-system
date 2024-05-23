@@ -71,7 +71,7 @@
             
                 if (fullname === "") {
                     Swal.fire({
-                        title: "Full Name is empty, please input your Full Name",
+                        title: "Full Name Is Empty, Please Input Your Full Name",
                         text: "Try Again!",
                         icon: "error"
                     });
@@ -127,7 +127,7 @@
                                 var btn = $("#reset-btn");
                                 btn
                                 .attr("disabled", false)
-                                .html("Department Created!");
+                                .html("Registered!");
                                 location.href="login.php"
                             }, 3000);     
                             } else {

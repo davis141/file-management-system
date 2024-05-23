@@ -20,7 +20,7 @@ foreach ($userInfos as $userInfo);
  $full_name = $userInfo['full_name']; //fullname
 
 if ($access_level_id == 1) {
-    echo '<script>window.location.href="index.php";</script>';
+    echo '<script>window.location.href="dashboard.php";</script>';
 // } elseif ($access_level_id == 2) {
 //     echo '<script>window.location.href="r/dashboard.php";</script>';
 } else{

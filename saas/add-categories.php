@@ -1,3 +1,4 @@
+<?php include_once "inc/checkers.php"?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,13 +41,13 @@
                                         <div class="tab-pane show active" id="input-types-preview">
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                                    <form>
+                                                    <form name="myForm" id="myForm" method="post">
                                                         <div class="mb-3">
-                                                            <label for="simpleinput" class="form-label"> Class Category Name</label>
-                                                            <input type="text" id="simpleinput" class="form-control" placeholder="Category Name">
+                                                            <label class="form-label"> Class Category Name</label>
+                                                            <input type="text" id="category_name" class="form-control" placeholder="Category Name" name="category_name">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <input type="submit" value="Add" class="btn btn-primary">
+                                                            <input type="submit" value="Add" id="reset-btn" class="btn btn-primary">
                                                         </div>
                                                     </form>
                                                 </div> 
@@ -68,6 +69,76 @@
     <script src="assets/vendor/clipboard/clipboard.min.js"></script>
     <script src="assets/js/hyper-syntax.js"></script>
     <script src="assets/js/app.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        //validate email
 
+
+        $(document).ready(function () {
+            function validateForm() {
+                let category_name = document.forms["myForm"]["category_name"].value;
+            
+                if (category_name === "") {
+                    Swal.fire({
+                        title: "Category Name Is Empty, Please Input Needed Field",
+                        text: "Try Again!",
+                        icon: "error"
+                    });
+                    return false;
+                }
+
+                return true; // Form is valid
+            }
+
+            /* function to login user */
+            $("#myForm").on('submit', (function (e) {
+                validateForm();
+                let check = validateForm();
+                e.preventDefault();
+                if (check == true) {
+                    var btn = $("#reset-btn");
+                    btn.attr('disabled', true).html("<i class='fa fa-spin fa-spinner'></i> Processing");
+                    var datas = new FormData(this);
+                    $.ajax({
+                        url: "ajax/add-categories",
+                        type: "post",
+                        data: datas,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: (data) => {
+                            if (data.trim() == "success") {
+                            Swal.fire({
+                                title: "success!",
+                                text: "Category Created, Successsfully!",
+                                icon: "success",
+                            });
+                                setTimeout(function () {
+                                var btn = $("#reset-btn");
+                                btn
+                                .attr("disabled", false)
+                                .html("Category Created!");
+                                location.href="categories.php"
+                            }, 3000);     
+                            } else {
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Posting Failed try again!",
+                                icon: "error",
+                            });
+
+                            }
+
+                        },
+
+                    });
+                } else {
+
+                }
+
+            }));
+
+        });
+    </script>
 </body>
 </html>
