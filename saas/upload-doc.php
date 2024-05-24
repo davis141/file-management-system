@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
-                                <h4 class="page-title">Pending Documents</h4>
+                                <h4 class="page-title">Uploaded Document</h4>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,6 @@
                                         </div>
                                     </div>
                                     <div class="page-aside-right">
-
                                         <div class="d-lg-flex justify-content-between align-items-center">
                                             <div class="app-search">
                                                 <form>
@@ -60,7 +59,7 @@
                                             </div>
                                         </div>
                                         <div class="mt-3">
-                                            <h5 class="mb-2">Pending Documents</h5>
+                                            <h5 class="mb-2">Uploaded Documents</h5>
                                         </div>
                                         <div class="mt-3">
                                             <div class="table-responsive">
@@ -76,7 +75,8 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <span class="ms-2 fw-semibold"><a href="javascript: void(0);" class="text-reset">App Design & Development</a></span>
+                                                                <span class="ms-2 fw-semibold"><a href="javascript: void(0);" class="text-reset">App Design &
+                                                                        Development</a></span>
                                                             </td>
                                                             <td>
                                                                 <p class="mb-0">Jan 03, 2020</p>
@@ -88,9 +88,8 @@
                                                                 <div class="btn-group dropdown">
                                                                     <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2 text-muted vertical-middle"></i>View Document</a>
-                                                                        <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download Document</a>
-                                                                        <a class="dropdown-item" href="#"><i class="ri-check-double-line me-2 text-muted vertical-middle"></i>Approve Document</a>
+                                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2 text-muted vertical-middle"></i>View</a>
+                                                                        <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                         <a class="dropdown-item" href="#"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete Document</a>
                                                                     </div>
                                                                 </div>
@@ -108,9 +107,7 @@
                     </div>
                 </div>
             </div>
-
             <?php include_once "component/footer.php" ?>
-
         </div>
     </div>
     <script src="assets/js/vendor.min.js"></script>
