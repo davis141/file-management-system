@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-sm-12">
                             <div class="page-title-box">
-                                <h4 class="page-title">Class Categories</h4>
+                                <h4 class="page-title">Categories</h4>
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-12">
@@ -33,7 +33,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="header-title">Class Category</h4>
+                                    <h4 class="header-title"> Category</h4>
                                     <p class="text-muted font-14">
                                         We may examine and organise classes of information methodically through the lens of categorization, which makes understanding and analysis more effective. For a closer look at the categorised data, feel free to browse the table below.
                                     </p>
@@ -54,7 +54,6 @@
                                                             <?php
 
                                                             $fetch_query = $app->fetch_query($categories_sql);
-                                                            // Create for each employee loop in php
                                                             $count = 1;
                                                             foreach ($fetch_query as $value) {
                                                             ?>
@@ -69,8 +68,8 @@
                                                                             </a>
 
                                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                                <a class="dropdown-item delete_emp" href="#" data-bs-toggle="modal"  data-id="<?= $value['id']; ?>" data-cat="<?php echo ($value['category_name']); ?>">Delete</a>
+                                                                                <a class="dropdown-item" href="cat-edit?fid=<?php echo base64_encode($value['id']); ?>&cat_name=<?php echo base64_encode($value['category_name']); ?>">Edit</a>
+                                                                                <a class="dropdown-item delete_emp" href="#" data-bs-toggle="modal" data-id="<?= $value['id']; ?>" data-cat="<?php echo ($value['category_name']); ?>">Delete</a>
                                                                             </div>
                                                                         </div>
                                                                     </td>
@@ -114,71 +113,64 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-    $(document).on('click', '.delete_emp', function () {
-        //fetch data from data attribute
-        const id = $(this).attr("data-id");
-        const emp_name = $(this).attr("data-cat");
+    <script>
+        $(document).on('click', '.delete_emp', function() {
 
-        // show in text field
-        $("#emp_name").val(emp_name);
-        $("#id").val(id);
+            const id = $(this).attr("data-id");
+            const emp_name = $(this).attr("data-cat");
 
-        //call  modal
-        $('#login-modal').modal('show');
-
-        $("#delete_emp").click(function () {
-            const emp_name_del = $("#emp_name").val();
-            const id_del = $("#id").val();
-
-            //disable the button
-            const btn = $("#delete_emp");
-            btn.attr('disabled', true).html('<i class="fa fa-spin fa-spinner"></i> Deleting...');
-            //validate
-            //call Ajax
-            if (id_del === '' || id_del === 0) {
-                Swal.fire({
-                    title: "success!",
-                    text: "Invalid request, Please wait redirecting...!",
-                    icon: "success",
-                });
-                const btn = $("#del_stf");
-                btn.attr('disabled', false).html('<i class="fa fa-spin fa-spinner"></i> Try Again...');
-            } else {
-                $.ajax({
-                    url: "ajax/delete-cat",
-                    method: "POST",
-                    data: {
-                        id_del: id_del
-                    },
-                    success: function (data) {
-
-                        if (data.trim() == 'success') {
-
-                            //hide  modal
-                            $('#login-modal').modal('hide');
-
-                            Swal.fire({
-                                title: "success!",
-                                text: "Category Deleted, Please wait redirecting...!",
-                                icon: "success",
-                            });
-
-                            setTimeout(function () {
-                                location.reload();
-                            }, 3000);
+            $("#emp_name").val(emp_name);
+            $("#id").val(id);
 
 
+            $('#login-modal').modal('show');
+
+            $("#delete_emp").click(function() {
+                const emp_name_del = $("#emp_name").val();
+                const id_del = $("#id").val();
+                const btn = $("#delete_emp");
+                btn.attr('disabled', true).html('<i class="fa fa-spin fa-spinner"></i> Deleting...');
+                if (id_del === '' || id_del === 0) {
+                    Swal.fire({
+                        title: "success!",
+                        text: "Invalid request, Please wait redirecting...!",
+                        icon: "success",
+                    });
+                    const btn = $("#del_stf");
+                    btn.attr('disabled', false).html('<i class="fa fa-spin fa-spinner"></i> Try Again...');
+                } else {
+                    $.ajax({
+                        url: "ajax/delete-cat",
+                        method: "POST",
+                        data: {
+                            id_del: id_del
+                        },
+                        success: function(data) {
+
+                            if (data.trim() == 'success') {
+                                $('#login-modal').modal('hide');
+
+                                Swal.fire({
+                                    title: "success!",
+                                    text: "Category Deleted, Please wait redirecting...!",
+                                    icon: "success",
+                                });
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000);
+
+
+                            }
                         }
-                    }
-                });
+                    });
 
-            }
+                }
+
+            });
 
         });
-
-    });
-</script>
+    </script>
     <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -189,8 +181,8 @@
                 <div class="modal-body">
 
                     <form method="post" class=" pe-3">
-
-                        <div class="mb-3">
+                        <span class="text-danger fw-bold">Please note that deleting this category is irreversible. Are you sure you want to proceed?</span>
+                        <div class="mb-3 mt-3">
 
                             <input class="form-control" type="text" id="emp_name" readonly>
                         </div>

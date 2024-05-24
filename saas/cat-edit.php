@@ -1,4 +1,12 @@
-<?php include_once "inc/checkers.php"?>
+<?php
+include_once "inc/checkers.php";
+$get_cat_id = base64_decode($app->get_request('fid'));
+$get_cat_name = base64_decode($app->get_request('cat_name'));
+//sql command
+$query = "SELECT * FROM category WHERE id = '$get_cat_id'";
+$get_data_details = $app->fetch_query($query);
+foreach ($get_data_details as $data)
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,11 +27,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
-                                <h4 class="page-title">Add Categories</h4>
+                                <h4 class="page-title">Edit Categories</h4>
                             </div>
                         </div>
                     </div>
-                  
+
                     <div class="row">
                         <div class="col-6">
                             <div class="card">
@@ -32,7 +40,7 @@
                                         <a href="categories.php">
                                             <i class="ri-arrow-left-fill text-primary fs-4 me-2"></i>
                                         </a>
-                                        <h4 class="header-title mt-1">Add Categories</h4>
+                                        <h4 class="header-title mt-1">Edit Categories</h4>
                                     </div>
                                     <p class="text-muted font-14">
                                     </p>
@@ -43,17 +51,20 @@
                                                 <div class="col-lg-6">
                                                     <form name="myForm" id="myForm" method="post">
                                                         <div class="mb-3">
-                                                            <label class="form-label"> Category Name</label>
-                                                            <input type="text" id="category_name" class="form-control" placeholder="Category Name" name="category_name">
+                                                            <label class="form-label">Category Name</label>
+                                                            <input type="text" id="category_name" class="form-control" placeholder="Category Name" value="<?php echo $data['category_name'];  ?>" name="category_name">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <input type="submit" value="Add" id="reset-btn" class="btn btn-primary">
+                                                            <input type="hidden" name="idc" class="form-control" value="<?php echo $data['id'];  ?>">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <input type="submit" value="Save" id="reset-btn" class="btn btn-primary">
                                                         </div>
                                                     </form>
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +74,7 @@
             <?php include_once "component/footer.php" ?>
         </div>
     </div>
-  
+
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/vendor/highlightjs/highlight.pack.min.js"></script>
     <script src="assets/vendor/clipboard/clipboard.min.js"></script>
@@ -74,10 +85,10 @@
         //validate email
 
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             function validateForm() {
                 let category_name = document.forms["myForm"]["category_name"].value;
-            
+
                 if (category_name === "") {
                     Swal.fire({
                         title: "Category Name Is Empty, Please Input Needed Field",
@@ -91,7 +102,7 @@
             }
 
             /* function to login user */
-            $("#myForm").on('submit', (function (e) {
+            $("#myForm").on('submit', (function(e) {
                 validateForm();
                 let check = validateForm();
                 e.preventDefault();
@@ -100,7 +111,7 @@
                     btn.attr('disabled', true).html("<i class='fa fa-spin fa-spinner'></i> Processing");
                     var datas = new FormData(this);
                     $.ajax({
-                        url: "ajax/add-categories",
+                        url: "ajax/edit_cat",
                         type: "post",
                         data: datas,
                         contentType: false,
@@ -108,24 +119,24 @@
                         processData: false,
                         success: (data) => {
                             if (data.trim() == "success") {
-                            Swal.fire({
-                                title: "success!",
-                                text: "Category Created, Successsfully!",
-                                icon: "success",
-                            });
-                                setTimeout(function () {
-                                var btn = $("#reset-btn");
-                                btn
-                                .attr("disabled", false)
-                                .html("Category Created!");
-                                location.href="categories.php"
-                            }, 3000);     
+                                Swal.fire({
+                                    title: "success!",
+                                    text: "Category Updated, Successsfully!",
+                                    icon: "success",
+                                });
+                                setTimeout(function() {
+                                    var btn = $("#reset-btn");
+                                    btn
+                                        .attr("disabled", false)
+                                        .html("Category Updated!");
+                                    location.href = "categories.php"
+                                }, 3000);
                             } else {
-                            Swal.fire({
-                                title: "Error!",
-                                text: "Posting Failed try again!",
-                                icon: "error",
-                            });
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: "Posting Failed try again!",
+                                    icon: "error",
+                                });
 
                             }
 
@@ -141,4 +152,5 @@
         });
     </script>
 </body>
+
 </html>

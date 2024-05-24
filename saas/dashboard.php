@@ -89,7 +89,7 @@
                                                 <i class="mdi mdi-pulse widget-icon"></i>
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Growth">Categories</h5>
-                                            <h3 class="mt-3 mb-3">+ 30.56%</h3>
+                                            <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($categories_sql); echo number_format(count($count));?></h3>
                                         </div>
                                     </div>
                                 </div>
