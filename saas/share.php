@@ -26,7 +26,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                <div class="page-aside-left">
+                                    <div class="page-aside-left">
                                         <div class="btn-group d-block mb-2">
                                             <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-plus"></i> Create New </button>
                                             <div class="dropdown-menu">
@@ -36,6 +36,8 @@
                                         </div>
                                         <div class="email-menu-list mt-3">
                                             <a href="file-manager.php" class="list-group-item border-0"><i class="mdi mdi-folder-outline font-18 align-middle me-2"></i>All
+                                                Documents</a>
+                                            <a href="upload-doc.php" class="list-group-item border-0"><i class="ri-file-upload-line font-18 align-middle me-2"></i>Uploaded
                                                 Documents</a>
                                             <a href="pending.php" class="list-group-item border-0"><i class="ri-file-history-fill font-18 align-middle me-2"></i>Pending
                                                 Document</a>

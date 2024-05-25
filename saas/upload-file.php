@@ -1,3 +1,7 @@
+<?php
+include_once "inc/checkers.php";
+// include_once "test2.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,6 +41,8 @@
                                         <div class="email-menu-list mt-3">
                                             <a href="file-manager.php" class="list-group-item border-0"><i class="mdi mdi-folder-outline font-18 align-middle me-2"></i>All
                                                 Documents</a>
+                                            <a href="upload-doc.php" class="list-group-item border-0"><i class="ri-file-upload-line font-18 align-middle me-2"></i>Uploaded
+                                                Documents</a>
                                             <a href="pending.php" class="list-group-item border-0"><i class="ri-file-history-fill font-18 align-middle me-2"></i>Pending
                                                 Document</a>
                                             <a href="approved.php" class="list-group-item border-0"><i class="ri-task-fill font-18 align-middle me-2"></i>Approved
@@ -57,49 +63,29 @@
                                             </div>
                                         </div>
                                         <div class="mt-3">
-                                            <h5 class="mb-2">Upload Documents</h5>
+                                            <h5 class="mb-2">Upload Document</h5>
                                         </div>
                                         <div class="mt-3">
-                                            <form action="/" method="post" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
-                                                <div class="dropzone">
-                                                    <div class="fallback">
-                                                        <input name="file" type="file" multiple />
-                                                    </div>
-                                                    <div class="dz-message needsclick">
-                                                        <i class="h1 text-muted ri-upload-cloud-2-line"></i>
-                                                        <h3>Drop files here or click to upload.</h3>
-                                                    </div>
+                                            <form method="post" name="myForm" id="myAwesomeDropzone" enctype="multipart/form-data">
+                                                <div class="file-upload" id="file-upload">
+                                                    <i class="ri-upload-cloud-2-fill fs-2"></i>
+                                                    <p>Click here or drag files to upload
+                                                        <br>
+                                                        <small>Please ensure that folders are properly zipped prior to transmission to ensure secure and efficient file transfer.</small>
+                                                    </p>
                                                 </div>
-                                                <div class="col-lg-12 mt-2">
-                                                    <label for="" class="mb-1 fw-bold">File name</label>
-                                                    <input type="text" class="form-control">
+                                                <input type="file" id="file-input" name="up_file" style="display: none;" multiple>
+
+                                                <div class="preview-container" id="preview-container">
+                                                    <div class="preview" id="file-preview"></div>
                                                 </div>
-                                                
-                                                <div class="mt-2">
-                                                    <input type="submit" value="Upload" class="btn btn-primary">
+
+                                                <div class="form-group mt-2">
+                                                    <label for="additional-input">Document Name</label>
+                                                    <input type="text" class="form-control" name="file_name" id="file-name" placeholder="Please insert document name">
                                                 </div>
+                                                <button type="submit" class="btn btn-primary mt-2" id="reset-btn"><i class="ri-upload-2-fill me-2 fs-5"></i>Upload</button>
                                             </form>
-                                            <div class="dropzone-previews mt-3" id="file-previews"></div>
-                                            <div class="d-none" id="uploadPreviewTemplate">
-                                                <div class="card mt-1 mb-0 shadow-none border">
-                                                    <div class="p-2">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-auto">
-                                                                <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
-                                                            </div>
-                                                            <div class="col ps-0">
-                                                                <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
-                                                                <p class="mb-0" data-dz-size></p>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
-                                                                    <i class="ri-close-line"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +103,81 @@
     <script src="assets/vendor/select2/js/select2.min.js"></script>
     <script src="assets/vendor/dropzone/min/dropzone.min.js"></script>
     <script src="assets/js/ui/component.fileupload.js"></script>
-   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            function validateForm() {
+                let file_name = document.forms["myForm"]["file-name"].value;
+                let file = document.forms["myForm"]["file-input"].value;
+
+                if (file_name === "") {
+                    Swal.fire({
+                        title: "File name cannot be blank. Please provide a name.",
+                        text: "Try Again!",
+                        icon: "error"
+                    });
+                    return false;
+                }
+                if (file === "") {
+                    Swal.fire({
+                        title: "Document not uploaded. Please select a file.",
+                        text: "Try Again!",
+                        icon: "error"
+                    });
+                    return false;
+                }
+
+                return true;
+            }
+            $("#myAwesomeDropzone").on('submit', (function(e) {
+                validateForm();
+                let check = validateForm();
+                e.preventDefault();
+                if (check == true) {
+                    var btn = $("#reset-btn");
+                    btn.attr('disabled', true).html("<i class='fa fa-spin fa-spinner'></i> Processing");
+                    var datas = new FormData(this);
+                    $.ajax({
+                        url: "ajax/add-up",
+                        type: "post",
+                        data: datas,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: (data) => {
+                            if (data.trim() == "success") {
+                                Swal.fire({
+                                    title: "success!",
+                                    text: "File Uploaded, Successsfully!",
+                                    icon: "success",
+                                });
+                                setTimeout(function() {
+                                    var btn = $("#reset-btn");
+                                    btn
+                                        .attr("disabled", false)
+                                        .html("File Uploaded!");
+                                    location.href = "upload-doc.php"
+                                }, 3000);
+                            } else {
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: "Posting Failed try again!",
+                                    icon: "error",
+                                });
+
+                            }
+
+                        },
+
+                    });
+                } else {
+
+                }
+
+            }));
+
+        });
+    </script>
 </body>
 
 </html>

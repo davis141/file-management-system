@@ -29,4 +29,29 @@
     display: none;
     height: auto;
   }
+  .file-upload {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            width: 100%;
+        }
+        .file-upload:hover {
+            background-color: #f9f9f9;
+        }
+        .preview-container {
+            margin-top: 20px;
+            display: none;
+        }
+        .preview {
+            border: 1px solid #ccc;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .preview img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
 </style>
