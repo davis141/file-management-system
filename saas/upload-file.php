@@ -79,7 +79,7 @@ include_once "inc/checkers.php";
                                                 <div class="preview-container" id="preview-container">
                                                     <div class="preview" id="file-preview"></div>
                                                 </div>
-
+                                                <input type="hidden" value="<?php echo base64_encode($user_id); ?>" name="encrypt">
                                                 <div class="form-group mt-2">
                                                     <label for="additional-input">Document Name</label>
                                                     <input type="text" class="form-control" name="file_name" id="file-name" placeholder="Please insert document name">
