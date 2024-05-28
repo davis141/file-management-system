@@ -9,3 +9,5 @@ $account_list_sql = "SELECT * FROM user";
 // fetch categories
 $categories_sql = "SELECT * FROM category";
 // ----------------------------------------------------------------
+// fetch uploaded-doc
+// ----------------------------------------------------------------

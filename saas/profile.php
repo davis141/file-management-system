@@ -57,7 +57,7 @@ include_once "inc/checkers.php";
                                                             <input type="text" class="form-control" id="fullname" placeholder="Enter Full name" name="full_name">
                                                         </div>
                                                     </div>
-                                                    <input type="hidden" class="form-control" value="<?php echo $user_id ?>" name="idp" readonly>
+                                                    <input type="hidden" class="form-control" value="<?php echo base64_encode($user_id); ?>" name="idp" readonly>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12">

@@ -1,6 +1,5 @@
 <?php
 include_once "inc/checkers.php";
-// include_once "test2.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

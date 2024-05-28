@@ -1,3 +1,4 @@
+<?php include_once "inc/checkers.php"?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +19,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
-                                <h4 class="page-title">File Manager</h4>
+                                <h4 class="page-title">Recent Documents</h4>
                             </div>
                         </div>
                     </div>
@@ -73,16 +74,20 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                    <?php
+                                                        $s_sql = "SELECT f.file_name, f.date_time, u.full_name FROM file_table f JOIN user u ON f.user_id = u.user_id ORDER BY f.date_time DESC LIMIT 5";
+                                                        $fetch_query = $app->fetch_query($s_sql);
+                                                        foreach ($fetch_query as $value) {
+                                                        ?>
                                                         <tr>
                                                             <td>
-                                                                <span class="ms-2 fw-semibold"><a href="javascript: void(0);" class="text-reset">App Design &
-                                                                        Development</a></span>
+                                                            <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
                                                             </td>
                                                             <td>
-                                                                <p class="mb-0">Jan 03, 2020</p>
+                                                                <p class="mb-0"><?php echo $value['date_time'] ?></p>
                                                             </td>
                                                             <td>
-                                                                Danielle Thompson
+                                                            <?php echo $value['full_name'] ?>
                                                             </td>
                                                             <td class="">
                                                                 <div class="btn-group dropdown">
@@ -93,6 +98,7 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
+                                                        <?php } ?>
                                                     </tbody>
                                                 </table>
                                             </div>
