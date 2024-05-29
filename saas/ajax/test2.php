@@ -31,6 +31,8 @@ function upload_img($file1, $file_size_allowed, $min_size_compress, $ticket_pic)
         && $type != 'image/png'
         && $type != 'application/pdf'
         && $type != 'application/msword'
+        && $type != 'application/vnd.ms-excel'
+        && $type != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         && $type != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
         && $type != 'application/zip'
         && $type != 'application/x-zip-compressed'

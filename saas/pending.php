@@ -1,3 +1,6 @@
+<?php
+include_once "inc/checkers.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,41 +66,50 @@
                                             <h5 class="mb-2">Pending Documents</h5>
                                         </div>
                                         <div class="mt-3">
-                                            <div class="table-responsive">
-                                                <table class="table table-centered table-nowrap mb-0">
-                                                    <thead class="table-light">
-                                                        <tr>
-                                                            <th class="border-0">File Name</th>
-                                                            <th class="border-0">Date</th>
-                                                            <th class="border-0">Creators Name</th>
-                                                            <th class="border-0" style="width: 80px;">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ms-2 fw-semibold"><a href="javascript: void(0);" class="text-reset">App Design & Development</a></span>
-                                                            </td>
-                                                            <td>
-                                                                <p class="mb-0">Jan 03, 2020</p>
-                                                            </td>
-                                                            <td>
-                                                                Danielle Thompson
-                                                            </td>
-                                                            <td class="">
-                                                                <div class="btn-group dropdown">
-                                                                    <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2 text-muted vertical-middle"></i>View Document</a>
-                                                                        <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download Document</a>
-                                                                        <a class="dropdown-item" href="#"><i class="ri-check-double-line me-2 text-muted vertical-middle"></i>Approve Document</a>
-                                                                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete Document</a>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                            <div class="tab-content">
+                                                <div class="tab-pane show active" id="input-types-preview">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="border-0">File Name</th>
+                                                                        <th class="border-0">Date</th>
+                                                                        <th class="border-0">Creators Name</th>
+                                                                        <th class="border-0" style="width: 80px;">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    $fetch_query = $app->fetch_query($s_sql);
+                                                                    foreach ($fetch_query as $value) {
+                                                                    ?>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
+                                                                            </td>
+                                                                            <td>
+                                                                                <p class="mb-0"><?php echo $value['date_time'] ?></p>
+                                                                            </td>
+                                                                            <td>
+                                                                                <?php echo $value['full_name'] ?>
+                                                                            </td>
+                                                                            <td class="">
+                                                                                <div class="btn-group dropdown">
+                                                                                    <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
+                                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download Document</a>
+                                                                                        <a class="dropdown-item delete_emp" href="#" data-bs-toggle="modal" data-id="<?php echo htmlentities($value['id']) ?>" data-cat="<?php echo htmlentities($value['file_name']); ?>" data-nom="<?php echo htmlentities($value['full_name']); ?>"><i class="ri-check-double-line me-2 text-muted vertical-middle"></i>Approve Document</a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php } ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +126,121 @@
         </div>
     </div>
     <script src="assets/js/vendor.min.js"></script>
+    <script src="assets/vendor/highlightjs/highlight.pack.min.js"></script>
+    <script src="assets/vendor/clipboard/clipboard.min.js"></script>
+    <script src="assets/js/hyper-syntax.js"></script>
     <script src="assets/js/app.min.js"></script>
+    <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+    <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+    <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+    <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+    <script src="assets/js/pages/demo.datatable-init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.delete_emp', function() {
+                const id = $(this).data("id");
+                const emp_name = $(this).data("cat");
+                const f_name = $(this).data("nom");
+
+                $("#f_name").val(f_name);
+                $("#emp_name").val(emp_name);
+                $("#id").val(id);
+
+                $('#login-modal').modal('show');
+
+                $("#delete_emp").click(function() {
+                    const emp_name_del = $("#emp_name").val();
+                    const f_name_del = $("#f_name").val();
+                    const id_del = $("#id").val();
+                    const btn = $(this);
+                    btn.attr('disabled', true).html('<i class=" ri-refresh-line"></i> Processing...');
+
+                    if (!id_del) {
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Invalid request, Please wait redirecting...!",
+                            icon: "error",
+                        });
+                        btn.attr('disabled', false).html('Try Again');
+                    } else {
+                        $.ajax({
+                            url: "ajax/pending_file",
+                            method: "POST",
+                            data: {
+                                id_del: id_del
+                            },
+                            success: function(data) {
+                                if ($.trim(data) === 'success') {
+                                    $('#login-modal').modal('hide');
+                                    Swal.fire({
+                                        title: "Success!",
+                                        text: "Approved, Please wait redirecting...!",
+                                        icon: "success",
+                                    });
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 3000);
+                                } else {
+                                    btn.attr('disabled', false).html('Approve');
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: "There was an error approving the file.",
+                                    icon: "error",
+                                });
+                                btn.attr('disabled', false).html('Approve');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="standard-modalLabel"></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form method="post" class=" pe-3">
+                        <span class="text-danger fw-bold">Please note that this action is irreversible. Are you sure you want to proceed?</span>
+                        <div class="mb-3 mt-3">
+                            <input class="form-control" type="text" id="emp_name" readonly>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <input class="form-control" type="text" id="f_name" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <input class="form-control" type="hidden" id="id" name="id_del">
+                        </div>
+
+                        <div class="mb-3">
+                            <button class="btn rounded-pill btn-danger float-end ms-2" id="delete_emp" type="submit">Approve</button>
+                            <button class="btn rounded-pill btn-primary float-end" data-bs-dismiss="modal" aria-hidden="true">X</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

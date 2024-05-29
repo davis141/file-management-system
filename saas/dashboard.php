@@ -64,7 +64,7 @@
                                                 <i class="mdi mdi-cart-plus widget-icon"></i>
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Pending Document</h5>
-                                            <h3 class="mt-3 mb-3">5,543</h3>
+                                            <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($s_sql); echo number_format(count($count));?></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                                 <i class="mdi mdi-currency-usd widget-icon"></i>
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Approved Document</h5>
-                                            <h3 class="mt-3 mb-3">$6,254</h3>
+                                            <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($app_sql); echo number_format(count($count));?></h3>
                                         </div>
                                     </div>
                                 </div>

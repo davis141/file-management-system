@@ -9,5 +9,12 @@ $account_list_sql = "SELECT * FROM user";
 // fetch categories
 $categories_sql = "SELECT * FROM category";
 // ----------------------------------------------------------------
-// fetch uploaded-doc
+// fetch pending-doc
+$s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name FROM file_table f JOIN user u ON f.user_id = u.user_id WHERE f.status = FALSE";
+// ----------------------------------------------------------------
+// fetch approved doc
+$app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name FROM file_table f JOIN user u ON f.user_id = u.user_id WHERE f.status = TRUE";
+// ----------------------------------------------------------------
+// fetch approved doc
+$file_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, f.status FROM file_table f JOIN user u ON f.user_id = u.user_id ORDER BY f.id DESC";
 // ----------------------------------------------------------------

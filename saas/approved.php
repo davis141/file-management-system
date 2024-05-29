@@ -1,3 +1,6 @@
+<?php
+include_once "inc/checkers.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +29,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                <div class="page-aside-left">
+                                    <div class="page-aside-left">
                                         <div class="btn-group d-block mb-2">
                                             <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-plus"></i> Create New </button>
                                             <div class="dropdown-menu">
@@ -64,39 +67,50 @@
                                         </div>
                                         <div class="mt-3">
                                             <div class="table-responsive">
-                                                <table class="table table-centered table-nowrap mb-0">
-                                                    <thead class="table-light">
-                                                        <tr>
-                                                            <th class="border-0">File Name</th>
-                                                            <th class="border-0">Date</th>
-                                                            <th class="border-0">Creators Name</th>
-                                                            <th class="border-0" style="width: 80px;">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="ms-2 fw-semibold"><a href="javascript: void(0);" class="text-reset">App Design & Development</a></span>
-                                                            </td>
-                                                            <td>
-                                                                <p class="mb-0">Jan 03, 2020</p>
-                                                            </td>
-                                                            <td>
-                                                                Danielle Thompson
-                                                            </td>
-                                                            <td class="">
-                                                                <div class="btn-group dropdown">
-                                                                    <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2 text-muted vertical-middle"></i>View</a>
-                                                                        <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
-                                                                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete Document</a>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane show active" id="input-types-preview">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="border-0">File Name</th>
+                                                                            <th class="border-0">Date</th>
+                                                                            <th class="border-0">Creators Name</th>
+                                                                            <th class="border-0" style="width: 80px;">Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <?php
+                                                                        $fetch_query = $app->fetch_query($app_sql);
+                                                                        foreach ($fetch_query as $value) {
+                                                                        ?>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <p class="mb-0"><?php echo $value['date_time'] ?></p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <?php echo $value['full_name'] ?>
+                                                                                </td>
+                                                                                <td class="">
+                                                                                    <div class="btn-group dropdown">
+                                                                                        <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
+                                                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                                                            <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        <?php } ?>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +127,24 @@
         </div>
     </div>
     <script src="assets/js/vendor.min.js"></script>
+    <script src="assets/vendor/highlightjs/highlight.pack.min.js"></script>
+    <script src="assets/vendor/clipboard/clipboard.min.js"></script>
+    <script src="assets/js/hyper-syntax.js"></script>
     <script src="assets/js/app.min.js"></script>
+    <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+    <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+    <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+    <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+    <script src="assets/js/pages/demo.datatable-init.js"></script>
 
 </body>
 
