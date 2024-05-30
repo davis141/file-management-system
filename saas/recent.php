@@ -69,13 +69,14 @@
                                                         <tr>
                                                             <th class="border-0">File Name</th>
                                                             <th class="border-0">Date</th>
+                                                            <th class="border-0">Category</th>
                                                             <th class="border-0">Creators Name</th>
                                                             <th class="border-0" style="width: 80px;">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                     <?php
-                                                        $s_sql = "SELECT f.file_name, f.date_time, u.full_name FROM file_table f JOIN user u ON f.user_id = u.user_id ORDER BY f.date_time DESC LIMIT 5";
+                                                        $s_sql = "SELECT f.file_name, f.date_time, u.full_name, c.category_name FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id ORDER BY f.date_time DESC LIMIT 5";
                                                         $fetch_query = $app->fetch_query($s_sql);
                                                         foreach ($fetch_query as $value) {
                                                         ?>
@@ -85,6 +86,9 @@
                                                             </td>
                                                             <td>
                                                                 <p class="mb-0"><?php echo $value['date_time'] ?></p>
+                                                            </td>
+                                                            <td>
+                                                                <p class="mb-0"><?php echo $value['category_name'] ?></p>
                                                             </td>
                                                             <td>
                                                             <?php echo $value['full_name'] ?>

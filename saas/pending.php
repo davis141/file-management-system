@@ -75,6 +75,7 @@ include_once "inc/checkers.php";
                                                                     <tr>
                                                                         <th class="border-0">File Name</th>
                                                                         <th class="border-0">Date</th>
+                                                                        <th class="border-0">Category</th>
                                                                         <th class="border-0">Creators Name</th>
                                                                         <th class="border-0" style="width: 80px;">Action</th>
                                                                     </tr>
@@ -91,6 +92,7 @@ include_once "inc/checkers.php";
                                                                             <td>
                                                                                 <p class="mb-0"><?php echo $value['date_time'] ?></p>
                                                                             </td>
+                                                                            <td><?php echo $value['category_name'] ?></td>
                                                                             <td>
                                                                                 <?php echo $value['full_name'] ?>
                                                                             </td>
@@ -233,7 +235,7 @@ include_once "inc/checkers.php";
                         </div>
 
                         <div class="mb-3">
-                            <button class="btn rounded-pill btn-danger float-end ms-2" id="delete_emp" type="submit">Approve</button>
+                            <button class="btn rounded-pill btn-success float-end ms-2" id="delete_emp" type="submit">Approve</button>
                             <button class="btn rounded-pill btn-primary float-end" data-bs-dismiss="modal" aria-hidden="true">X</button>
                         </div>
                     </form>

@@ -76,6 +76,7 @@ include_once "inc/checkers.php";
                                                                     <thead>
                                                                         <tr>
                                                                             <th class="border-0">File Name</th>
+                                                                            <th class="border-0">Category</th>
                                                                             <th class="border-0">Date</th>
                                                                             <th class="border-0">Creators Name</th>
                                                                             <th class="border-0" style="width: 80px;">Action</th>
@@ -83,7 +84,7 @@ include_once "inc/checkers.php";
                                                                     </thead>
                                                                     <tbody>
                                                                         <?php
-                                                                        $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name FROM file_table f JOIN user u ON f.user_id = u.user_id WHERE f.user_id = '$user_id'";
+                                                                        $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.user_id = '$user_id'";
                                                                         $fetch_query = $app->fetch_query($s_sql);
                                                                         foreach ($fetch_query as $value) {
                                                                         ?>
@@ -91,6 +92,7 @@ include_once "inc/checkers.php";
                                                                                 <td>
                                                                                     <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
                                                                                 </td>
+                                                                                <td><?php echo $value['category_name'] ?></td>
                                                                                 <td>
                                                                                     <p class="mb-0"><?php echo $value['date_time'] ?></p>
                                                                                 </td>

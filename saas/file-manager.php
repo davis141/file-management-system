@@ -74,6 +74,7 @@ include_once "inc/checkers.php";
                                                                 <thead>
                                                                     <tr>
                                                                         <th>File Name</th>
+                                                                        <th>Category</th>
                                                                         <th>Date</th>
                                                                         <th>Creators Name</th>
                                                                         <th>Status</th>
@@ -89,6 +90,7 @@ include_once "inc/checkers.php";
                                                                             <td>
                                                                                 <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
                                                                             </td>
+                                                                            <td><?php echo $value['category_name'] ?></td>
                                                                             <td>
                                                                                 <p class="mb-0"><?php echo $value['date_time'] ?></p>
                                                                             </td>

@@ -1,3 +1,4 @@
+<?php include_once "inc/checkers.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,58 +70,47 @@
                                             <h5 class="mb-2">Shared Documents</h5>
                                         </div>
                                         <div class="mt-3">
-                                            <form action="/" method="post" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
-                                                <div class="dropzone">
-                                                    <div class="fallback">
-                                                        <input name="file" type="file" multiple />
-                                                    </div>
-                                                    <div class="dz-message needsclick">
-                                                        <i class="h1 text-muted ri-upload-cloud-2-line"></i>
-                                                        <h3>Drop files here or click to upload.</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12 mt-2">
-                                                    <label for="" class="mb-1 fw-bold">Addiitional Note</label>
-                                                    <textarea name="" id="" cols="20" rows="2" class="form-control"></textarea>
-                                                </div>
-                                                <div class="mt-2">
-                                                    <label for="" class="mb-1">Receiver</label>
-                                                    <div class="select-container">
-                                                        <input type="text" id="filterInput" class="form-control mb-2" placeholder="Type to search...">
-                                                        <select id="filteredSelect" class="form-control " size="5">
-                                                            <option value="Apple">Apple</option>
-                                                            <option value="Banana">Banana</option>
-                                                            <option value="Cherry">Cherry</option>
+                                            <form method="post" name="myForm" id="myAwesomeDropzone" enctype="multipart/form-data">
 
+                                                <input type="hidden" value="<?php echo base64_encode($user_id); ?>" name="encrypt">
+
+                                                <div class="form-group mt-2">
+                                                    <label>Select file to share</label>
+                                                    <div class="form-group">
+                                                        <select class="form-control form-select show-tick" id="dpt" name="cat">
+                                                            <option value="0">Select File</option>
+                                                            <?php
+                                                            $sql = "select * from file_table";
+                                                            $dpt = $app->fetch_query($sql);
+                                                            foreach ($dpt as $cat) {
+                                                            ?>
+                                                                <option value="<?= $cat['id']; ?>"><?= $cat['file_name']; ?></option>
+                                                            <?php } ?>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="mt-2">
-                                                    <input type="submit" value="Send File" class="btn btn-primary">
-                                                </div>
-                                            </form>
-                                            <div class="dropzone-previews mt-3" id="file-previews"></div>
-                                            <div class="d-none" id="uploadPreviewTemplate">
-                                                <div class="card mt-1 mb-0 shadow-none border">
-                                                    <div class="p-2">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-auto">
-                                                                <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
-                                                            </div>
-                                                            <div class="col ps-0">
-                                                                <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
-                                                                <p class="mb-0" data-dz-size></p>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
-                                                                    <i class="ri-close-line"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
+                                                <div class="form-group mt-2">
+                                                    <label>File Sharing Recipient Selection</label>
+                                                    <div class="form-group">
+                                                        <select class="form-control form-select show-tick" id="dpt" name="cat">
+                                                            <option value="0">Select a User</option>
+                                                            <?php
+                                                            $sql = "select * from user";
+                                                            $dpt = $app->fetch_query($sql);
+                                                            foreach ($dpt as $cat) {
+                                                            ?>
+                                                                <option value="<?= $cat['id']; ?>"><?= $cat['full_name']; ?></option>
+                                                            <?php } ?>
+                                                        </select>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div class="form-group mt-2">
+                                                    <label for="additional-input">Additional Note</label>
+                                                    <input type="text" class="form-control" name="file_name" id="file-name" placeholder="Please insert document name">
+                                                </div>
 
+                                                <button type="submit" class="btn btn-primary mt-2" id="reset-btn"><i class="ri-upload-2-fill me-2 fs-5"></i>Share</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

@@ -83,6 +83,21 @@ include_once "inc/checkers.php";
                                                     <label for="additional-input">Document Name</label>
                                                     <input type="text" class="form-control" name="file_name" id="file-name" placeholder="Please insert document name">
                                                 </div>
+                                                <div class="form-group mt-2">
+                                                    <label>Document Category</label>
+                                                    <div class="form-group">
+                                                        <select class="form-control form-select show-tick" id="dpt" name="cat">
+                                                            <option value="0">Select Category</option>
+                                                            <?php
+                                                            $sql = "select * from category";
+                                                            $dpt = $app->fetch_query($sql);
+                                                            foreach ($dpt as $cat) {
+                                                            ?>
+                                                                <option value="<?= $cat['id']; ?>"><?= $cat['category_name']; ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <button type="submit" class="btn btn-primary mt-2" id="reset-btn"><i class="ri-upload-2-fill me-2 fs-5"></i>Upload</button>
                                             </form>
                                         </div>
