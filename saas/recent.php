@@ -1,4 +1,4 @@
-<?php include_once "inc/checkers.php"?>
+<?php include_once "inc/checkers.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +44,8 @@
                                                 Document</a>
                                             <a href="approved.php" class="list-group-item border-0"><i class="ri-task-fill font-18 align-middle me-2"></i>Approved
                                                 Documents</a>
-                                            <a href="share.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared Documents</a>
+                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received Documents</a>
+                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared Documents</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -75,33 +76,33 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <?php
+                                                        <?php
                                                         $s_sql = "SELECT f.file_name, f.date_time, u.full_name, c.category_name FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id ORDER BY f.date_time DESC LIMIT 5";
                                                         $fetch_query = $app->fetch_query($s_sql);
                                                         foreach ($fetch_query as $value) {
                                                         ?>
-                                                        <tr>
-                                                            <td>
-                                                            <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
-                                                            </td>
-                                                            <td>
-                                                                <p class="mb-0"><?php echo $value['date_time'] ?></p>
-                                                            </td>
-                                                            <td>
-                                                                <p class="mb-0"><?php echo $value['category_name'] ?></p>
-                                                            </td>
-                                                            <td>
-                                                            <?php echo $value['full_name'] ?>
-                                                            </td>
-                                                            <td class="">
-                                                                <div class="btn-group dropdown">
-                                                                    <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2 text-muted vertical-middle"></i>View</a>
+                                                            <tr>
+                                                                <td>
+                                                                    <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="mb-0"><?php echo $value['date_time'] ?></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="mb-0"><?php echo $value['category_name'] ?></p>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $value['full_name'] ?>
+                                                                </td>
+                                                                <td class="">
+                                                                    <div class="btn-group dropdown">
+                                                                        <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2 text-muted vertical-middle"></i>View</a>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
+                                                                </td>
+                                                            </tr>
                                                         <?php } ?>
                                                     </tbody>
                                                 </table>

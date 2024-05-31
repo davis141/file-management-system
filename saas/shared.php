@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
-                                <h4 class="page-title">Received Documents</h4>
+                                <h4 class="page-title">Shared Documents</h4>
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
                                         <div class="mt-3">
-                                            <h5 class="mb-2">Received Documents</h5>
+                                            <h5 class="mb-2">Shared Documents</h5>
                                         </div>
                                         <div class="mt-3">
                                             <div class="table-responsive">
@@ -86,7 +86,7 @@
                                                         $file_sql = "SELECT f.file_name, fs.date_time, u.full_name
                                                         FROM file_shares fs
                                                         JOIN file_table f ON fs.file_id = f.id JOIN user u on fs.user_id = u.user_id
-                                                        WHERE fs.shared_with_user_id = '$user_id'";
+                                                        WHERE fs.user_id = '$user_id'";
                                                         $fetch_query = $app->fetch_query($file_sql);
                                                         foreach ($fetch_query as $value) {
                                                         ?>

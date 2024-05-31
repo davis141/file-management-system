@@ -44,7 +44,8 @@
                                                 Document</a>
                                             <a href="approved.php" class="list-group-item border-0"><i class="ri-task-fill font-18 align-middle me-2"></i>Approved
                                                 Documents</a>
-                                            <a href="share.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared Documents</a>
+                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received Documents</a>
+                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared Documents</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -70,17 +71,17 @@
                                             <h5 class="mb-2">Shared Documents</h5>
                                         </div>
                                         <div class="mt-3">
-                                            <form method="post" name="myForm" id="myAwesomeDropzone" enctype="multipart/form-data">
+                                            <form method="post" name="myForm" id="myForm" enctype="multipart/form-data">
 
                                                 <input type="hidden" value="<?php echo base64_encode($user_id); ?>" name="encrypt">
 
                                                 <div class="form-group mt-2">
                                                     <label>Select file to share</label>
                                                     <div class="form-group">
-                                                        <select class="form-control form-select show-tick" id="dpt" name="cat">
+                                                        <select class="form-control form-select show-tick" id="dpt" name="dpt">
                                                             <option value="0">Select File</option>
                                                             <?php
-                                                            $sql = "select * from file_table";
+                                                            $sql = "select * from file_table where user_id ='$user_id'";
                                                             $dpt = $app->fetch_query($sql);
                                                             foreach ($dpt as $cat) {
                                                             ?>
@@ -92,14 +93,14 @@
                                                 <div class="form-group mt-2">
                                                     <label>File Sharing Recipient Selection</label>
                                                     <div class="form-group">
-                                                        <select class="form-control form-select show-tick" id="dpt" name="cat">
+                                                        <select class="form-control form-select show-tick" id="shr" name="shr">
                                                             <option value="0">Select a User</option>
                                                             <?php
                                                             $sql = "select * from user";
                                                             $dpt = $app->fetch_query($sql);
                                                             foreach ($dpt as $cat) {
                                                             ?>
-                                                                <option value="<?= $cat['id']; ?>"><?= $cat['full_name']; ?></option>
+                                                                <option value="<?= $cat['user_id']; ?>"><?= $cat['full_name']; ?></option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
@@ -108,7 +109,7 @@
                                                     <label for="additional-input">Additional Note</label>
                                                     <input type="text" class="form-control" name="file_name" id="file-name" placeholder="Please insert document name">
                                                 </div>
-
+                                                <input type="hidden" value="<?php echo base64_encode($user_id); ?>" name="encrypt">
                                                 <button type="submit" class="btn btn-primary mt-2" id="reset-btn"><i class="ri-upload-2-fill me-2 fs-5"></i>Share</button>
                                             </form>
                                         </div>
@@ -127,42 +128,78 @@
     <script src="assets/js/app.min.js"></script>
     <script src="assets/vendor/select2/js/select2.min.js"></script>
     <script src="assets/vendor/dropzone/min/dropzone.min.js"></script>
-    <script src="assets/js/ui/component.fileupload.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.getElementById('filterInput').addEventListener('focus', function() {
-            document.getElementById('filteredSelect').style.display = 'block';
-        });
+        //validate email
 
-        document.getElementById('filterInput').addEventListener('input', function() {
-            const filter = this.value.toLowerCase();
-            const select = document.getElementById('filteredSelect');
-            const options = select.options;
 
-            for (let i = 0; i < options.length; i++) {
-                const option = options[i];
-                const text = option.text.toLowerCase();
-                if (text.includes(filter)) {
-                    option.style.display = '';
-                } else {
-                    option.style.display = 'none';
+        $(document).ready(function() {
+            function validateForm() {
+                let category_name = document.forms["myForm"]["file-name"].value;
+
+                if (category_name === "") {
+                    Swal.fire({
+                        title: " Empty, Please Input Needed Field",
+                        text: "Try Again!",
+                        icon: "error"
+                    });
+                    return false;
                 }
-            }
-        });
 
-        document.getElementById('filteredSelect').addEventListener('change', function() {
-            const selectedText = this.options[this.selectedIndex].text;
-            document.getElementById('filterInput').value = selectedText;
-            this.style.display = 'none';
-        });
-
-        document.addEventListener('click', function(event) {
-            const filterInput = document.getElementById('filterInput');
-            const filteredSelect = document.getElementById('filteredSelect');
-            if (!filterInput.contains(event.target) && !filteredSelect.contains(event.target)) {
-                filteredSelect.style.display = 'none';
+                return true; // Form is valid
             }
+
+            /* function to login user */
+            $("#myForm").on('submit', (function(e) {
+                validateForm();
+                let check = validateForm();
+                e.preventDefault();
+                if (check == true) {
+                    var btn = $("#reset-btn");
+                    btn.attr('disabled', true).html("<i class='fa fa-spin fa-spinner'></i> Processing");
+                    var datas = new FormData(this);
+                    $.ajax({
+                        url: "ajax/share",
+                        type: "post",
+                        data: datas,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: (data) => {
+                            if (data.trim() == "success") {
+                                Swal.fire({
+                                    title: "success!",
+                                    text: "Shared, Successsfully!",
+                                    icon: "success",
+                                });
+                                setTimeout(function() {
+                                    var btn = $("#reset-btn");
+                                    btn
+                                        .attr("disabled", false)
+                                        .html(" Shared Successsfully!");
+                                    location.href = "shared.php"
+                                }, 3000);
+                            } else {
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: "Posting Failed try again!",
+                                    icon: "error",
+                                });
+
+                            }
+
+                        },
+
+                    });
+                } else {
+
+                }
+
+            }));
+
         });
     </script>
+
 
 </body>
 
