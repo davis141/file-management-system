@@ -84,7 +84,7 @@ include_once "inc/checkers.php";
                                                                     </thead>
                                                                     <tbody>
                                                                         <?php
-                                                                        $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.user_id = '$user_id'";
+                                                                        $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.user_id = '$user_id'";
                                                                         $fetch_query = $app->fetch_query($s_sql);
                                                                         foreach ($fetch_query as $value) {
                                                                         ?>
@@ -103,7 +103,7 @@ include_once "inc/checkers.php";
                                                                                     <div class="btn-group dropdown">
                                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                                            <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                                        <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                                             <a class="dropdown-item delete_emp" href="#" data-id="<?= $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete
                                                                                                 Document</a>
                                                                                         </div>

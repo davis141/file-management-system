@@ -1,13 +1,13 @@
 <?php
 $file_size_allowed = 30000000;
-$min_size_compress = 500000;
+$min_size_compress = 10000000;
 $ticket_pic = "../doc_file/";
 
 function compressImage($source, $destination, $quality)
 {
     $info = getimagesize($source);
 
-    if ($info['mime'] == 'image/jpeg')
+    if ($info['mime'] == 'image/jpeg' || $info['mime'] == 'image/jpg')
         $image = imagecreatefromjpeg($source);
     elseif ($info['mime'] == 'image/gif')
         $image = imagecreatefromgif($source);
@@ -16,6 +16,7 @@ function compressImage($source, $destination, $quality)
 
     imagejpeg($image, $destination, $quality);
 }
+
 
 function upload_img($file1, $file_size_allowed, $min_size_compress, $ticket_pic)
 {
@@ -43,6 +44,7 @@ function upload_img($file1, $file_size_allowed, $min_size_compress, $ticket_pic)
         && $type != 'text/javascript'             // JavaScript
         && $type != 'application/x-javascript'    // JavaScript
         && $type != 'application/x-php'           // PHP
+        // && $type != 'text/x-php'           // PHP
         && $type != 'application/x-httpd-php'     // PHP
         && $type != 'application/x-httpd-php-source'  // PHP source
         && $type != 'text/x-java-source'          // Java

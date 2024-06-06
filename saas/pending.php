@@ -101,7 +101,7 @@ include_once "inc/checkers.php";
                                                                                 <div class="btn-group dropdown">
                                                                                     <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                                                        <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download Document</a>
+                                                                                    <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download Document</a>
                                                                                         <a class="dropdown-item delete_emp" href="#" data-bs-toggle="modal" data-id="<?php echo htmlentities($value['id']) ?>" data-cat="<?php echo htmlentities($value['file_name']); ?>" data-nom="<?php echo htmlentities($value['full_name']); ?>"><i class="ri-check-double-line me-2 text-muted vertical-middle"></i>Approve Document</a>
                                                                                     </div>
                                                                                 </div>

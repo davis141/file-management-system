@@ -77,7 +77,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $s_sql = "SELECT f.file_name, f.date_time, u.full_name, c.category_name FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id ORDER BY f.date_time DESC LIMIT 5";
+                                                        $s_sql = "SELECT f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id ORDER BY f.date_time DESC LIMIT 5";
                                                         $fetch_query = $app->fetch_query($s_sql);
                                                         foreach ($fetch_query as $value) {
                                                         ?>
@@ -98,7 +98,7 @@
                                                                     <div class="btn-group dropdown">
                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                            <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2 text-muted vertical-middle"></i>View</a>
+                                                                        <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>

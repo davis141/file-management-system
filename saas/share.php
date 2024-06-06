@@ -83,7 +83,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $file_sql = "SELECT f.file_name, fs.date_time, u.full_name
+                                                        $file_sql = "SELECT f.file_name, fs.date_time, u.full_name, fs.file_path
                                                         FROM file_shares fs
                                                         JOIN file_table f ON fs.file_id = f.id JOIN user u on fs.user_id = u.user_id
                                                         WHERE fs.shared_with_user_id = '$user_id'";
@@ -104,9 +104,7 @@
                                                                     <div class="btn-group dropdown">
                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                            <!-- <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2 text-muted vertical-middle"></i>View</a> -->
-                                                                            <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
-                                                                            <!-- <a class="dropdown-item" href="#"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete Document</a> -->
+                                                                            <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>

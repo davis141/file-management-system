@@ -1,16 +1,12 @@
 <?php include_once "inc/checkers.php" ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?php include_once "component/style.php" ?>
 </head>
-
 <body>
     <div class="wrapper">
-
         <?php include_once "component/top-bar.php" ?>
-
         <?php include_once "component/sidebar.php" ?>
 
         <div class="content-page">
@@ -83,7 +79,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $file_sql = "SELECT f.file_name, fs.date_time, u.full_name
+                                                        $file_sql = "SELECT fs.id, f.file_name, fs.date_time, fs.file_path, u.full_name
                                                         FROM file_shares fs
                                                         JOIN file_table f ON fs.file_id = f.id JOIN user u on fs.user_id = u.user_id
                                                         WHERE fs.user_id = '$user_id'";
@@ -104,9 +100,7 @@
                                                                     <div class="btn-group dropdown">
                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                            <!-- <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2 text-muted vertical-middle"></i>View</a> -->
-                                                                            <a class="dropdown-item" href="#"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
-                                                                            <!-- <a class="dropdown-item" href="#"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete Document</a> -->
+                                                                            <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -124,14 +118,11 @@
                     </div>
                 </div>
             </div>
-
             <?php include_once "component/footer.php" ?>
-
         </div>
     </div>
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.min.js"></script>
-
 </body>
 
 </html>
