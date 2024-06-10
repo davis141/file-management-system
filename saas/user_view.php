@@ -2,13 +2,8 @@
 include_once "inc/checkers.php";
 $get_cat_id = base64_decode($app->get_request('fid'));
 $get_cat_name = base64_decode($app->get_request('cat_name'));
-$get_cat_date = base64_decode($app->get_request('cat_date'));
-$get_full_name = base64_decode($app->get_request('full_name'));
-$get_cat_in = base64_decode($app->get_request('cat_input'));
-//sql command
-// $query = "SELECT fs.id, f.file_name, fs.date_time,fs.add_input, u.full_name FROM file_shares JOIN file_table f ON fs.file_id = f.id JOIN user u ON fs.user_id = u.user_id WHERE fs.id = '$get_cat_id'";
-// $get_data_details = $app->fetch_query($query);
-// foreach ($get_data_details as $data)
+$get_cat_email = base64_decode($app->get_request('cat_email'));
+$get_password = base64_decode($app->get_request('password'));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +25,7 @@ $get_cat_in = base64_decode($app->get_request('cat_input'));
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
-                                <h4 class="page-title">Received</h4>
+                                <h4 class="page-title">View User</h4>
                             </div>
                         </div>
                     </div>
@@ -43,7 +38,7 @@ $get_cat_in = base64_decode($app->get_request('cat_input'));
                                         <a href="share.php">
                                             <i class="ri-arrow-left-fill text-primary fs-4 me-2"></i>
                                         </a>
-                                        <h4 class="header-title mt-1">Viewed Document</h4>
+                                        <h4 class="header-title mt-1">Viewed User</h4>
                                     </div>
                                     <p class="text-muted font-14">
                                     </p>
@@ -54,16 +49,10 @@ $get_cat_in = base64_decode($app->get_request('cat_input'));
                                                 <div class="col-lg-6">
 
                                                     <div class="mb-3">
-                                                        <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-bold"><?php echo $get_cat_name ?></span>
+                                                    <p class="fw-bold">Full Name :</p><span><?php echo $get_cat_name ?></span>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <p class="fw-bold">Sent By :</p><span><?php echo $get_full_name ?></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <p class="fw-bold">Date and Time :</p> <span><?php echo $get_cat_date ?></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <p class="fw-bold">Comment :</p> <span><?php echo $get_cat_in ?></span>
+                                                        <p class="fw-bold">Email :</p><span><?php echo $get_cat_email ?></span>
                                                     </div>
                                                 </div>
                                             </div>

@@ -25,7 +25,7 @@ include_once "inc/checkers.php";
                         <div class="col-lg-6 col-sm-12">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a href="add-categories.php" class="">
+                                    <a href="user_add.php" class="">
                                         <button class="btn btn-primary text-white fw-bold float-end mt-2">Add
                                             Users</button>
                                     </a>
@@ -37,12 +37,7 @@ include_once "inc/checkers.php";
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="header-title"> Users</h4>
-                                    <!-- <p class="text-muted font-14">
-                                        We may examine and organise classes of information methodically through the lens
-                                        of categorization, which makes understanding and analysis more effective. For a
-                                        closer look at the categorised data, feel free to browse the table below.
-                                    </p> -->
+                                    
                                     <div class="tab-content">
                                         <div class="tab-pane show active" id="input-types-preview">
                                             <div class="row">
@@ -72,8 +67,10 @@ include_once "inc/checkers.php";
                                                                             </a>
 
                                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                            <a class="dropdown-item" href="user_view?fid=<?php echo base64_encode($value['id']); ?>&cat_name=<?php echo base64_encode($value['full_name']); ?>&cat_email=<?php echo base64_encode($value['email']); ?>"><i class=" ri-eye-fill me-1"></i>View</a>
                                                                                 <a class="dropdown-item" href="#"><i class=" ri-shield-cross-fill fs-5 me-2"></i>Enable User</a>
                                                                                 <a class="dropdown-item delete_emp" href="#"><i class=" ri-shield-fill fs-5 me-2"></i>Disable User</a>
+                                                                                <!-- <a class="dropdown-item delete_emp" href="#"><i class=" ri-shield-fill fs-5 me-2"></i>Disable User</a> -->
                                                                             </div>
                                                                         </div>
                                                                     </td>
