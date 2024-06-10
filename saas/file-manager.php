@@ -46,8 +46,10 @@ include_once "inc/checkers.php";
                                                 Document</a>
                                             <a href="approved.php" class="list-group-item border-0"><i class="ri-task-fill font-18 align-middle me-2"></i>Approved
                                                 Documents</a>
-                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received Documents</a>
-                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared Documents</a>
+                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received
+                                                Documents</a>
+                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared
+                                                Documents</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -63,10 +65,9 @@ include_once "inc/checkers.php";
                                             </div>
                                         </div>
                                         <div class="mt-3">
-                                            <h5 class="mb-2">All Documents</h5>
+                                            <h5 class="mb-2">All Official Documents</h5>
                                         </div>
                                         <div class="mt-3">
-                                            <!-- <div class="table-responsive"> -->
                                             <div class="tab-content">
                                                 <div class="tab-pane show active" id="input-types-preview">
                                                     <div class="row">
@@ -84,6 +85,7 @@ include_once "inc/checkers.php";
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
+                                                                    $file_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, f.status, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id WHERE f.company_id = u.company_id";
                                                                     $fetch_query = $app->fetch_query($file_sql);
                                                                     foreach ($fetch_query as $value) {
                                                                     ?>
@@ -93,7 +95,8 @@ include_once "inc/checkers.php";
                                                                             </td>
                                                                             <td><?php echo $value['category_name'] ?></td>
                                                                             <td>
-                                                                                <p class="mb-0"><?php echo $value['date_time'] ?></p>
+                                                                                <p class="mb-0">
+                                                                                    <?php echo $value['date_time'] ?></p>
                                                                             </td>
                                                                             <td>
                                                                                 <?php echo $value['full_name'] ?>
@@ -109,7 +112,8 @@ include_once "inc/checkers.php";
                                                                                 <div class="btn-group dropdown">
                                                                                     <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                                                    <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                                        <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                                        
                                                                                     </div>
                                                                                 </div>
                                                                             </td>
@@ -121,7 +125,6 @@ include_once "inc/checkers.php";
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +174,8 @@ include_once "inc/checkers.php";
                     const f_name_del = $("#f_name").val();
                     const id_del = $("#id").val();
                     const btn = $(this);
-                    btn.attr('disabled', true).html('<i class=" ri-refresh-line"></i> Processing...');
+                    btn.attr('disabled', true).html(
+                        '<i class=" ri-refresh-line"></i> Processing...');
 
                     if (!id_del) {
                         Swal.fire({

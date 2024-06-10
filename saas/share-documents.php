@@ -1,4 +1,9 @@
-<?php include_once "inc/checkers.php" ?>
+<?php 
+include_once "inc/checkers.php";
+$random_number = mt_rand(100000, 999999);
+$encoded_id = base64_encode($c_id . $random_number);
+$use_id = base64_encode($user_id . $random_number);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,16 +77,15 @@
                                         </div>
                                         <div class="mt-3">
                                             <form method="post" name="myForm" id="myForm" enctype="multipart/form-data">
-
-                                                <input type="hidden" value="<?php echo base64_encode($user_id); ?>" name="encrypt">
-
+                                            <input type="hidden" value="<?php echo $use_id  ?>" name="encrypt">
+                                            <input type="hidden" value="<?php echo $encoded_id ?>" name="encrypt_c">
                                                 <div class="form-group mt-2">
                                                     <label>Select file to share</label>
                                                     <div class="form-group">
                                                         <select class="form-control form-select show-tick" id="dpt" name="dpt">
                                                             <option value="0">Select File</option>
                                                             <?php
-                                                            $sql = "select * from file_table where user_id ='$user_id'";
+                                                            $sql = "select * from file_table where user_id ='$user_id' and company_id = '$c_id'";
                                                             $dpt = $app->fetch_query($sql);
                                                             foreach ($dpt as $cat) {
                                                             ?>
@@ -109,7 +113,7 @@
                                                     <label for="additional-input">Additional Note</label>
                                                     <input type="text" class="form-control" name="file_name" id="file-name" placeholder="Please insert document name">
                                                 </div>
-                                                <input type="hidden" value="<?php echo base64_encode($user_id); ?>" name="encrypt">
+                                                
                                                 <button type="submit" class="btn btn-primary mt-2" id="reset-btn"><i class="ri-upload-2-fill me-2 fs-5"></i>Share</button>
                                             </form>
                                         </div>

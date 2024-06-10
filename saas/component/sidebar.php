@@ -49,6 +49,12 @@
                 </a>
             </li>
             <li class="side-nav-item">
+                <a href="users.php" class="side-nav-link">
+                    <i class="ri-team-line"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
                 <a href="profile.php" class="side-nav-link">
                     <i class="mdi mdi-account-circle"></i>
                     <span>Profile </span>

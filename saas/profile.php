@@ -1,6 +1,8 @@
 <?php 
 include_once "inc/checkers.php";
-
+$random_number = mt_rand(100000, 999999);
+$encoded_id = base64_encode($c_id . $random_number);
+$use_id = base64_encode($user_id . $random_number);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +59,8 @@ include_once "inc/checkers.php";
                                                             <input type="text" class="form-control" id="fullname" placeholder="Enter Full name" name="full_name">
                                                         </div>
                                                     </div>
-                                                    <input type="hidden" class="form-control" value="<?php echo base64_encode($user_id); ?>" name="idp" readonly>
+                                                    <input type="hidden" class="form-control" value="<?php echo $use_id; ?>" name="idp" readonly>
+                                                    <input type="hidden" class="form-control" value="<?php echo $encoded_id; ?>" name="idc" readonly>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12">

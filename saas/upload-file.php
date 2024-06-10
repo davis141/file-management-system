@@ -1,5 +1,8 @@
 <?php
 include_once "inc/checkers.php";
+$random_number = mt_rand(100000, 999999);
+$encoded_id = base64_encode($c_id . $random_number);
+$use_id = base64_encode($user_id . $random_number);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +82,8 @@ include_once "inc/checkers.php";
                                                 <div class="preview-container" id="preview-container">
                                                     <div class="preview" id="file-preview"></div>
                                                 </div>
-                                                <input type="hidden" value="<?php echo base64_encode($user_id); ?>" name="encrypt">
+                                                <input type="hidden" value="<?php echo $use_id  ?>" name="encrypt">
+                                                <input type="hidden" value="<?php echo $encoded_id ?>" name="encrypt_c">
                                                 <div class="form-group mt-2">
                                                     <label for="additional-input">Document Name</label>
                                                     <input type="text" class="form-control" name="file_name" id="file-name" placeholder="Please insert document name">
@@ -90,7 +94,7 @@ include_once "inc/checkers.php";
                                                         <select class="form-control form-select show-tick" id="dpt" name="cat">
                                                             <option value="0">Select Category</option>
                                                             <?php
-                                                            $sql = "select * from category";
+                                                            $sql = "select id, category_name from category where company_id = '$c_id'";
                                                             $dpt = $app->fetch_query($sql);
                                                             foreach ($dpt as $cat) {
                                                             ?>

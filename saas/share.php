@@ -83,10 +83,10 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $file_sql = "SELECT f.file_name, fs.date_time, u.full_name, fs.file_path
+                                                        $file_sql = "SELECT fs.id, f.file_name, fs.date_time, u.full_name, fs.file_path, fs.add_input
                                                         FROM file_shares fs
                                                         JOIN file_table f ON fs.file_id = f.id JOIN user u on fs.user_id = u.user_id
-                                                        WHERE fs.shared_with_user_id = '$user_id'";
+                                                        WHERE fs.shared_with_user_id = '$user_id' AND fs.company_id = u.company_id";
                                                         $fetch_query = $app->fetch_query($file_sql);
                                                         foreach ($fetch_query as $value) {
                                                         ?>
@@ -105,6 +105,7 @@
                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                         <div class="dropdown-menu dropdown-menu-end">
                                                                             <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                            <a class="dropdown-item" href="view_recieved?fid=<?php echo base64_encode($value['id']); ?>&cat_name=<?php echo base64_encode($value['file_name']); ?>&cat_date=<?php echo base64_encode($value['date_time']); ?>&full_name=<?php echo base64_encode($value['full_name']); ?>&cat_input=<?php echo base64_encode($value['add_input']); ?>"><i class=" ri-eye-fill me-1"></i>View</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>

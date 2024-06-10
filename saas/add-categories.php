@@ -46,7 +46,7 @@
                                                             <label class="form-label"> Category Name</label>
                                                             <input type="text" id="category_name" class="form-control" placeholder="Category Name" name="category_name">
                                                         </div>
-                                                        <input type="hidden" value="<?php echo base64_encode($company_id); ?>" name="c_id">
+                                                        <input type="hidden" class="form-control" value="<?php echo base64_encode($c_id); ?>" name="c_id" readonly>
                                                         <div class="mb-3">
                                                             <input type="submit" value="Add" id="reset-btn" class="btn btn-primary">
                                                         </div>

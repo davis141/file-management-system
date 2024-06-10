@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once __DIR__ . "/controller.php";
-include_once __DIR__ . "/../sql/sql.php";  // Corrected path
+include_once __DIR__ . "/../sql/sql.php";  
 $app = new controller();
 
 // Check login status and user access level
@@ -24,7 +24,7 @@ $access_level_id = $userInfo['access_level_id'];
 $full_name = $userInfo['full_name'];
 $email = $userInfo['email'];
 $about = $userInfo['about'];
-$company_id = $userInfo['company_id'];
+$c_id = $userInfo['company_id'];
 
 if ($access_level_id != 1) {
     $app->logout();

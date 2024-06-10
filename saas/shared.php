@@ -1,9 +1,11 @@
 <?php include_once "inc/checkers.php" ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php include_once "component/style.php" ?>
 </head>
+
 <body>
     <div class="wrapper">
         <?php include_once "component/top-bar.php" ?>
@@ -82,7 +84,7 @@
                                                         $file_sql = "SELECT fs.id, f.file_name, fs.date_time, fs.file_path, u.full_name
                                                         FROM file_shares fs
                                                         JOIN file_table f ON fs.file_id = f.id JOIN user u on fs.user_id = u.user_id
-                                                        WHERE fs.user_id = '$user_id'";
+                                                        WHERE fs.user_id = '$user_id' AND fs.company_id = u.company_id";
                                                         $fetch_query = $app->fetch_query($file_sql);
                                                         foreach ($fetch_query as $value) {
                                                         ?>
@@ -101,6 +103,8 @@
                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                         <div class="dropdown-menu dropdown-menu-end">
                                                                             <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                            <a class="dropdown-item delete_emp" href="#" data-id="<?php echo $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete
+                                                                                Document</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -123,6 +127,95 @@
     </div>
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).on('click', '.delete_emp', function() {
+
+            const id = $(this).attr("data-id");
+            const emp_name = $(this).attr("data-cat");
+
+            $("#emp_name").val(emp_name);
+            $("#id").val(id);
+
+
+            $('#login-modal').modal('show');
+
+            $("#delete_emp").click(function() {
+                const emp_name_del = $("#emp_name").val();
+                const id_del = $("#id").val();
+                const btn = $("#delete_emp");
+                btn.attr('disabled', true).html('<i class="fa fa-spin fa-spinner"></i> Deleting...');
+                if (id_del === '' || id_del === 0) {
+                    Swal.fire({
+                        title: "success!",
+                        text: "Invalid request, Please wait redirecting...!",
+                        icon: "success",
+                    });
+                    const btn = $("#del_stf");
+                    btn.attr('disabled', false).html('<i class="fa fa-spin fa-spinner"></i> Try Again...');
+                } else {
+                    $.ajax({
+                        url: "ajax/delete_send",
+                        method: "POST",
+                        data: {
+                            id_del: id_del
+                        },
+                        success: function(data) {
+
+                            if (data.trim() == 'success') {
+                                $('#login-modal').modal('hide');
+
+                                Swal.fire({
+                                    title: "success!",
+                                    text: "Deleted, Please wait redirecting...!",
+                                    icon: "success",
+                                });
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000);
+
+
+                            }
+                        }
+                    });
+
+                }
+
+            });
+
+        });
+    </script>
+    <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="standard-modalLabel"></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form method="post" class=" pe-3">
+                        <span class="text-danger fw-bold">Please note that this action is irreversible. Are you sure you want to proceed?</span>
+                        <div class="mb-3 mt-3">
+                            <label for="" class="mb-2">File Name</label>
+                            <input class="form-control" type="text" id="emp_name" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <input class="form-control" type="hidden" id="id" name="id_del">
+                        </div>
+
+                        <div class="mb-3">
+                            <button class="btn rounded-pill btn-danger float-end ms-2" id="delete_emp" type="submit">Delete</button>
+                            <button class="btn rounded-pill btn-primary float-end" data-bs-dismiss="modal" aria-hidden="true">X</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

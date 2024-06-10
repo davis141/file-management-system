@@ -83,6 +83,8 @@ include_once "inc/checkers.php";
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
+                                                                    $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = FALSE AND f.company_id = u.company_id";
+
                                                                     $fetch_query = $app->fetch_query($s_sql);
                                                                     foreach ($fetch_query as $value) {
                                                                     ?>
@@ -101,7 +103,7 @@ include_once "inc/checkers.php";
                                                                                 <div class="btn-group dropdown">
                                                                                     <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                                                    <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download Document</a>
+                                                                                        <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download Document</a>
                                                                                         <a class="dropdown-item delete_emp" href="#" data-bs-toggle="modal" data-id="<?php echo htmlentities($value['id']) ?>" data-cat="<?php echo htmlentities($value['file_name']); ?>" data-nom="<?php echo htmlentities($value['full_name']); ?>"><i class="ri-check-double-line me-2 text-muted vertical-middle"></i>Approve Document</a>
                                                                                     </div>
                                                                                 </div>

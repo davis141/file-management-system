@@ -55,7 +55,7 @@ foreach ($get_data_details as $data)
                                                             <input type="text" id="category_name" class="form-control" placeholder="Category Name" value="<?php echo $data['category_name'];  ?>" name="category_name">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <input type="hidden" name="idc" class="form-control" value="<?php echo $data['id'];  ?>">
+                                                            <input type="hidden" name="idc" class="form-control" value="<?php echo base64_encode($data['id']); ?>">
                                                         </div>
                                                         <div class="mb-3">
                                                             <input type="submit" value="Save" id="reset-btn" class="btn btn-primary">
