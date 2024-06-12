@@ -14,5 +14,5 @@ $categories_sql = "SELECT * FROM category";
 // fetch approved doc
 // ----------------------------------------------------------------
 // fetch approved doc
-$dash_sql = "SELECT * FROM file_table";
+
 // ----------------------------------------------------------------

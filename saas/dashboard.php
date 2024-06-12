@@ -1,6 +1,7 @@
 <?php
 include_once "inc/checkers.php";
-$categories_sql = "SELECT * FROM category c JOIN user u ON c.company_id = u.company_id WHERE c.company_id = '$c_id'";
+$dash_sql = "SELECT * FROM file_table WHERE company_id='$c_id'";
+$categories_sql = "SELECT * FROM category  WHERE company_id = '$c_id'";
 $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = FALSE AND f.company_id = u.company_id";
 $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = TRUE AND f.company_id = u.company_id";
 ?>
@@ -13,8 +14,6 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
 
 <body>
     <div class="wrapper">
-
-
         <?php include_once "component/top-bar.php" ?>
 
         <?php include_once "component/sidebar.php" ?>
@@ -27,20 +26,7 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                         <div class="col-12">
                             <div class="page-title-box">
                                 <div class="page-title-right">
-                                    <form class="d-flex">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control form-control-light" id="dash-daterange">
-                                            <span class="input-group-text bg-primary border-primary text-white">
-                                                <i class="mdi mdi-calendar-range font-13"></i>
-                                            </span>
-                                        </div>
-                                        <a href="javascript: void(0);" class="btn btn-primary ms-2">
-                                            <i class="mdi mdi-autorenew"></i>
-                                        </a>
-                                        <a href="javascript: void(0);" class="btn btn-primary ms-1">
-                                            <i class="mdi mdi-filter-variant"></i>
-                                        </a>
-                                    </form>
+
                                 </div>
                                 <h4 class="page-title">Dashboard</h4>
                             </div>
@@ -114,24 +100,27 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                     <div class="table-responsive">
                                         <table class="table table-centered table-nowrap table-hover mb-0">
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <h5 class="font-14 my-1 fw-normal">ASOS Ridley High Waist</h5>
-                                                        <span class="text-muted font-13">07 April 2018</span>
+                                                <?php
+                                                $r_sql = "SELECT f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id WHERE f.company_id = u.company_id ORDER BY f.date_time DESC LIMIT 5";
+                                                $fetch_query = $app->fetch_query($r_sql);
+                                                foreach ($fetch_query as $value) {
+                                                ?>
+                                                    <tr>
+                                                        <td>
+                                                            <h5 class="font-14 my-1 fw-normal"> <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
+                                                            </h5>
+                                                            <span class="text-muted font-13"><?php echo $value['date_time'] ?></span>
+                                                        </td>
+                                                        <td>
+                                                            <h5 class="font-14 my-1 fw-normal"><?php echo $value['category_name'] ?></h5>
+                                                            <span class="text-muted font-13">Category</span>
+                                                        </td>
+                                                        <td>
+                                                        <h5 class="font-14 my-1 fw-normal"><?php echo $value['full_name'] ?></h5>
+                                                        <span class="text-muted font-13">Name</span>
                                                     </td>
-                                                    <td>
-                                                        <h5 class="font-14 my-1 fw-normal">$79.49</h5>
-                                                        <span class="text-muted font-13">Price</span>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="font-14 my-1 fw-normal">82</h5>
-                                                        <span class="text-muted font-13">Quantity</span>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="font-14 my-1 fw-normal">$6,518.18</h5>
-                                                        <span class="text-muted font-13">Amount</span>
-                                                    </td>
-                                                </tr>
+                                                    </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>

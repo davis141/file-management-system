@@ -14,8 +14,8 @@ $c_id_length = 13;
 $c_ids = substr($c_id_decode, 0, $c_id_length);
 $users = substr($user_id_decode, 0, $c_id_length);
 if (isset($full_name)) {
-    $query = "INSERT INTO `user` (`id`, `company_id`,`access_level_id`,`full_name`, `password`, `user_id`, `email`)
-    VALUES (NULL,'$c_ids','$dpt','$full_name', '$hashed_password', '$users', '$email')";
+    $query = "INSERT INTO `user` (`id`, `company_id`,`access_level_id`,`full_name`, `password`, `user_id`, `email`, `is_active`)
+    VALUES (NULL,'$c_ids','$dpt','$full_name', '$hashed_password', '$users', '$email', '1')";
     $get_category = $app->direct_insert($query);
     if ($get_category == "success") {
         echo "success";

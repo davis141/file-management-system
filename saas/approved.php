@@ -149,6 +149,24 @@ include_once "inc/checkers.php";
     <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
     <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
     <script src="assets/js/pages/demo.datatable-init.js"></script>
+    <script>
+        $(document).ready(function() {
+            if ($.fn.DataTable.isDataTable('#datatable-buttons')) {
+        // If it is, destroy it
+        $('#datatable-buttons').DataTable().destroy();
+    }
+            $('#datatable-buttons').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: 'print',
+                    text: 'Print',
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column (Action column)
+                    }
+                }]
+            });
+        });
+    </script>
 
 </body>
 

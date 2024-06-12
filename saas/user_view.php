@@ -3,7 +3,6 @@ include_once "inc/checkers.php";
 $get_cat_id = base64_decode($app->get_request('fid'));
 $get_cat_name = base64_decode($app->get_request('cat_name'));
 $get_cat_email = base64_decode($app->get_request('cat_email'));
-$get_password = base64_decode($app->get_request('password'));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +34,7 @@ $get_password = base64_decode($app->get_request('password'));
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex">
-                                        <a href="share.php">
+                                        <a href="users.php">
                                             <i class="ri-arrow-left-fill text-primary fs-4 me-2"></i>
                                         </a>
                                         <h4 class="header-title mt-1">Viewed User</h4>

@@ -100,7 +100,7 @@ $use_id = base64_encode($user_id . $random_number);
                                                         <select class="form-control form-select show-tick" id="shr" name="shr">
                                                             <option value="0">Select a User</option>
                                                             <?php
-                                                            $sql = "select * from user";
+                                                            $sql = "select * from user where company_id = '$c_id'";
                                                             $dpt = $app->fetch_query($sql);
                                                             foreach ($dpt as $cat) {
                                                             ?>

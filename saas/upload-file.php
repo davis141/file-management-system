@@ -123,6 +123,7 @@ $use_id = base64_encode($user_id . $random_number);
     <script src="assets/vendor/dropzone/min/dropzone.min.js"></script>
     <script src="assets/js/ui/component.fileupload.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script>
         $(document).ready(function() {
             function validateForm() {

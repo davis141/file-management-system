@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once "inc/checkers.php";
 $random_number = mt_rand(100000, 999999);
 $encoded_id = base64_encode($c_id . $random_number);
@@ -6,13 +6,15 @@ $use_id = base64_encode($user_id . $random_number);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php include_once "component/style.php" ?>
 </head>
+
 <body>
     <div class="wrapper">
         <?php include_once "component/top-bar.php" ?>
-        <?php include_once "component/sidebar.php"?>
+        <?php include_once "component/sidebar.php" ?>
         <div class="content-page">
             <div class="content">
                 <div class="container-fluid">
@@ -29,8 +31,18 @@ $use_id = base64_encode($user_id . $random_number);
                                 <div class="card-body">
                                     <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
 
-                                    <h4 class="mb-0 mt-2"><?= $full_name?></h4>
-                                    <p class="text-muted font-14">Founder</p>
+                                    <h4 class="mb-0 mt-2"><?= $full_name ?></h4>
+                                    <p class="text-muted font-14">
+                                        <?php
+                                        if ($access_level_id == 1) {
+                                            echo "Admin";
+                                        } elseif ($access_level_id == 2) {
+                                            echo "Sub-admin";
+                                        } elseif ($access_level_id == 3) {
+                                            echo "User";
+                                        }
+                                        ?>
+                                    </p>
 
                                     <div class="text-start mt-3">
                                         <h4 class="font-13 text-uppercase">About Me :</h4>
@@ -49,7 +61,7 @@ $use_id = base64_encode($user_id . $random_number);
                             <div class="card">
                                 <div class="card-body">
                                     <div class="tab-content">
-                                        <div  id="settings">
+                                        <div id="settings">
                                             <form name="myForm" id="myForm" method="post">
                                                 <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Personal Info</h5>
                                                 <div class="row">
@@ -57,6 +69,12 @@ $use_id = base64_encode($user_id . $random_number);
                                                         <div class="mb-3">
                                                             <label class="form-label">Full Name</label>
                                                             <input type="text" class="form-control" id="fullname" placeholder="Enter Full name" name="full_name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Email</label>
+                                                            <input type="text" class="form-control" id="email" placeholder="Email address" name="email">
                                                         </div>
                                                     </div>
                                                     <input type="hidden" class="form-control" value="<?php echo $use_id; ?>" name="idp" readonly>
@@ -68,7 +86,7 @@ $use_id = base64_encode($user_id . $random_number);
                                                             <label class="form-label">Bio</label>
                                                             <textarea class="form-control" id="userbio" rows="4" placeholder="Write something..." name="bio"></textarea>
                                                         </div>
-                                                    </div> 
+                                                    </div>
                                                 </div>
 
                                                 <div class="text-end">
@@ -76,26 +94,26 @@ $use_id = base64_encode($user_id . $random_number);
                                                 </div>
                                             </form>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-          <?php include_once "component/footer.php"?>
+            <?php include_once "component/footer.php" ?>
         </div>
     </div>
- 
+
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             function validateForm() {
                 let full_name = document.forms["myForm"]["fullname"].value;
-            
-            
+
+
                 if (full_name === "") {
                     Swal.fire({
                         title: "The Full Name Can Not Be Empty",
@@ -104,11 +122,11 @@ $use_id = base64_encode($user_id . $random_number);
                     });
                     return false;
                 }
-             
+
                 return true; // Form is valid
             }
 
-            $("#myForm").on('submit', (function (e) {
+            $("#myForm").on('submit', (function(e) {
                 validateForm();
                 let check = validateForm();
                 e.preventDefault();
@@ -124,26 +142,26 @@ $use_id = base64_encode($user_id . $random_number);
                         cache: false,
                         processData: false,
                         success: (data) => {
-                            
+
                             if (data.trim() == "success") {
-                            Swal.fire({
-                                title: "success!",
-                                text: "Updated Profile, Please wait redirecting...!",
-                                icon: "success",
-                            });
-                                setTimeout(function () {
-                                var btn = $("#reset-btn");
-                                btn
-                                .attr("disabled", false)
-                                .html("Submitted");
-                                location.reload();
-                            }, 2000);     
+                                Swal.fire({
+                                    title: "success!",
+                                    text: "Updated Profile, Please wait redirecting...!",
+                                    icon: "success",
+                                });
+                                setTimeout(function() {
+                                    var btn = $("#reset-btn");
+                                    btn
+                                        .attr("disabled", false)
+                                        .html("Submitted");
+                                    location.reload();
+                                }, 2000);
                             } else {
-                            Swal.fire({
-                                title: "Error!",
-                                text: "Posting Failed try again!",
-                                icon: "error",
-                            });
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: "Posting Failed try again!",
+                                    icon: "error",
+                                });
 
                             }
 
@@ -159,4 +177,5 @@ $use_id = base64_encode($user_id . $random_number);
         });
     </script>
 </body>
+
 </html>

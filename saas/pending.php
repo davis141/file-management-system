@@ -149,6 +149,24 @@ include_once "inc/checkers.php";
     <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
     <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
     <script src="assets/js/pages/demo.datatable-init.js"></script>
+    <script>
+        $(document).ready(function() {
+            if ($.fn.DataTable.isDataTable('#datatable-buttons')) {
+        // If it is, destroy it
+        $('#datatable-buttons').DataTable().destroy();
+    }
+            $('#datatable-buttons').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: 'print',
+                    text: 'Print',
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column (Action column)
+                    }
+                }]
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
@@ -227,9 +245,11 @@ include_once "inc/checkers.php";
                     <form method="post" class=" pe-3">
                         <span class="text-danger fw-bold">Please note that this action is irreversible. Are you sure you want to proceed?</span>
                         <div class="mb-3 mt-3">
+                            <label for="" class="mb-2 fw-bold"> File Name</label>
                             <input class="form-control" type="text" id="emp_name" readonly>
                         </div>
                         <div class="mb-3 mt-3">
+                        <label for="" class="mb-2 fw-bold"> Full Name</label>
                             <input class="form-control" type="text" id="f_name" readonly>
                         </div>
 
