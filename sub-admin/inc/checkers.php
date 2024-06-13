@@ -7,7 +7,7 @@ $app = new controller();
 // Check login status and user access level
 if (!isset($_SESSION['login_user']) || !isset($_SESSION['company_id']) || $app->checkLogin() !== "logged") {
     $app->logout();
-    header("Location: /file-management-system/saas/login.php");
+    header("Location: /file-management-system/sub-admin/login.php");
     exit();
 }
 
@@ -27,14 +27,12 @@ $email = $userInfo['email'];
 $about = $userInfo['about'];
 $c_id = $userInfo['company_id'];
 
-if ($access_level_id != 1) {
-    $app->logout();
-    header("Location: /file-management-system/saas/login");
-    exit();
+if ($access_level_id != 2) {
+    header("Location: /file-management-system/sub-admin/login");
 }
 if ($is_active != 1) {
     $app->logout();
     header("Location: /file-management-system/saas/blocked");
     exit();
 }
-
+session_regenerate_id(true);

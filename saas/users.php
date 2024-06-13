@@ -75,6 +75,7 @@ include_once "inc/checkers.php";
 
                                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                                 <a class="dropdown-item" href="user_view?fid=<?php echo base64_encode($value['id']); ?>&cat_name=<?php echo base64_encode($value['full_name']); ?>&cat_email=<?php echo base64_encode($value['email']); ?>"><i class=" ri-eye-fill me-1"></i>View</a>
+                                                                                <a class="dropdown-item" href="user_edit?fid=<?php echo base64_encode($value['id']); ?>"><i class=" ri-eye-fill me-1"></i>Edit</a>
                                                                                 <a class="dropdown-item enable_user" href="#" data-id="<?php echo $value['id']; ?>" data-cat="<?php echo $value['full_name'] ?>"><i class=" ri-shield-cross-fill fs-5 me-2"></i>Enable User</a>
                                                                                 <a class="dropdown-item disable_user" href="#" data-id="<?php echo $value['id']; ?>" data-cat="<?php echo $value['full_name'] ?>"><i class=" ri-shield-fill fs-5 me-2"></i>Disable User</a>
                                                                                 <a class="dropdown-item delete_emp" href="#" data-id="<?php echo $value['id']; ?>" data-cat="<?php echo $value['full_name'] ?>"><i class=" ri-delete-bin-2-fill fs-5 me-2"></i>Delete User</a>
