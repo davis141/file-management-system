@@ -3,7 +3,7 @@ include_once "inc/checkers.php";
 $dash_sql = "SELECT * FROM file_table WHERE company_id='$c_id' AND user_id = '$user_id'";
 $categories_sql = "SELECT * FROM category  WHERE company_id = '$c_id' ";
 $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = FALSE AND f.company_id = u.company_id AND f.user_id = '$user_id'";
-$app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = TRUE AND f.company_id = u.company_id";
+$app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = TRUE AND f.company_id = u.company_id AND f.user_id = '$user_id'";
 ?>
 <!DOCTYPE html>
 <html lang="en">
