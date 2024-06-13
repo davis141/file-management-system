@@ -379,7 +379,7 @@ include_once "inc/checkers.php";
                 <div class="modal-body">
 
                     <form method="post" class=" pe-3">
-                        <span class="text-danger fw-bold">Please note that this action is irreversible. Are you sure you want to proceed?</span>
+                        <span class="text-danger fw-bold">Please note that this action is irreversible. Deleting this account will permanently remove all files, documents, and data associated with it. Are you sure you want to proceed?</span>
                         <div class="mb-3 mt-3">
                             <label for="" class="mb-2">Full Name</label>
                             <input class="form-control" type="text" id="emp_name" readonly>

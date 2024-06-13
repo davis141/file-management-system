@@ -102,7 +102,7 @@
                                                                     <div class="btn-group dropdown">
                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                            <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                            <a class="dropdown-item" href="../saas/doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                             <a class="dropdown-item delete_emp" href="#" data-id="<?php echo $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete
                                                                                 Document</a>
                                                                         </div>

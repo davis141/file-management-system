@@ -17,7 +17,7 @@ $decoded_string = base64_decode($c_id);
 $c_ids = substr($decoded_string, 0, $c_id_length);
 $user_decoded = substr($user_id_decode, 0, $c_id_length);
 if (isset($fullname)) {
-    $query = "UPDATE user SET `full_name` = '$fullname', `about` = '$bio', `email` = '$email' WHERE `user_id` = '$user_decoded' AND company_id = '$c_ids'";
+    $query = "UPDATE user SET `full_name` = '$fullname', `about` = '$bio' WHERE `user_id` = '$user_decoded' AND company_id = '$c_ids'";
     $get_category = $app->direct_insert($query);
     if ($get_category == "success") {
         echo "success";

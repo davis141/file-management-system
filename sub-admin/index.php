@@ -48,8 +48,6 @@
                         </h2>
 
                         <p class="mb-4 font-16 text-white-50 d-block"> Welcome to FileTrax, Your All-in-One destination for experiencing most efficient file management, secure file sharing and hassle free collaboration within your organisation. User-friendly interface, custom file categorization and robust document-approval workflows enabled on FileTrax enables it to cater all exceptional requirements specific only to your organization. Visit FileTrax today and learn more about the many features we offer that brings a new way of managing files and working with your team members.</p>
-                        <a href="sign-up.php" class="btn btn-lg font-16 btn-success fw-bold">Get Started with FileTrax <i class="mdi mdi-arrow-right ms-1"></i></a>
-
                     </div>
                 </div>
                 <div class="col-md-5 offset-md-2">

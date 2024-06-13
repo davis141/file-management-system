@@ -83,7 +83,7 @@ include_once "inc/checkers.php";
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = FALSE AND f.company_id = u.company_id";
+                                                                    $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = FALSE AND f.company_id = u.company_id AND to_admin = TRUE";
 
                                                                     $fetch_query = $app->fetch_query($s_sql);
                                                                     foreach ($fetch_query as $value) {

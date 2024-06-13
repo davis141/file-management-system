@@ -251,7 +251,7 @@ include_once "inc/checkers.php";
                     const emp_name_del = $("#emp_names").val();
                     const id_del = $("#ids").val();
                     const btn = $("#delete_emps");
-                    btn.attr('disabled', true).html('<i class="fa fa-spin fa-spinner"></i> Deleting...');
+                    btn.attr('disabled', true).html('<i class="fa fa-spin fa-spinner"></i> Sharing...');
                     if (id_del === '' || id_del === 0) {
                         Swal.fire({
                             title: "success!",

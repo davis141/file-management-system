@@ -83,7 +83,7 @@ $use_id = base64_encode($user_id . $random_number);
                                                     <label>Select file to share</label>
                                                     <div class="form-group">
                                                         <select class="form-control form-select show-tick" id="dpt" name="dpt">
-                                                            <option value="0">Select File</option>
+                                                            <!-- <option value="0" id="inn" name="inn">Select File</option> -->
                                                             <?php
                                                             $sql = "select * from file_table where user_id ='$user_id' and company_id = '$c_id'";
                                                             $dpt = $app->fetch_query($sql);
@@ -140,6 +140,7 @@ $use_id = base64_encode($user_id . $random_number);
         $(document).ready(function() {
             function validateForm() {
                 let category_name = document.forms["myForm"]["file-name"].value;
+               
 
                 if (category_name === "") {
                     Swal.fire({
@@ -149,7 +150,6 @@ $use_id = base64_encode($user_id . $random_number);
                     });
                     return false;
                 }
-
                 return true; // Form is valid
             }
 

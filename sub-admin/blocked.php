@@ -24,11 +24,8 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <h1 class="text-error"><i class="mdi mdi-account-lock"></i></h1>
-                                    <h4 class="text-uppercase text-danger mt-3">Page Not Found</h4>
-                                    <p class="text-muted mt-3">It's looking like you may have taken a wrong turn. Don't worry... it
-                                        happens to the best of us. Here's a
-                                        little tip that might help you get back on track.</p>
-
+                                    <h4 class="text-uppercase text-danger mt-3">Access Denied</h4>
+                                    <p class="text-muted mt-3">Access is currently unavailable. Please ensure you are logged in and have the necessary permissions. If issues persist, contact our support team for assistance or to check your account status. We apologize for any inconvenience.</p>
                                     <a class="btn btn-info mt-3" href="index.php"><i class="mdi mdi-reply"></i> Return Home</a>
                                 </div>
                             </div>

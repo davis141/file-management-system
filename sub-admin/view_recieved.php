@@ -5,10 +5,6 @@ $get_cat_name = base64_decode($app->get_request('cat_name'));
 $get_cat_date = base64_decode($app->get_request('cat_date'));
 $get_full_name = base64_decode($app->get_request('full_name'));
 $get_cat_in = base64_decode($app->get_request('cat_input'));
-//sql command
-// $query = "SELECT fs.id, f.file_name, fs.date_time,fs.add_input, u.full_name FROM file_shares JOIN file_table f ON fs.file_id = f.id JOIN user u ON fs.user_id = u.user_id WHERE fs.id = '$get_cat_id'";
-// $get_data_details = $app->fetch_query($query);
-// foreach ($get_data_details as $data)
 ?>
 <!DOCTYPE html>
 <html lang="en">

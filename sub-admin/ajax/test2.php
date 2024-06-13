@@ -1,7 +1,7 @@
 <?php
 $file_size_allowed = 30000000;
 $min_size_compress = 10000000;
-$ticket_pic = "../doc_file/";
+$ticket_pic = "../../saas/doc_file/";
 
 function compressImage($source, $destination, $quality)
 {

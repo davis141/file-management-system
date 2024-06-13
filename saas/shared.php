@@ -75,7 +75,7 @@
                                                         <tr>
                                                             <th class="border-0">File Name</th>
                                                             <th class="border-0">Date</th>
-                                                            <th class="border-0">Senders Name</th>
+                                                            <th class="border-0">Recievers Name</th>
                                                             <th class="border-0" style="width: 80px;">Action</th>
                                                         </tr>
                                                     </thead>
@@ -83,7 +83,7 @@
                                                         <?php
                                                         $file_sql = "SELECT fs.id, f.file_name, fs.date_time, fs.file_path, u.full_name
                                                         FROM file_shares fs
-                                                        JOIN file_table f ON fs.file_id = f.id JOIN user u on fs.user_id = u.user_id
+                                                        JOIN file_table f ON fs.file_id = f.id JOIN user u on fs.shared_with_user_id = u.user_id
                                                         WHERE fs.user_id = '$user_id' AND fs.company_id = u.company_id";
                                                         $fetch_query = $app->fetch_query($file_sql);
                                                         foreach ($fetch_query as $value) {
