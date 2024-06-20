@@ -14,7 +14,7 @@ $c_ids = substr($c_id_decode, 0, $c_id_length);
 $user_decoded = substr($user_id_decode, 0, $c_id_length);
 $file1 = "up_file";
 @$img_path1 = upload_img($file1, $file_size_allowed, $min_size_compress, $ticket_pic);
-$query = "INSERT INTO `file_table` (`id`, `file_path`, `file_name`, `user_id`, `status`, `category`, `company_id`) VALUES (NULL, '$img_path1', '$file_name', '$user_decoded', '0', '$cat', '$c_ids')";
+$query = "INSERT INTO `file_table` (`id`, `file_path`, `file_name`, `user_id`, `status`, `category`, `company_id`, `to_admin`) VALUES (NULL, '$img_path1', '$file_name', '$user_decoded', '0', '$cat', '$c_ids', FALSE)";
 $get_category = $app->direct_insert($query);
 if ($get_category == "success") {
     echo "success";

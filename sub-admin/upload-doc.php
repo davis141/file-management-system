@@ -114,7 +114,7 @@ include_once "inc/checkers.php";
                                                                                         <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                                             <a class="dropdown-item delete_emp" href="#" data-id="<?= $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete
                                                                                                 Document</a>
-                                                                                            <a class="dropdown-item delete_emps" href="#" data-id="<?= $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="mdi mdi-share-variant me-2 text-muted vertical-middle"></i>Share to Admin</a>
+                                                                                            <a class="dropdown-item delete_emps" href="#" data-id="<?= $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="mdi mdi-share-variant me-2 text-muted vertical-middle"></i>Convert to Officia</a>
                                                                                         </div>
                                                                                     </div>
                                                                                 </td>

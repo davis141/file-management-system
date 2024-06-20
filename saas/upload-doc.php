@@ -78,13 +78,14 @@ include_once "inc/checkers.php";
                                                                             <th class="border-0">File Name</th>
                                                                             <th class="border-0">Category</th>
                                                                             <th class="border-0">Date</th>
+                                                                            <th class="border-0">Status</th>
                                                                             <th class="border-0">Creators Name</th>
                                                                             <th class="border-0" style="width: 80px;">Action</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
                                                                         <?php
-                                                                        $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.user_id = '$user_id' AND f.company_id = u.company_id";
+                                                                        $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path, f.to_admin FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.user_id = '$user_id' AND f.company_id = u.company_id";
                                                                         $fetch_query = $app->fetch_query($s_sql);
                                                                         foreach ($fetch_query as $value) {
                                                                         ?>
@@ -97,6 +98,13 @@ include_once "inc/checkers.php";
                                                                                     <p class="mb-0"><?php echo $value['date_time'] ?></p>
                                                                                 </td>
                                                                                 <td>
+                                                                                <?php if ($value['to_admin'] == 1) { ?>
+                                                                                    <span class="badge bg-success p-1">Official Document</span>
+                                                                                <?php } else { ?>
+                                                                                    <span class="badge bg-warning p-1">Unofficial Document</span>
+                                                                                <?php } ?>
+                                                                                </td>
+                                                                                <td>
                                                                                     <?php echo $value['full_name'] ?>
                                                                                 </td>
                                                                                 <td class="">
@@ -106,6 +114,7 @@ include_once "inc/checkers.php";
                                                                                         <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                                             <a class="dropdown-item delete_emp" href="#" data-id="<?= $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete
                                                                                                 Document</a>
+                                                                                            <a class="dropdown-item delete_emps" href="#" data-id="<?= $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="mdi mdi-share-variant me-2 text-muted vertical-middle"></i>Convert to Official</a>
                                                                                         </div>
                                                                                     </div>
                                                                                 </td>
@@ -167,7 +176,6 @@ include_once "inc/checkers.php";
         });
     </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
         <script>
             $(document).on('click', '.delete_emp', function() {
 
@@ -226,6 +234,64 @@ include_once "inc/checkers.php";
 
             });
         </script>
+        <script>
+            $(document).on('click', '.delete_emps', function() {
+
+                const id = $(this).attr("data-id");
+                const emp_name = $(this).attr("data-cat");
+
+                $("#emp_names").val(emp_name);
+                $("#ids").val(id);
+
+
+                $('#login-modals').modal('show');
+
+                $("#delete_emps").click(function() {
+                    const emp_name_del = $("#emp_names").val();
+                    const id_del = $("#ids").val();
+                    const btn = $("#delete_emps");
+                    btn.attr('disabled', true).html('<i class="fa fa-spin fa-spinner"></i> Sharing...');
+                    if (id_del === '' || id_del === 0) {
+                        Swal.fire({
+                            title: "success!",
+                            text: "Invalid request, Please wait redirecting...!",
+                            icon: "success",
+                        });
+                        const btn = $("#del_stf");
+                        btn.attr('disabled', false).html('<i class="fa fa-spin fa-spinner"></i> Try Again...');
+                    } else {
+                        $.ajax({
+                            url: "ajax/send_admin",
+                            method: "POST",
+                            data: {
+                                id_del: id_del
+                            },
+                            success: function(data) {
+
+                                if (data.trim() == 'success') {
+                                    $('#login-modal').modal('hide');
+
+                                    Swal.fire({
+                                        title: "success!",
+                                        text: "Processed Successfuly, Please wait redirecting...!",
+                                        icon: "success",
+                                    });
+
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 3000);
+
+
+                                }
+                            }
+                        });
+
+                    }
+
+                });
+
+            });
+        </script>
         <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -255,7 +321,35 @@ include_once "inc/checkers.php";
                 </div>
             </div>
         </div>
+        <div id="login-modals" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel"></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">
 
+                        <form method="post" class=" pe-3">
+                            <span class="text-danger fw-bold">Please note that this action is irreversible. Are you sure you want to proceed?</span>
+                            <div class="mb-3 mt-3">
+                                <label for="" class="mb-2">File Name</label>
+                                <input class="form-control" type="text" id="emp_names" readonly>
+                            </div>
+
+                            <div class="mb-3">
+                                <input class="form-control" type="hidden" id="ids" name="id_del">
+                            </div>
+
+                            <div class="mb-3">
+                                <button class="btn rounded-pill btn-success float-end ms-2" id="delete_emps" type="submit">Share To Admin</button>
+                                <button class="btn rounded-pill btn-primary float-end" data-bs-dismiss="modal" aria-hidden="true">X</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 

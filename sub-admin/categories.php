@@ -53,7 +53,7 @@ include_once "inc/checkers.php";
                                                                 <th>S/N</th>
                                                                 <th>Category Name</th>
                                                                 <th>Date Created</th>
-                                                                <!-- <th>Action</th> -->
+                                                                <th>Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
