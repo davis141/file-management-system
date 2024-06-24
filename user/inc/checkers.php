@@ -32,7 +32,7 @@ if ($access_level_id != 3) {
 }
 if ($is_active != 1) {
     $app->logout();
-    header("Location: /file-management-system/sub-admin/blocked");
+    header("Location: /file-management-system/user/blocked");
     exit();
 }
 

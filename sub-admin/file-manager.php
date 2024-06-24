@@ -76,31 +76,33 @@ include_once "inc/checkers.php";
                                                                 <thead>
                                                                     <tr>
                                                                         <th>File Name</th>
-                                                                        <th>Category</th>
-                                                                        <th>Date</th>
-                                                                        <th>Creators Name</th>
+                                                                        <!-- <th>Category</th> -->
+                                                                        <!-- <th>Date</th> -->
+                                                                        <!-- <th>Creators Name</th> -->
                                                                         <th>Status</th>
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $file_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, f.status, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id WHERE f.company_id = u.company_id AND f.user_id = '$user_id' AND f.to_admin = TRUE";
+                                                                    $file_sql = "SELECT f.id, f.company_id, f.user_id,f.status,f.file_name, NULL AS shared_admin FROM file_table f WHERE f.company_id = '$c_id' AND f.user_id = '$user_id' AND f.to_admin = TRUE UNION SELECT f.id, f.company_id, ad.shared_admin AS user_id, f.status, f.file_name, ad.shared_admin FROM admin_share ad JOIN file_table f ON ad.file_id = f.id WHERE ad.shared_admin = '$user_id' AND f.company_id = '$c_id' AND f.to_admin = TRUE";
                                                                     $fetch_query = $app->fetch_query($file_sql);
                                                                     foreach ($fetch_query as $value) {
                                                                     ?>
+                                                                        <!-- 666b05adf1e34 -->
+                                                                        <!-- 6661d49a8271b -->
                                                                         <tr>
                                                                             <td>
                                                                                 <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
                                                                             </td>
-                                                                            <td><?php echo $value['category_name'] ?></td>
+                                                                            <!-- <td><?php echo $value['category_name'] ?></td>
                                                                             <td>
                                                                                 <p class="mb-0">
                                                                                     <?php echo $value['date_time'] ?></p>
-                                                                            </td>
-                                                                            <td>
+                                                                            </td> -->
+                                                                            <!-- <td>
                                                                                 <?php echo $value['full_name'] ?>
-                                                                            </td>
+                                                                            </td> -->
                                                                             <td>
                                                                                 <?php if ($value['status'] == 1) { ?>
                                                                                     <span class="badge bg-success p-1">Approved</span>
@@ -113,7 +115,7 @@ include_once "inc/checkers.php";
                                                                                     <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                                     <div class="dropdown-menu dropdown-menu-end">
                                                                                         <a class="dropdown-item" href="../saas/doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
-                                                                                        
+
                                                                                     </div>
                                                                                 </div>
                                                                             </td>

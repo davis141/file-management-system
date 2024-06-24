@@ -1,9 +1,10 @@
 <?php
 include_once "inc/checkers.php";
-$dash_sql = "SELECT * FROM file_table WHERE company_id='$c_id' AND user_id = '$user_id'";
-$categories_sql = "SELECT * FROM category  WHERE company_id = '$c_id' ";
-$s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = FALSE AND f.company_id = u.company_id AND f.user_id = '$user_id'";
-$app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = TRUE AND f.company_id = u.company_id AND f.user_id = '$user_id'";
+$dash_sql = "SELECT f.id, f.company_id, f.user_id, f.file_name, NULL AS shared_admin FROM file_table f WHERE f.company_id = '$c_id' AND f.user_id = '$user_id' UNION SELECT f.id, f.company_id, ad.shared_admin AS user_id, f.file_name, ad.shared_admin FROM admin_share ad JOIN file_table f ON ad.file_id = f.id WHERE ad.shared_admin = '$user_id' AND f.company_id = '$c_id';";
+$upload_sql = "SELECT * FROM `file_table`  WHERE `company_id` = '$c_id' AND `user_id` = '$user_id'";
+$categories_sql = "SELECT * FROM category  WHERE company_id = '$c_id'";
+$s_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_name, c.category_name FROM admin_share ad JOIN file_table f ON ad.file_id = f.id JOIN user u ON ad.user_id = u.user_id JOIN category c ON ad.company_id = c.company_id WHERE ad.shared_admin = '$user_id' AND ad.company_id = '$c_id' AND  f.to_admin = TRUE AND f.status = FALSE";
+$app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_name, c.category_name FROM admin_share ad JOIN file_table f ON ad.file_id = f.id JOIN user u ON ad.user_id = u.user_id JOIN category c ON ad.company_id = c.company_id WHERE ad.shared_admin = '$user_id' AND ad.company_id = '$c_id' AND  f.to_admin = TRUE AND f.status = TRUE";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +36,7 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                     <div class="row">
                         <div class="col-xl-12 col-lg-12">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
@@ -56,6 +57,18 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Pending Document</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($s_sql);
+                                                                    echo number_format(count($count)); ?></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card widget-flat">
+                                        <div class="card-body">
+                                            <div class="float-end">
+                                                <i class="mdi mdi-cart-plus widget-icon"></i>
+                                            </div>
+                                            <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Uploaded Document</h5>
+                                            <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($upload_sql);
                                                                     echo number_format(count($count)); ?></h3>
                                         </div>
                                     </div>
@@ -87,6 +100,7 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
