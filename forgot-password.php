@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <?php include_once "component/style.php" ?>
+    <?php include_once "style.php" ?>
 </head>
 
 <body class="authentication-bg pb-0">

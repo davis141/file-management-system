@@ -11,7 +11,7 @@ $company_id = uniqid();
 $hashed_password = sha1($password);
 
 if (isset($full_name) && isset($email) && isset($hashed_password)) {
-    $query = "INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `user_id`, `access_level_id`, `company_id`) VALUES (NULL, '$full_name', '$email', '$hashed_password', '$user_id', '1','$company_id')";
+    $query = "INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `user_id`, `access_level_id`, `company_id`, `is_active`) VALUES (NULL, '$full_name', '$email', '$hashed_password', '$user_id', '1','$company_id', TRUE)";
     $get_category = $app->direct_insert($query);
     if ($get_category == "success") {
         echo "success";
