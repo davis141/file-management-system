@@ -1,5 +1,5 @@
 <div class="leftside-menu">
-    <a href="index.php" class="logo logo-light">
+    <a href="dashboard.php" class="logo logo-light">
         <span class="logo-lg fw-bold fs-3 text-white">
             FileTrax
         </span>
@@ -7,7 +7,7 @@
             F.T
         </span>
     </a>
-    <a href="index.php" class="logo logo-dark">
+    <a href="dashboard.php" class="logo logo-dark">
         <span class="logo-lg fw-bold fs-3 text-white">
             FileTrax
         </span>

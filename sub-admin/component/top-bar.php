@@ -2,7 +2,7 @@
     <div class="topbar container-fluid">
         <div class="d-flex align-items-center gap-lg-2 gap-1">
             <div class="logo-topbar">
-                <a href="index.php" class="logo-light">
+                <a href="dashboard.php" class="logo-light">
                     <span class="logo-lg fw-bold">
                         FileTrax
                     </span>
@@ -10,7 +10,7 @@
                         FileTrax
                     </span>
                 </a>
-                <a href="index.html" class="logo-dark">
+                <a href="dashboard.php" class="logo-dark">
                     <span class="logo-lg fw-bold">
                         FileTrax
                     </span>
@@ -50,7 +50,7 @@
             <li class="dropdown">
                 <a class="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
-                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" width="32" class="rounded-circle">
+                        <img src="assets/images/users/user.png" alt="user-image" width="32" class="rounded-circle">
                     </span>
                     <span class="d-lg-flex flex-column gap-1 d-none">
                         <h5 class="my-0"><?= $full_name ?></h5>

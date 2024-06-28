@@ -39,9 +39,9 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
-                                                <!-- <i class="mdi mdi-account-multiple widget-icon"></i> -->
+                                    
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Total Number of Documents
+                                            <h5 class="text-muted fw-normal mt-0" title="Total Number of Uploaded Documents">Total Number of Uploaded Documents
                                             </h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($dash_sql);
                                                                     echo number_format(count($count)); ?></h3>
@@ -52,9 +52,9 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
-                                                <!-- <i class="mdi mdi-cart-plus widget-icon"></i> -->
+                                               
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Pending Document</h5>
+                                            <h5 class="text-muted fw-normal mt-0" title="Pending Document">Pending Document</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($s_sql);
                                                                     echo number_format(count($count)); ?></h3>
                                         </div>
@@ -67,9 +67,9 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
-                                                <!-- <i class="mdi mdi-currency-usd widget-icon"></i> -->
+                                               
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Approved Document</h5>
+                                            <h5 class="text-muted fw-normal mt-0" title="Approved Document">Approved Document</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($app_sql);
                                                                     echo number_format(count($count)); ?></h3>
                                         </div>
@@ -79,9 +79,8 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
-                                                <!-- <i class="mdi mdi-pulse widget-icon"></i> -->
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0">Categories</h5>
+                                            <h5 class="text-muted fw-normal mt-0" title="Categories">Categories</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($categories_sql);
                                                                     echo number_format(count($count)); ?></h3>
                                         </div>

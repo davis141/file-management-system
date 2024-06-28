@@ -19,6 +19,7 @@
   .disabled{
     color: red!important; 
     pointer-events: none;
+    font-weight: bold;
   }
   .select-container {
     position: relative;

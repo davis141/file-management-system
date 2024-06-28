@@ -29,7 +29,7 @@ $use_id = base64_encode($user_id . $random_number);
                         <div class="col-xl-4 col-lg-5">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+                                    <img src="assets/images/users/user.png" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
 
                                     <h4 class="mb-0 mt-2"><?= $full_name ?></h4>
                                     <p class="text-muted font-14">
@@ -79,7 +79,7 @@ $use_id = base64_encode($user_id . $random_number);
                                                     <div class="col-12">
                                                         <div class="mb-3">
                                                             <label class="form-label">Bio</label>
-                                                            <textarea class="form-control" id="userbio" rows="4" placeholder="Write something..." name="bio"></textarea>
+                                                            <textarea class="form-control"  rows="4" placeholder="Write something..." name="bio"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>

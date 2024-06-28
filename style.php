@@ -2,7 +2,7 @@
 <title>FileTrax</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="FileTrax is a file management tool wich will help your organization manage files in one place and help an individual or team keep check of the same. Easily manage your files across departments, share your files securely with colleagues and access a single platform to perform document approval workflows. Organize all of your company’s records and put an end to messy inboxes, lost documents and the stresses they bring with FileTrax." name="description" />
-<meta content="Konan FileTrax" name="author" />
+<meta content="Jeréclat FileTrax" name="author" />
 <link rel="shortcut icon" href="assets/images/logo-black.png">
 <link rel="stylesheet" href="assets/vendor/daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css">

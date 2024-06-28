@@ -1,9 +1,9 @@
 <?php
 include_once "inc/checkers.php";
-$dash_sql = "SELECT * FROM file_table WHERE company_id='$c_id'";
+$dash_sql = "SELECT * FROM file_table WHERE company_id='$c_id' AND to_admi = TRUE";
 $categories_sql = "SELECT * FROM category  WHERE company_id = '$c_id'";
-$s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = FALSE AND f.company_id = u.company_id";
-$app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = TRUE AND f.company_id = u.company_id";
+$s_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_name, c.category_name FROM admin_share ad JOIN file_table f ON ad.file_id = f.id JOIN user u ON ad.user_id = u.user_id JOIN category c ON ad.company_id = c.company_id WHERE ad.shared_admin = '$user_id' AND ad.company_id = '$c_id' AND  f.to_admin = TRUE AND f.status = FALSE";
+$app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_name, c.category_name FROM admin_share ad JOIN file_table f ON ad.file_id = f.id JOIN user u ON ad.user_id = u.user_id JOIN category c ON ad.company_id = c.company_id WHERE ad.shared_admin = '$user_id' AND ad.company_id = '$c_id' AND  f.to_admin = TRUE AND f.status = TRUE";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +41,7 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                             <div class="float-end">
                                                 <i class="mdi mdi-account-multiple widget-icon"></i>
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Total Number of Documents
+                                            <h5 class="text-muted fw-normal mt-0" title="Total Number of Documents">Total Number of Documents
                                             </h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($dash_sql);
                                                                     echo number_format(count($count)); ?></h3>
@@ -54,7 +54,7 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                             <div class="float-end">
                                                 <i class="mdi mdi-cart-plus widget-icon"></i>
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Pending Document</h5>
+                                            <h5 class="text-muted fw-normal mt-0" title="Pending Document">Pending Document</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($s_sql);
                                                                     echo number_format(count($count)); ?></h3>
                                         </div>
@@ -69,7 +69,7 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                             <div class="float-end">
                                                 <i class="mdi mdi-currency-usd widget-icon"></i>
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Approved Document</h5>
+                                            <h5 class="text-muted fw-normal mt-0" title="Approved Document">Approved Document</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($app_sql);
                                                                     echo number_format(count($count)); ?></h3>
                                         </div>
@@ -81,7 +81,7 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                             <div class="float-end">
                                                 <i class="mdi mdi-pulse widget-icon"></i>
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0">Categories</h5>
+                                            <h5 class="text-muted fw-normal mt-0" title="Categories">Categories</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($categories_sql);
                                                                     echo number_format(count($count)); ?></h3>
                                         </div>
@@ -101,7 +101,7 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                         <table class="table table-centered table-nowrap table-hover mb-0">
                                             <tbody>
                                                 <?php
-                                                $r_sql = "SELECT f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id WHERE f.company_id = u.company_id ORDER BY f.date_time DESC LIMIT 5";
+                                                $r_sql = "SELECT f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id WHERE f.company_id = '$c_id' ORDER BY f.date_time DESC LIMIT 5";
                                                 $fetch_query = $app->fetch_query($r_sql);
                                                 foreach ($fetch_query as $value) {
                                                 ?>

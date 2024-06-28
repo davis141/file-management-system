@@ -29,7 +29,7 @@ $use_id = base64_encode($user_id . $random_number);
                         <div class="col-xl-4 col-lg-5">
                             <div class="card text-center">
                                 <div class="card-body">
-                                    <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+                                    <img src="assets/images/users/user.png" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
 
                                     <h4 class="mb-0 mt-2"><?= $full_name ?></h4>
                                     <p class="text-muted font-14">

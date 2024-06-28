@@ -37,7 +37,7 @@
                                     <h4 class="text-uppercase text-danger mt-3">Access Denied</h4>
                                     <p class="text-muted mt-3">Access is currently unavailable. Please ensure you are logged in and have the necessary permissions. If issues persist, contact our support team for assistance or to check your account status. We apologize for any inconvenience.</p>
 
-                                    <a class="btn btn-info mt-3" href="index.php"><i class="mdi mdi-reply"></i> Return Home</a>
+                                    <a class="btn btn-info mt-3" href="../index.php"><i class="mdi mdi-reply"></i> Return Home</a>
                                 </div>
                             </div>
                         </div>

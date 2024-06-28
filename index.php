@@ -28,10 +28,11 @@
                 </ul>
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item me-0">
-                        <a href="" class="nav-link d-lg-none" >Sign In</a>
-                        <button class="btn btn-sm btn-light rounded-pill d-none d-lg-inline-flex " onclick="redirectToLogin()">
+                        <a href="login.php" class="nav-link " >
+                        <button class="btn btn-sm btn-light rounded-pill d-none d-lg-inline-flex ">
                             <i class="mdi mdi-login me-2"></i> Sign In
                         </button>
+                        </a>
                     </li>
                 </ul>
 
@@ -193,7 +194,7 @@
                         <p class="text-light text-opacity-50 mt-4 text-center mb-0">©<script>
                                 document.write(new Date().getFullYear())
                             </script> <span class="text-primary">Filtrax</span>. Developed by
-                            Konan-Family</p>
+                            Jeréclat</p>
                     </div>
                 </div>
             </div>
@@ -203,11 +204,6 @@
     <script src="assets/js/vendor.min.js"></script>
 
     <script src="assets/js/app.min.js"></script>
-    <script>
-        function redirectToLogin() {
-            window.location.href = "login.php";
-        }
-    </script>
 </body>
 
 </html>

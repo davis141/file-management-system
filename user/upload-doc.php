@@ -85,7 +85,7 @@ include_once "inc/checkers.php";
                                                                     </thead>
                                                                     <tbody>
                                                                         <?php
-                                                                        $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path, f.to_admin FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.user_id = '$user_id' AND f.company_id = u.company_id";
+                                                                        $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path, f.to_admin FROM file_table f JOIN user u ON f.user_id = u.user_id LEFT JOIN category c ON f.category = c.id WHERE f.user_id = '$user_id' AND f.company_id = '$c_id'";
                                                                         $fetch_query = $app->fetch_query($s_sql);
                                                                         foreach ($fetch_query as $value) {
                                                                             $to_admin = $value['to_admin'];
@@ -95,7 +95,14 @@ include_once "inc/checkers.php";
                                                                                 <td>
                                                                                     <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
                                                                                 </td>
-                                                                                <td><?php echo $value['category_name'] ?></td>
+                                                                                <!-- <td><?php echo $value['category_name'] ?></td> -->
+                                                                                 <td>
+                                                                                    <?php if( $value['category_name'] == ''){?>
+                                                                                        <span class="badge bg-danger fw-bold p-1"> Null</span>
+                                                                                        <?php } else { ?>
+                                                                                            <?php echo $value['category_name'] ?>
+                                                                                            <?php } ?>
+                                                                                 </td>
                                                                                 <td>
                                                                                     <p class="mb-0"><?php echo $value['date_time'] ?></p>
                                                                                 </td>
@@ -116,7 +123,9 @@ include_once "inc/checkers.php";
                                                                                             <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                                             <a class="dropdown-item delete_emp" href="#" data-id="<?= $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete
                                                                                                 Document</a>
-                                                                                            <a class="dropdown-item delete_emps" href="#" data-id="<?= $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="ri-refresh-line me-2 text-muted vertical-middle"></i>Convert to Official</a>
+                                                                                            <?php if (!empty($value['category_name'])) : ?>
+                                                                                                <a class="dropdown-item delete_emps" href="#" data-id="<?= $value['id']; ?>" data-cat="<?= $value['file_name']; ?>"><i class="ri-refresh-line me-2 text-muted vertical-middle"></i>Convert to Official</a>
+                                                                                            <?php endif; ?>
                                                                                             <a class="dropdown-item <?php echo $disabledClass; ?>" <?php if ($to_admin) : ?> href="to_admin?fid=<?php echo base64_encode($value['id']); ?>&cat_name=<?php echo base64_encode($value['file_name']); ?>" <?php endif; ?>>
                                                                                                 <i class="mdi mdi-share-variant me-2 text-muted vertical-middle"></i>Share to Admin
                                                                                             </a>

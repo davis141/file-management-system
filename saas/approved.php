@@ -84,7 +84,7 @@ include_once "inc/checkers.php";
                                                                     </thead>
                                                                     <tbody>
                                                                         <?php
-                                                                        $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id  WHERE f.status = TRUE AND f.company_id = u.company_id";
+                                                                        $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_name, c.category_name FROM admin_share ad JOIN file_table f ON ad.file_id = f.id JOIN user u ON ad.user_id = u.user_id JOIN category c ON ad.company_id = c.company_id WHERE ad.shared_admin = '$user_id' AND ad.company_id = '$c_id' AND  f.to_admin = TRUE AND f.status = TRUE";
                                                                         $fetch_query = $app->fetch_query($app_sql);
                                                                         foreach ($fetch_query as $value) {
                                                                         ?>
@@ -94,7 +94,7 @@ include_once "inc/checkers.php";
                                                                                 </td>
                                                                                 <td><?php echo $value['category_name'] ?></td>
                                                                                 <td>
-                                                                                    <p class="mb-0"><?php echo $value['date_time'] ?></p>
+                                                                                    <p class="mb-0"><?php echo $value['date'] ?></p>
                                                                                 </td>
                                                                                 <td>
                                                                                     <?php echo $value['full_name'] ?>

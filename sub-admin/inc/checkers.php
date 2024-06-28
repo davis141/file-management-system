@@ -7,7 +7,7 @@ $app = new controller();
 // Check login status and user access level
 if (!isset($_SESSION['login_user']) || !isset($_SESSION['company_id']) || $app->checkLogin() !== "logged") {
     $app->logout();
-    header("Location: /file-management-system/sub-admin/login.php");
+    header("Location: /file-management-system/login.php");
     exit();
 }
 
@@ -28,7 +28,7 @@ $about = $userInfo['about'];
 $c_id = $userInfo['company_id'];
 
 if ($access_level_id != 2) {
-    header("Location: /file-management-system/sub-admin/login");
+    header("Location: /file-management-system/login");
 }
 if ($is_active != 1) {
     $app->logout();
