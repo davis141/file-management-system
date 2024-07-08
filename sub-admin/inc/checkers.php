@@ -26,12 +26,20 @@ $full_name = $userInfo['full_name'];
 $email = $userInfo['email'];
 $about = $userInfo['about'];
 $c_id = $userInfo['company_id'];
+$storedsession = $userInfo['session_key'];
 
 if ($access_level_id != 2) {
     header("Location: /file-management-system/login");
 }
 if ($is_active != 1) {
     $app->logout();
+    header("Location: /file-management-system/sub-admin/blocked");
+    exit();
+}
+if ($storedsession == '') {
+    $app->logout();
+    $query = "DELETE FROM user WHERE user_id = '$user_id'";
+    $del = $app->direct_insert($query); 
     header("Location: /file-management-system/sub-admin/blocked");
     exit();
 }

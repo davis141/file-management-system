@@ -116,9 +116,9 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                                             <span class="text-muted font-13">Category</span>
                                                         </td>
                                                         <td>
-                                                        <h5 class="font-14 my-1 fw-normal"><?php echo $value['full_name'] ?></h5>
-                                                        <span class="text-muted font-13">Name</span>
-                                                    </td>
+                                                            <h5 class="font-14 my-1 fw-normal"><?php echo $value['full_name'] ?></h5>
+                                                            <span class="text-muted font-13">Name</span>
+                                                        </td>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -134,7 +134,21 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
             </div>
             <?php include_once "component/footer.php" ?>
         </div>
-
+        <script>
+            setInterval(function() {
+                fetch('/file-management-system/saas/update-sess.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Update session key in the client (e.g., cookie or JavaScript variable)
+                            document.cookie = `session_key=${data.newKey}; path=/`;
+                        } else {
+                            // Handle session update failure, e.g., redirect to login
+                            window.location.href = "/file-management-system/login.php";
+                        }
+                    });
+            }, 10000); // Update every 10 seconds
+        </script>
         <script src="assets/js/vendor.min.js"></script>
         <script src="assets/vendor/daterangepicker/moment.min.js"></script>
         <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>

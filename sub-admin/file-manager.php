@@ -76,9 +76,7 @@ include_once "inc/checkers.php";
                                                                 <thead>
                                                                     <tr>
                                                                         <th>File Name</th>
-                                                                        <!-- <th>Category</th> -->
-                                                                        <!-- <th>Date</th> -->
-                                                                        <!-- <th>Creators Name</th> -->
+                                                                      
                                                                         <th>Status</th>
                                                                         <th>Action</th>
                                                                     </tr>
@@ -89,20 +87,12 @@ include_once "inc/checkers.php";
                                                                     $fetch_query = $app->fetch_query($file_sql);
                                                                     foreach ($fetch_query as $value) {
                                                                     ?>
-                                                                        <!-- 666b05adf1e34 -->
-                                                                        <!-- 6661d49a8271b -->
+                                                                       
                                                                         <tr>
                                                                             <td>
                                                                                 <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
                                                                             </td>
-                                                                            <!-- <td><?php echo $value['category_name'] ?></td>
-                                                                            <td>
-                                                                                <p class="mb-0">
-                                                                                    <?php echo $value['date_time'] ?></p>
-                                                                            </td> -->
-                                                                            <!-- <td>
-                                                                                <?php echo $value['full_name'] ?>
-                                                                            </td> -->
+                                                                           
                                                                             <td>
                                                                                 <?php if ($value['status'] == 1) { ?>
                                                                                     <span class="badge bg-success p-1">Approved</span>
@@ -158,6 +148,19 @@ include_once "inc/checkers.php";
     <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
     <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
     <script src="assets/js/pages/demo.datatable-init.js"></script>
+    <script>
+            setInterval(function() {
+                fetch('/file-management-system/sub-admin/update-sess.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.cookie = `session_key=${data.newKey}; path=/`;
+                        } else {
+                            window.location.href = "/file-management-system/login.php";
+                        }
+                    });
+            }, 10000);
+        </script>
     <script>
         $(document).ready(function() {
             $(document).on('click', '.delete_emp', function() {

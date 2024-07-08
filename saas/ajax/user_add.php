@@ -13,9 +13,17 @@ $user_id_decode= base64_decode($user_id);
 $c_id_length = 13;
 $c_ids = substr($c_id_decode, 0, $c_id_length);
 $users = substr($user_id_decode, 0, $c_id_length);
+
+function generateKey() {
+    return bin2hex(random_bytes(32)); // Generates a 32-character hex string
+}
+
+// Generate initial session key
+$session_key = generateKey();
+
 if (isset($full_name)) {
-    $query = "INSERT INTO `user` (`id`, `company_id`,`access_level_id`,`full_name`, `password`, `user_id`, `email`, `is_active`)
-    VALUES (NULL,'$c_ids','$dpt','$full_name', '$hashed_password', '$users', '$email', '1')";
+    $query = "INSERT INTO `user` (`id`, `company_id`,`access_level_id`,`full_name`, `password`, `user_id`, `email`, `is_active`, `session_key`)
+    VALUES (NULL,'$c_ids','$dpt','$full_name', '$hashed_password', '$users', '$email', '1', '$session_key')";
     $get_category = $app->direct_insert($query);
     if ($get_category == "success") {
         echo "success";

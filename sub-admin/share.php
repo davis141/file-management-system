@@ -86,7 +86,7 @@
                                                         $file_sql = "SELECT fs.id, f.file_name, fs.date_time, u.full_name, fs.file_path, fs.add_input
                                                         FROM file_shares fs
                                                         JOIN file_table f ON fs.file_id = f.id JOIN user u on fs.user_id = u.user_id
-                                                        WHERE fs.shared_with_user_id = '$user_id' AND fs.company_id = u.company_id";
+                                                        WHERE fs.shared_with_user_id = '$user_id' AND fs.company_id = '$c_id'";
                                                         $fetch_query = $app->fetch_query($file_sql);
                                                         foreach ($fetch_query as $value) {
                                                         ?>
@@ -130,7 +130,19 @@
     </div>
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.min.js"></script>
-
+    <script>
+            setInterval(function() {
+                fetch('/file-management-system/sub-admin/update-sess.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.cookie = `session_key=${data.newKey}; path=/`;
+                        } else {
+                            window.location.href = "/file-management-system/login.php";
+                        }
+                    });
+            }, 10000);
+        </script>
 </body>
 
 </html>

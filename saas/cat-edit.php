@@ -80,6 +80,21 @@ foreach ($get_data_details as $data)
     <script src="assets/vendor/clipboard/clipboard.min.js"></script>
     <script src="assets/js/hyper-syntax.js"></script>
     <script src="assets/js/app.min.js"></script>
+    <script>
+            setInterval(function() {
+                fetch('/file-management-system/saas/update-sess.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Update session key in the client (e.g., cookie or JavaScript variable)
+                            document.cookie = `session_key=${data.newKey}; path=/`;
+                        } else {
+                            // Handle session update failure, e.g., redirect to login
+                            window.location.href = "/file-management-system/login.php";
+                        }
+                    });
+            }, 10000); // Update every 10 seconds
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         //validate email

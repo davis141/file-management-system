@@ -85,7 +85,7 @@ include_once "inc/checkers.php";
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $file_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, f.status, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id WHERE f.company_id = u.company_id AND f.to_admin = TRUE";
+                                                                    $file_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, f.status, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id WHERE f.company_id = '$c_id' AND f.to_admin = TRUE";
                                                                     $fetch_query = $app->fetch_query($file_sql);
                                                                     foreach ($fetch_query as $value) {
                                                                     ?>
@@ -156,6 +156,21 @@ include_once "inc/checkers.php";
     <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
     <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
     <script src="assets/js/pages/demo.datatable-init.js"></script>
+    <script>
+            setInterval(function() {
+                fetch('/file-management-system/saas/update-sess.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Update session key in the client (e.g., cookie or JavaScript variable)
+                            document.cookie = `session_key=${data.newKey}; path=/`;
+                        } else {
+                            // Handle session update failure, e.g., redirect to login
+                            window.location.href = "/file-management-system/login.php";
+                        }
+                    });
+            }, 10000); // Update every 10 seconds
+        </script>
     <script>
         $(document).ready(function() {
             $(document).on('click', '.delete_emp', function() {

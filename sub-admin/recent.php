@@ -77,7 +77,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $s_sql = "SELECT f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id WHERE f.company_id = u.company_id AND f.user_id = '$user_id' ORDER BY f.date_time DESC LIMIT 5";
+                                                        $s_sql = "SELECT f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id WHERE f.company_id = '$c_id' AND f.user_id = '$user_id' ORDER BY f.date_time DESC LIMIT 5";
                                                         $fetch_query = $app->fetch_query($s_sql);
                                                         foreach ($fetch_query as $value) {
                                                         ?>
@@ -123,7 +123,19 @@
     </div>
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.min.js"></script>
-
+    <script>
+            setInterval(function() {
+                fetch('/file-management-system/sub-admin/update-sess.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.cookie = `session_key=${data.newKey}; path=/`;
+                        } else {
+                            window.location.href = "/file-management-system/login.php";
+                        }
+                    });
+            }, 10000);
+        </script>
 </body>
 
 </html>

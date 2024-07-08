@@ -15,6 +15,7 @@ if (isset ($email, $hashed_password)) {
             $_SESSION['email'] = $email; // Initializing Session
             $_SESSION['company_id'] = $email; 
             $_SESSION['login_user'] = $email; // Initializing Session
+            $_SESSION['session_key'] = $email;
             $secures = $_SESSION['e_secure'] = bin2hex(random_bytes(32));
             echo "success";
         } else {

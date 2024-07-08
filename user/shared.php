@@ -127,6 +127,19 @@
     </div>
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.min.js"></script>
+    <script>
+            setInterval(function() {
+                fetch('/file-management-system/user/update-sess.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.cookie = `session_key=${data.newKey}; path=/`;
+                        } else {
+                            window.location.href = "/file-management-system/login.php";
+                        }
+                    });
+            }, 10000);
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
