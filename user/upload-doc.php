@@ -172,19 +172,7 @@ include_once "inc/checkers.php";
         <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
         <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
         <script src="assets/js/pages/demo.datatable-init.js"></script>
-        <script>
-            setInterval(function() {
-                fetch('/file-management-system/user/update-sess.php')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            document.cookie = `session_key=${data.newKey}; path=/`;
-                        } else {
-                            window.location.href = "/file-management-system/login.php";
-                        }
-                    });
-            }, 10000);
-        </script>
+        <script src="up.js"></script>
         <script>
             $(document).ready(function() {
                 if ($.fn.DataTable.isDataTable('#datatable-buttons')) {

@@ -122,22 +122,7 @@ $use_id = base64_encode($user_id . $random_number);
     <script src="assets/vendor/select2/js/select2.min.js"></script>
     <script src="assets/vendor/dropzone/min/dropzone.min.js"></script>
     <script src="assets/js/ui/component.fileupload.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-            setInterval(function() {
-                fetch('/file-management-system/saas/update-sess.php')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Update session key in the client (e.g., cookie or JavaScript variable)
-                            document.cookie = `session_key=${data.newKey}; path=/`;
-                        } else {
-                            // Handle session update failure, e.g., redirect to login
-                            window.location.href = "/file-management-system/login.php";
-                        }
-                    });
-            }, 10000); // Update every 10 seconds
-        </script>
+    <script src="up.js"></script>
     <script>
         $(document).ready(function() {
             function validateForm() {

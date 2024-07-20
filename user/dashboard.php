@@ -142,19 +142,7 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
         <script src="assets/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
         <script src="assets/js/pages/demo.dashboard.js"></script>
         <script src="assets/js/app.min.js"></script>
-        <script>
-            setInterval(function() {
-                fetch('/file-management-system/user/update-sess.php')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            document.cookie = `session_key=${data.newKey}; path=/`;
-                        } else {
-                            window.location.href = "/file-management-system/login.php";
-                        }
-                    });
-            }, 10000);
-        </script>
+        <script src="up.js"></script>
 </body>
 
 </html>

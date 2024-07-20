@@ -41,7 +41,8 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                             <div class="float-end">
                                                 <i class="mdi mdi-account-multiple widget-icon"></i>
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Total Number of Documents">Total Number of Documents
+                                            <h5 class="text-muted fw-normal mt-0" title="Total Number of Documents">
+                                                Total Number of Documents
                                             </h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($dash_sql);
                                                                     echo number_format(count($count)); ?></h3>
@@ -54,7 +55,8 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                             <div class="float-end">
                                                 <i class="mdi mdi-cart-plus widget-icon"></i>
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Pending Document">Pending Document</h5>
+                                            <h5 class="text-muted fw-normal mt-0" title="Pending Document">Pending
+                                                Document</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($s_sql);
                                                                     echo number_format(count($count)); ?></h3>
                                         </div>
@@ -69,7 +71,8 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                             <div class="float-end">
                                                 <i class="mdi mdi-currency-usd widget-icon"></i>
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Approved Document">Approved Document</h5>
+                                            <h5 class="text-muted fw-normal mt-0" title="Approved Document">Approved
+                                                Document</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($app_sql);
                                                                     echo number_format(count($count)); ?></h3>
                                         </div>
@@ -105,21 +108,26 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                                 $fetch_query = $app->fetch_query($r_sql);
                                                 foreach ($fetch_query as $value) {
                                                 ?>
-                                                    <tr>
-                                                        <td>
-                                                            <h5 class="font-14 my-1 fw-normal"> <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
-                                                            </h5>
-                                                            <span class="text-muted font-13"><?php echo $value['date_time'] ?></span>
-                                                        </td>
-                                                        <td>
-                                                            <h5 class="font-14 my-1 fw-normal"><?php echo $value['category_name'] ?></h5>
-                                                            <span class="text-muted font-13">Category</span>
-                                                        </td>
-                                                        <td>
-                                                            <h5 class="font-14 my-1 fw-normal"><?php echo $value['full_name'] ?></h5>
-                                                            <span class="text-muted font-13">Name</span>
-                                                        </td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h5 class="font-14 my-1 fw-normal"> <img
+                                                                src="assets/images/file.png" class="me-1"><span
+                                                                class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
+                                                        </h5>
+                                                        <span
+                                                            class="text-muted font-13"><?php echo $value['date_time'] ?></span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="font-14 my-1 fw-normal">
+                                                            <?php echo $value['category_name'] ?></h5>
+                                                        <span class="text-muted font-13">Category</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="font-14 my-1 fw-normal">
+                                                            <?php echo $value['full_name'] ?></h5>
+                                                        <span class="text-muted font-13">Name</span>
+                                                    </td>
+                                                </tr>
                                                 <?php } ?>
                                             </tbody>
                                         </table>
@@ -134,21 +142,7 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
             </div>
             <?php include_once "component/footer.php" ?>
         </div>
-        <script>
-            setInterval(function() {
-                fetch('/file-management-system/saas/update-sess.php')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Update session key in the client (e.g., cookie or JavaScript variable)
-                            document.cookie = `session_key=${data.newKey}; path=/`;
-                        } else {
-                            // Handle session update failure, e.g., redirect to login
-                            window.location.href = "/file-management-system/login.php";
-                        }
-                    });
-            }, 10000); // Update every 10 seconds
-        </script>
+        <script src="up.js"></script>
         <script src="assets/js/vendor.min.js"></script>
         <script src="assets/vendor/daterangepicker/moment.min.js"></script>
         <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>

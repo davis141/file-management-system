@@ -18,10 +18,11 @@ if (isset($_SESSION['user_id'])) {
     if ($app->run_query($updateQuery)) {
         $_SESSION['session_key'] = $newSessionKey;
         echo json_encode(['success' => true, 'newKey' => $newSessionKey]);
+        error_log("Session Key Updated: $newSessionKey"); // Debugging
     } else {
         echo json_encode(['success' => false]);
     }
 } else {
     echo json_encode(['success' => false]);
+    error_log("Session Key Update Failed: User ID not set"); // Debugging
 }
-
