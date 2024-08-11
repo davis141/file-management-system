@@ -1,5 +1,7 @@
-<?php
+<?php 
 include_once "inc/checkers.php";
+$get_cat_id = base64_decode($app->get_request('fid'));
+$file_name = base64_decode($app->get_request('cat_name'));
 $random_number = mt_rand(100000, 999999);
 $encoded_id = base64_encode($c_id . $random_number);
 $use_id = base64_encode($user_id . $random_number);
@@ -64,46 +66,48 @@ $use_id = base64_encode($user_id . $random_number);
                                                     </div>
                                                 </form>
                                             </div>
+                                            <div class="">
+                                                <a href="upload-doc.php">
+                                                    <button class="btn btn-primary">
+                                                        Back
+                                                    </button>
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="mt-3">
-                                            <h5 class="mb-2">Upload Document</h5>
+                                            <h5 class="mb-2">Shared Documents</h5>
                                         </div>
                                         <div class="mt-3">
-                                            <form method="post" name="myForm" id="myAwesomeDropzone" enctype="multipart/form-data">
-                                                <div class="file-upload" id="file-upload">
-                                                    <i class="ri-upload-cloud-2-fill fs-2"></i>
-                                                    <p>Click here or drag files to upload
-                                                        <br>
-                                                        <small>Please ensure that folders are properly zipped prior to transmission to ensure secure and efficient file transfer.</small>
-                                                    </p>
-                                                </div>
-                                                <input type="file" id="file-input" name="up_file" style="display: none;" multiple>
-
-                                                <div class="preview-container" id="preview-container">
-                                                    <div class="preview" id="file-preview"></div>
-                                                </div>
-                                                <input type="hidden" value="<?php echo $use_id  ?>" name="encrypt">
-                                                <input type="hidden" value="<?php echo $encoded_id ?>" name="encrypt_c">
+                                            <form method="post" name="myForm" id="myForm" enctype="multipart/form-data">
+                                            <input type="hidden" value="<?php echo $use_id  ?>" name="encrypt">
+                                            <input type="hidden" value="<?php echo $encoded_id ?>" name="encrypt_c">
+                                            <input type="hidden" value="<?php echo $get_cat_id ?>" name="shares">
+                                               
                                                 <div class="form-group mt-2">
-                                                    <label for="additional-input">Document Name</label>
-                                                    <input type="text" class="form-control" name="file_name" id="file-name" placeholder="Please insert document name">
-                                                </div>
-                                                <div class="form-group mt-2">
-                                                    <label>Document Category</label>
+                                                    <label>Share To admin</label>
                                                     <div class="form-group">
-                                                        <select class="form-control form-select show-tick" id="dpt" name="cat">
-                                                            <option value="0">Select Category</option>
+                                                        <select class="form-control form-select show-tick" id="shr" name="shr">
+                                                            <option value="0">Select a User</option>
                                                             <?php
-                                                            $sql = "select id, category_name from category where company_id = '$c_id'";
+                                                            $sql = "SELECT * FROM user WHERE company_id = '$c_id' AND access_level_id = '1'";
                                                             $dpt = $app->fetch_query($sql);
                                                             foreach ($dpt as $cat) {
                                                             ?>
-                                                                <option value="<?= $cat['id']; ?>"><?= $cat['category_name']; ?></option>
+                                                                <option value="<?= $cat['user_id']; ?>"><?= $cat['full_name']; ?></option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary mt-2" id="reset-btn"><i class="ri-upload-2-fill me-2 fs-5"></i>Upload</button>
+                                                <div class="form-group mt-2">
+                                                    <label for="additional-input">Shared file</label>
+                                                    <input type="text" class="form-control" value="<?php echo $file_name ?>" readonly>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <label for="additional-input">Additional Note</label>
+                                                    <input type="text" class="form-control" name="add_name" id="file-name" placeholder="Please insert document name">
+                                                </div>
+                                                
+                                                <button type="submit" class="btn btn-primary mt-2" id="reset-btn"><i class="ri-upload-2-fill me-2 fs-5"></i>Share</button>
                                             </form>
                                         </div>
                                     </div>
@@ -121,35 +125,30 @@ $use_id = base64_encode($user_id . $random_number);
     <script src="assets/js/app.min.js"></script>
     <script src="assets/vendor/select2/js/select2.min.js"></script>
     <script src="assets/vendor/dropzone/min/dropzone.min.js"></script>
-    <script src="assets/js/ui/component.fileupload.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="up.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        //validate email
+
+
         $(document).ready(function() {
             function validateForm() {
-                let file_name = document.forms["myForm"]["file-name"].value;
-                let file = document.forms["myForm"]["file-input"].value;
+                let category_name = document.forms["myForm"]["file-name"].value;
+               
 
-                if (file_name === "") {
+                if (category_name === "") {
                     Swal.fire({
-                        title: "File name cannot be blank. Please provide a name.",
+                        title: " Empty, Please Input Needed Field",
                         text: "Try Again!",
                         icon: "error"
                     });
                     return false;
                 }
-                if (file === "") {
-                    Swal.fire({
-                        title: "Document not uploaded. Please select a file.",
-                        text: "Try Again!",
-                        icon: "error"
-                    });
-                    return false;
-                }
-
-                return true;
+                return true; // Form is valid
             }
-            $("#myAwesomeDropzone").on('submit', (function(e) {
+
+            /* function to login user */
+            $("#myForm").on('submit', (function(e) {
                 validateForm();
                 let check = validateForm();
                 e.preventDefault();
@@ -158,7 +157,7 @@ $use_id = base64_encode($user_id . $random_number);
                     btn.attr('disabled', true).html("<i class='fa fa-spin fa-spinner'></i> Processing");
                     var datas = new FormData(this);
                     $.ajax({
-                        url: "ajax/add-up",
+                        url: "ajax/shared_admin",
                         type: "post",
                         data: datas,
                         contentType: false,
@@ -168,15 +167,15 @@ $use_id = base64_encode($user_id . $random_number);
                             if (data.trim() == "success") {
                                 Swal.fire({
                                     title: "success!",
-                                    text: "File Uploaded, Successsfully!",
+                                    text: "Shared, Successsfully!",
                                     icon: "success",
                                 });
                                 setTimeout(function() {
                                     var btn = $("#reset-btn");
                                     btn
                                         .attr("disabled", false)
-                                        .html("File Uploaded!");
-                                    location.href = "upload-doc.php"
+                                        .html(" Shared Successsfully!");
+                                    location.href = "pending.php"
                                 }, 3000);
                             } else {
                                 Swal.fire({
@@ -198,6 +197,8 @@ $use_id = base64_encode($user_id . $random_number);
 
         });
     </script>
+
+
 </body>
 
 </html>
