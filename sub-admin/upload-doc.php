@@ -36,6 +36,8 @@ include_once "inc/checkers.php";
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="upload-file.php"><i class="mdi mdi-upload me-1"></i>
                                                     Choose File</a>
+                                                <a class="dropdown-item" href="upload-folder.php"><i class="mdi mdi-upload me-1"></i>
+                                                    Create Folder</a>
                                             </div>
                                         </div>
                                         <div class="email-menu-list mt-3">
@@ -47,8 +49,11 @@ include_once "inc/checkers.php";
                                                 Document</a>
                                             <a href="approved.php" class="list-group-item border-0"><i class="ri-task-fill font-18 align-middle me-2"></i>Approved
                                                 Documents</a>
-                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received Documents</a>
-                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared Documents</a>
+                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received
+                                                Documents</a>
+                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared
+                                                Documents</a>
+                                            <a href="folder.php" class="list-group-item border-0"><i class="mdi mdi-folder-open font-18 align-middle me-2"></i>Folders</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -96,13 +101,13 @@ include_once "inc/checkers.php";
                                                                                     <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
                                                                                 </td>
                                                                                 <!-- <td><?php echo $value['category_name'] ?></td> -->
-                                                                                 <td>
-                                                                                    <?php if( $value['category_name'] == ''){?>
+                                                                                <td>
+                                                                                    <?php if ($value['category_name'] == '') { ?>
                                                                                         <span class="badge bg-danger fw-bold p-1"> Null</span>
-                                                                                        <?php } else { ?>
-                                                                                            <?php echo $value['category_name'] ?>
-                                                                                            <?php } ?>
-                                                                                 </td>
+                                                                                    <?php } else { ?>
+                                                                                        <?php echo $value['category_name'] ?>
+                                                                                    <?php } ?>
+                                                                                </td>
                                                                                 <td>
                                                                                     <p class="mb-0"><?php echo $value['date_time'] ?></p>
                                                                                 </td>
@@ -120,7 +125,7 @@ include_once "inc/checkers.php";
                                                                                     <div class="btn-group dropdown">
                                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                                            <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                                            <a class="dropdown-item" href="../../saas/doc_file/<?= $value['file_path']; ?>" download="../../saas/doc_file/<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                                             <a class="dropdown-item delete_emp" href="#" data-id="<?= $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete
                                                                                                 Document</a>
                                                                                             <?php if (!empty($value['category_name'])) : ?>

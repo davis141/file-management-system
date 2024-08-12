@@ -31,6 +31,8 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="upload-file.php"><i class="mdi mdi-upload me-1"></i>
                                                     Choose File</a>
+                                                <a class="dropdown-item" href="upload-folder.php"><i class="mdi mdi-upload me-1"></i>
+                                                    Create Folder</a>
                                             </div>
                                         </div>
                                         <div class="email-menu-list mt-3">
@@ -42,8 +44,11 @@
                                                 Document</a>
                                             <a href="approved.php" class="list-group-item border-0"><i class="ri-task-fill font-18 align-middle me-2"></i>Approved
                                                 Documents</a>
-                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received Documents</a>
-                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared Documents</a>
+                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received
+                                                Documents</a>
+                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared
+                                                Documents</a>
+                                            <a href="folder.php" class="list-group-item border-0"><i class="mdi mdi-folder-open font-18 align-middle me-2"></i>Folders</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -187,7 +192,6 @@
             });
 
         });
-    
     </script>
     <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">

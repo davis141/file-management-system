@@ -42,7 +42,7 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                             <div class="float-end">
                                                 <i class="mdi mdi-account-multiple widget-icon"></i>
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Total Number of Documents">Total Number of Documents
+                                            <h5 class="text-muted fw-normal mt-0" title="Total Number of Documents">Total Number of Official Documents
                                             </h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($dash_sql);
                                                                     echo number_format(count($count)); ?></h3>

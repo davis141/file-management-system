@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once "inc/checkers.php";
 $get_cat_id = base64_decode($app->get_request('fid'));
 $file_name = base64_decode($app->get_request('cat_name'));
@@ -40,6 +40,8 @@ $use_id = base64_encode($user_id . $random_number);
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="upload-file.php"><i class="mdi mdi-upload me-1"></i>
                                                     Choose File</a>
+                                                <a class="dropdown-item" href="upload-folder.php"><i class="mdi mdi-upload me-1"></i>
+                                                    Create Folder</a>
                                             </div>
                                         </div>
                                         <div class="email-menu-list mt-3">
@@ -51,8 +53,11 @@ $use_id = base64_encode($user_id . $random_number);
                                                 Document</a>
                                             <a href="approved.php" class="list-group-item border-0"><i class="ri-task-fill font-18 align-middle me-2"></i>Approved
                                                 Documents</a>
-                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received Documents</a>
-                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared Documents</a>
+                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received
+                                                Documents</a>
+                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared
+                                                Documents</a>
+                                            <a href="folder.php" class="list-group-item border-0"><i class="mdi mdi-folder-open font-18 align-middle me-2"></i>Folders</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -79,10 +84,10 @@ $use_id = base64_encode($user_id . $random_number);
                                         </div>
                                         <div class="mt-3">
                                             <form method="post" name="myForm" id="myForm" enctype="multipart/form-data">
-                                            <input type="hidden" value="<?php echo $use_id  ?>" name="encrypt">
-                                            <input type="hidden" value="<?php echo $encoded_id ?>" name="encrypt_c">
-                                            <input type="hidden" value="<?php echo $get_cat_id ?>" name="shares">
-                                               
+                                                <input type="hidden" value="<?php echo $use_id  ?>" name="encrypt">
+                                                <input type="hidden" value="<?php echo $encoded_id ?>" name="encrypt_c">
+                                                <input type="hidden" value="<?php echo $get_cat_id ?>" name="shares">
+
                                                 <div class="form-group mt-2">
                                                     <label>Share To admin</label>
                                                     <div class="form-group">
@@ -106,7 +111,7 @@ $use_id = base64_encode($user_id . $random_number);
                                                     <label for="additional-input">Additional Note</label>
                                                     <input type="text" class="form-control" name="add_name" id="file-name" placeholder="Please insert document name">
                                                 </div>
-                                                
+
                                                 <button type="submit" class="btn btn-primary mt-2" id="reset-btn"><i class="ri-upload-2-fill me-2 fs-5"></i>Share</button>
                                             </form>
                                         </div>
@@ -134,7 +139,7 @@ $use_id = base64_encode($user_id . $random_number);
         $(document).ready(function() {
             function validateForm() {
                 let category_name = document.forms["myForm"]["file-name"].value;
-               
+
 
                 if (category_name === "") {
                     Swal.fire({

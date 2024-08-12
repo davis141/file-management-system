@@ -35,6 +35,8 @@ include_once "inc/checkers.php";
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="upload-file.php"><i class="mdi mdi-upload me-1"></i>
                                                     Choose File</a>
+                                                <a class="dropdown-item" href="upload-folder.php"><i class="mdi mdi-upload me-1"></i>
+                                                    Create Folder</a>
                                             </div>
                                         </div>
                                         <div class="email-menu-list mt-3">
@@ -50,6 +52,7 @@ include_once "inc/checkers.php";
                                                 Documents</a>
                                             <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared
                                                 Documents</a>
+                                            <a href="folder.php" class="list-group-item border-0"><i class="mdi mdi-folder-open font-18 align-middle me-2"></i>Folders</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -113,7 +116,7 @@ include_once "inc/checkers.php";
                                                                                     <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                                     <div class="dropdown-menu dropdown-menu-end">
                                                                                         <a class="dropdown-item" href="../saas/doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
-                                                                                        
+
                                                                                     </div>
                                                                                 </div>
                                                                             </td>

@@ -38,6 +38,8 @@ $use_id = base64_encode($user_id . $random_number);
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="upload-file.php"><i class="mdi mdi-upload me-1"></i>
                                                     Choose File</a>
+                                                <a class="dropdown-item" href="upload-folder.php"><i class="mdi mdi-upload me-1"></i>
+                                                    Create Folder</a>
                                             </div>
                                         </div>
                                         <div class="email-menu-list mt-3">
@@ -49,8 +51,11 @@ $use_id = base64_encode($user_id . $random_number);
                                                 Document</a>
                                             <a href="approved.php" class="list-group-item border-0"><i class="ri-task-fill font-18 align-middle me-2"></i>Approved
                                                 Documents</a>
-                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received Documents</a>
-                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared Documents</a>
+                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received
+                                                Documents</a>
+                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared
+                                                Documents</a>
+                                            <a href="folder.php" class="list-group-item border-0"><i class="mdi mdi-folder-open font-18 align-middle me-2"></i>Folders</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -124,7 +129,7 @@ $use_id = base64_encode($user_id . $random_number);
     <script src="assets/js/ui/component.fileupload.js"></script>
     <script src="up.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <script>
         $(document).ready(function() {
             function validateForm() {

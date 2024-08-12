@@ -33,6 +33,8 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="upload-file.php"><i class="mdi mdi-upload me-1"></i>
                                                     Choose File</a>
+                                                <a class="dropdown-item" href="upload-folder.php"><i class="mdi mdi-upload me-1"></i>
+                                                    Create Folder</a>
                                             </div>
                                         </div>
                                         <div class="email-menu-list mt-3">
@@ -44,8 +46,11 @@
                                                 Document</a>
                                             <a href="approved.php" class="list-group-item border-0"><i class="ri-task-fill font-18 align-middle me-2"></i>Approved
                                                 Documents</a>
-                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received Documents</a>
-                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared Documents</a>
+                                            <a href="share.php" class="list-group-item border-0"><i class="ri-folder-received-line font-18 align-middle me-2"></i>Received
+                                                Documents</a>
+                                            <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared
+                                                Documents</a>
+                                            <a href="folder.php" class="list-group-item border-0"><i class="mdi mdi-folder-open font-18 align-middle me-2"></i>Folders</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -77,7 +82,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $s_sql = "SELECT f.file_name, f.date_time, u.full_name, c.category_name, f.file_path FROM file_table f JOIN user u ON f.user_id = u.user_id JOIN category c ON f.category = c.id WHERE f.company_id = '$c_id' AND f.user_id = '$user_id' ORDER BY f.date_time DESC LIMIT 5";
+                                                        $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path, f.to_admin FROM file_table f JOIN user u ON f.user_id = u.user_id LEFT JOIN category c ON f.category = c.id WHERE f.user_id = '$user_id' AND f.company_id = '$c_id' ORDER BY f.date_time DESC LIMIT 5";
                                                         $fetch_query = $app->fetch_query($s_sql);
                                                         foreach ($fetch_query as $value) {
                                                         ?>
@@ -89,7 +94,11 @@
                                                                     <p class="mb-0"><?php echo $value['date_time'] ?></p>
                                                                 </td>
                                                                 <td>
-                                                                    <p class="mb-0"><?php echo $value['category_name'] ?></p>
+                                                                    <?php if ($value['category_name'] == '') { ?>
+                                                                        <span class="badge bg-danger fw-bold p-1"> Null</span>
+                                                                    <?php } else { ?>
+                                                                        <p class="mb-0"><?php echo $value['category_name'] ?></p>
+                                                                    <?php } ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo $value['full_name'] ?>
@@ -98,7 +107,7 @@
                                                                     <div class="btn-group dropdown">
                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                        <a class="dropdown-item" href="../saas/doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                            <a class="dropdown-item" href="../saas/doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>

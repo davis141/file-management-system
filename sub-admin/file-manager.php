@@ -35,6 +35,8 @@ include_once "inc/checkers.php";
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="upload-file.php"><i class="mdi mdi-upload me-1"></i>
                                                     Choose File</a>
+                                                <a class="dropdown-item" href="upload-folder.php"><i class="mdi mdi-upload me-1"></i>
+                                                    Create Folder</a>
                                             </div>
                                         </div>
                                         <div class="email-menu-list mt-3">
@@ -50,6 +52,7 @@ include_once "inc/checkers.php";
                                                 Documents</a>
                                             <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared
                                                 Documents</a>
+                                            <a href="folder.php" class="list-group-item border-0"><i class="mdi mdi-folder-open font-18 align-middle me-2"></i>Folders</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -76,23 +79,23 @@ include_once "inc/checkers.php";
                                                                 <thead>
                                                                     <tr>
                                                                         <th>File Name</th>
-                                                                      
+
                                                                         <th>Status</th>
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $file_sql = "SELECT f.id, f.company_id, f.user_id,f.status,f.file_name, NULL AS shared_admin FROM file_table f WHERE f.company_id = '$c_id' AND f.user_id = '$user_id' AND f.to_admin = TRUE UNION SELECT f.id, f.company_id, ad.shared_admin AS user_id, f.status, f.file_name, ad.shared_admin FROM admin_share ad JOIN file_table f ON ad.file_id = f.id WHERE ad.shared_admin = '$user_id' AND f.company_id = '$c_id' AND f.to_admin = TRUE";
+                                                                    $file_sql = "SELECT f.id, f.company_id,f.user_id,f.status,f.file_path,f.file_name, NULL AS shared_admin FROM file_table f WHERE f.company_id = '$c_id' AND f.user_id = '$user_id' AND f.to_admin = TRUE UNION SELECT f.id, f.company_id, f.file_path, ad.shared_admin AS user_id, f.status, f.file_name, ad.shared_admin FROM admin_share ad JOIN file_table f ON ad.file_id = f.id WHERE ad.shared_admin = '$user_id' AND f.company_id = '$c_id' AND f.to_admin = TRUE";
                                                                     $fetch_query = $app->fetch_query($file_sql);
                                                                     foreach ($fetch_query as $value) {
                                                                     ?>
-                                                                       
+
                                                                         <tr>
                                                                             <td>
                                                                                 <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
                                                                             </td>
-                                                                           
+
                                                                             <td>
                                                                                 <?php if ($value['status'] == 1) { ?>
                                                                                     <span class="badge bg-success p-1">Approved</span>

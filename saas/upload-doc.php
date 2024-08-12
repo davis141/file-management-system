@@ -36,6 +36,8 @@ include_once "inc/checkers.php";
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="upload-file.php"><i class="mdi mdi-upload me-1"></i>
                                                     Choose File</a>
+                                                <a class="dropdown-item" href="upload-folder.php"><i class="mdi mdi-upload me-1"></i>
+                                                    Create Folder</a>
                                             </div>
                                         </div>
                                         <div class="email-menu-list mt-3">
@@ -51,6 +53,7 @@ include_once "inc/checkers.php";
                                                 Documents</a>
                                             <a href="shared.php" class="list-group-item border-0"><i class="mdi mdi-share-variant font-18 align-middle me-2"></i>Shared
                                                 Documents</a>
+                                            <a href="folder.php" class="list-group-item border-0"><i class="mdi mdi-folder-open font-18 align-middle me-2"></i>Folders</a>
                                             <a href="recent.php" class="list-group-item border-0"><i class="mdi mdi-clock-outline font-18 align-middle me-2"></i>Recent</a>
                                         </div>
                                     </div>
@@ -82,8 +85,7 @@ include_once "inc/checkers.php";
                                                                             <th class="border-0">Date</th>
                                                                             <th class="border-0">Status</th>
                                                                             <th class="border-0">Creators Name</th>
-                                                                            <th class="border-0" style="width: 80px;">
-                                                                                Action</th>
+                                                                            <th class="border-0" style="width: 80px;">Action</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -91,30 +93,29 @@ include_once "inc/checkers.php";
                                                                         $s_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name, f.file_path, f.to_admin FROM file_table f JOIN user u ON f.user_id = u.user_id LEFT JOIN category c ON f.category = c.id WHERE f.user_id = '$user_id' AND f.company_id = '$c_id'";
                                                                         $fetch_query = $app->fetch_query($s_sql);
                                                                         foreach ($fetch_query as $value) {
+                                                                            $to_admin = $value['to_admin'];
+                                                                            $disabledClass = $to_admin ? '' : 'disabled';
                                                                         ?>
                                                                             <tr>
                                                                                 <td>
                                                                                     <img src="assets/images/file.png" class="me-1"><span class="ms-2 fw-semibold"><?php echo $value['file_name'] ?></span>
                                                                                 </td>
-                                                                                <td> <?php if ($value['category_name'] == '') { ?>
-                                                                                        <span class="badge bg-danger fw-bold p-1">
-                                                                                            Null</span>
+                                                                                <!-- <td><?php echo $value['category_name'] ?></td> -->
+                                                                                <td>
+                                                                                    <?php if ($value['category_name'] == '') { ?>
+                                                                                        <span class="badge bg-danger fw-bold p-1"> Null</span>
                                                                                     <?php } else { ?>
                                                                                         <?php echo $value['category_name'] ?>
                                                                                     <?php } ?>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <p class="mb-0">
-                                                                                        <?php echo $value['date_time'] ?>
-                                                                                    </p>
+                                                                                    <p class="mb-0"><?php echo $value['date_time'] ?></p>
                                                                                 </td>
                                                                                 <td>
                                                                                     <?php if ($value['to_admin'] == 1) { ?>
-                                                                                        <span class="badge bg-success p-1">Official
-                                                                                            Document</span>
+                                                                                        <span class="badge bg-success p-1">Official Document</span>
                                                                                     <?php } else { ?>
-                                                                                        <span class="badge bg-warning p-1">Unofficial
-                                                                                            Document</span>
+                                                                                        <span class="badge bg-warning p-1">Unofficial Document</span>
                                                                                     <?php } ?>
                                                                                 </td>
                                                                                 <td>
@@ -130,6 +131,10 @@ include_once "inc/checkers.php";
                                                                                             <?php if (!empty($value['category_name'])) : ?>
                                                                                                 <a class="dropdown-item delete_emps" href="#" data-id="<?= $value['id']; ?>" data-cat="<?= $value['file_name']; ?>"><i class="ri-refresh-line me-2 text-muted vertical-middle"></i>Convert to Official</a>
                                                                                             <?php endif; ?>
+                                                                                            <a class="dropdown-item <?php echo $disabledClass; ?>" <?php if ($to_admin) : ?> href="to_admin?fid=<?php echo base64_encode($value['id']); ?>&cat_name=<?php echo base64_encode($value['file_name']); ?>" <?php endif; ?>>
+                                                                                                <i class="mdi mdi-share-variant me-2 text-muted vertical-middle"></i>Share Official Document
+                                                                                            </a>
+
                                                                                         </div>
                                                                                     </div>
                                                                                 </td>
@@ -176,7 +181,7 @@ include_once "inc/checkers.php";
         <script>
             $(document).ready(function() {
                 if ($.fn.DataTable.isDataTable('#datatable-buttons')) {
-                  
+                    // If it is, destroy it
                     $('#datatable-buttons').DataTable().destroy();
                 }
                 $('#datatable-buttons').DataTable({
@@ -185,13 +190,14 @@ include_once "inc/checkers.php";
                         extend: 'print',
                         text: 'Print',
                         exportOptions: {
-                            columns: ':not(:last-child)' 
+                            columns: ':not(:last-child)' // Exclude the last column (Action column)
                         }
                     }]
                 });
             });
         </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <script>
             $(document).on('click', '.delete_emp', function() {
 
@@ -216,8 +222,7 @@ include_once "inc/checkers.php";
                             icon: "success",
                         });
                         const btn = $("#del_stf");
-                        btn.attr('disabled', false).html(
-                            '<i class="fa fa-spin fa-spinner"></i> Try Again...');
+                        btn.attr('disabled', false).html('<i class="fa fa-spin fa-spinner"></i> Try Again...');
                     } else {
                         $.ajax({
                             url: "ajax/delete-up",
@@ -267,7 +272,7 @@ include_once "inc/checkers.php";
                     const emp_name_del = $("#emp_names").val();
                     const id_del = $("#ids").val();
                     const btn = $("#delete_emps");
-                    btn.attr('disabled', true).html('<i class="fa fa-spin fa-spinner"></i> Sharing...');
+                    btn.attr('disabled', true).html('<i class="fa fa-spin fa-spinner"></i> Converting...');
                     if (id_del === '' || id_del === 0) {
                         Swal.fire({
                             title: "success!",
@@ -275,8 +280,7 @@ include_once "inc/checkers.php";
                             icon: "success",
                         });
                         const btn = $("#del_stf");
-                        btn.attr('disabled', false).html(
-                            '<i class="fa fa-spin fa-spinner"></i> Try Again...');
+                        btn.attr('disabled', false).html('<i class="fa fa-spin fa-spinner"></i> Try Again...');
                     } else {
                         $.ajax({
                             url: "ajax/send_admin",
@@ -320,8 +324,7 @@ include_once "inc/checkers.php";
                     <div class="modal-body">
 
                         <form method="post" class=" pe-3">
-                            <span class="text-danger fw-bold">Please note that this action is irreversible. Are you sure
-                                you want to proceed?</span>
+                            <span class="text-danger fw-bold">Please note that this action is irreversible. Are you sure you want to proceed?</span>
                             <div class="mb-3 mt-3">
                                 <label for="" class="mb-2">File Name</label>
                                 <input class="form-control" type="text" id="emp_name" readonly>
@@ -350,8 +353,7 @@ include_once "inc/checkers.php";
                     <div class="modal-body">
 
                         <form method="post" class=" pe-3">
-                            <span class="text-danger fw-bold">Please note that this action is irreversible. Are you sure
-                                you want to proceed?</span>
+                            <span class="text-danger fw-bold">Please note that this action is irreversible. Are you sure you want to proceed?</span>
                             <div class="mb-3 mt-3">
                                 <label for="" class="mb-2">File Name</label>
                                 <input class="form-control" type="text" id="emp_names" readonly>
@@ -362,7 +364,7 @@ include_once "inc/checkers.php";
                             </div>
 
                             <div class="mb-3">
-                                <button class="btn rounded-pill btn-success float-end ms-2" id="delete_emps" type="submit">Share To Admin</button>
+                                <button class="btn rounded-pill btn-success float-end ms-2" id="delete_emps" type="submit">Convert</button>
                                 <button class="btn rounded-pill btn-primary float-end" data-bs-dismiss="modal" aria-hidden="true">X</button>
                             </div>
                         </form>
@@ -370,6 +372,7 @@ include_once "inc/checkers.php";
                 </div>
             </div>
         </div>
+
 
 </body>
 
