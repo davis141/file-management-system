@@ -131,7 +131,7 @@ include_once "inc/checkers.php";
                                                                                             <?php if (!empty($value['category_name'])) : ?>
                                                                                                 <a class="dropdown-item delete_emps" href="#" data-id="<?= $value['id']; ?>" data-cat="<?= $value['file_name']; ?>"><i class="ri-refresh-line me-2 text-muted vertical-middle"></i>Convert to Official</a>
                                                                                             <?php endif; ?>
-                                                                                            <a class="dropdown-item <?php echo $disabledClass; ?>" <?php if ($to_admin) : ?> href="to_admin?fid=<?php echo base64_encode($value['id']); ?>&cat_name=<?php echo base64_encode($value['file_name']); ?>" <?php endif; ?>>
+                                                                                            <a class="dropdown-item <?php echo $disabledClass; ?>" <?php if ($to_admin) : ?> href="to_admin?fid=<?php echo base64_encode($value['id']); ?>&cat_name=<?php echo base64_encode($value['file_name']); ?>&cat_id=<?php echo base64_encode($value['category_name']); ?>" <?php endif; ?>>
                                                                                                 <i class="mdi mdi-share-variant me-2 text-muted vertical-middle"></i>Share to Admin
                                                                                             </a>
 

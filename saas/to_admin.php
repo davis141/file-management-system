@@ -2,6 +2,7 @@
 include_once "inc/checkers.php";
 $get_cat_id = base64_decode($app->get_request('fid'));
 $file_name = base64_decode($app->get_request('cat_name'));
+$cat_id = base64_decode($app->get_request('cat_id'));
 $random_number = mt_rand(100000, 999999);
 $encoded_id = base64_encode($c_id . $random_number);
 $use_id = base64_encode($user_id . $random_number);
@@ -82,7 +83,8 @@ $use_id = base64_encode($user_id . $random_number);
                                             <input type="hidden" value="<?php echo $use_id  ?>" name="encrypt">
                                             <input type="hidden" value="<?php echo $encoded_id ?>" name="encrypt_c">
                                             <input type="hidden" value="<?php echo $get_cat_id ?>" name="shares">
-                                               
+                                            <input type="hidden" value="<?php echo $cat_id ?>" name="cat">
+                                    
                                                 <div class="form-group mt-2">
                                                     <label>Share To admin</label>
                                                     <div class="form-group">

@@ -5,13 +5,16 @@ $app = new controller;
 $folder_id = $app->post_request('id_del');
 
 if ($folder_id) {
-    $query = "SELECT folder_name FROM `folders` WHERE `id` = '$folder_id'";
+    // Fetch the folder name
+    $query = "SELECT folder_name, user_id FROM `folders` WHERE `id` = '$folder_id'";
     $folder = $app->fetch_query($query);
 
     if ($folder) {
         $folder_name = $folder[0]['folder_name'];
-        $folder_path = "../../saas/doc_filefolders/" . $folder_name;
+        $user_id = $folder[0]['user_id'];
+        $folder_path = "../../saas/folders/" . $user_id . "/" . $folder_name;
         if (file_exists($folder_path)) {
+
             function deleteFolder($dir) {
                 if (!is_dir($dir)) {
                     return unlink($dir);
@@ -25,6 +28,7 @@ if ($folder_id) {
                 return rmdir($dir);
             }
             if (deleteFolder($folder_path)) {
+                // Delete folder from the database
                 $query = "DELETE FROM `folders` WHERE `id` = '$folder_id'";
                 $delete_result = $app->direct_insert($query);
 

@@ -88,7 +88,7 @@ include_once "inc/checkers.php";
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                    $s_sql = "SELECT ad.id, ad.date, ad.file_path, ad.file_id, f.file_name, u.full_name, c.category_name FROM admin_share ad JOIN file_table f ON ad.file_id = f.id JOIN user u ON ad.user_id = u.user_id JOIN category c ON ad.company_id = c.company_id WHERE ad.shared_admin = '$user_id' AND ad.company_id = '$c_id' AND f.to_admin = TRUE AND f.status = FALSE";
+                                                                    $s_sql = "SELECT ad.id, ad.date, ad.file_path, ad.file_id, f.file_name, u.full_name, ad.category FROM admin_share ad JOIN file_table f ON ad.file_id = f.id JOIN user u ON ad.user_id = u.user_id WHERE ad.shared_admin = '$user_id' AND ad.company_id = '$c_id' AND f.to_admin = TRUE AND f.status = FALSE";
                                                                     $fetch_query = $app->fetch_query($s_sql);
                                                                     foreach ($fetch_query as $value) {
                                                                     ?>
@@ -99,7 +99,7 @@ include_once "inc/checkers.php";
                                                                             <td>
                                                                                 <p class="mb-0"><?php echo $value['date'] ?></p>
                                                                             </td>
-                                                                            <td><?php echo $value['category_name'] ?></td>
+                                                                            <td><?php echo $value['category'] ?></td>
                                                                             <td>
                                                                                 <?php echo $value['full_name'] ?>
                                                                             </td>
@@ -107,7 +107,7 @@ include_once "inc/checkers.php";
                                                                                 <div class="btn-group dropdown">
                                                                                     <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                                                        <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download Document</a>
+                                                                                        <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="doc_file/<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download Document</a>
                                                                                         <a class="dropdown-item delete_emp" href="#" data-bs-toggle="modal" data-id="<?php echo htmlentities($value['file_id']) ?>" data-cat="<?php echo htmlentities($value['file_name']); ?>" data-nom="<?php echo htmlentities($value['full_name']); ?>"><i class="ri-check-double-line me-2 text-muted vertical-middle"></i>Approve Document</a>
                                                                                     </div>
                                                                                 </div>

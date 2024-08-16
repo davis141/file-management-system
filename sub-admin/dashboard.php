@@ -1,6 +1,6 @@
 <?php
 include_once "inc/checkers.php";
-$dash_sql = "SELECT f.id, f.company_id, f.user_id, f.file_name, NULL AS shared_admin FROM file_table f WHERE f.company_id = '$c_id' AND f.user_id = '$user_id' UNION SELECT f.id, f.company_id, ad.shared_admin AS user_id, f.file_name, ad.shared_admin FROM admin_share ad JOIN file_table f ON ad.file_id = f.id WHERE ad.shared_admin = '$user_id' AND f.company_id = '$c_id';";
+$dash_sql = "SELECT f.id, f.company_id, f.user_id, f.file_name, NULL AS shared_admin FROM file_table f WHERE f.company_id = '$c_id' AND f.user_id = '$user_id' AND to_admin = TRUE UNION SELECT f.id, f.company_id, ad.shared_admin AS user_id, f.file_name, ad.shared_admin FROM admin_share ad JOIN file_table f ON ad.file_id = f.id WHERE ad.shared_admin = '$user_id' AND f.company_id = '$c_id' AND to_admin = TRUE ;";
 $upload_sql = "SELECT * FROM `file_table`  WHERE `company_id` = '$c_id' AND `user_id` = '$user_id'";
 $categories_sql = "SELECT * FROM category  WHERE company_id = '$c_id'";
 $s_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_name, c.category_name FROM admin_share ad JOIN file_table f ON ad.file_id = f.id JOIN user u ON ad.user_id = u.user_id JOIN category c ON ad.company_id = c.company_id WHERE ad.shared_admin = '$user_id' AND ad.company_id = '$c_id' AND  f.to_admin = TRUE AND f.status = FALSE";
@@ -40,7 +40,6 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
-                                                <i class="mdi mdi-account-multiple widget-icon"></i>
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Total Number of Documents">Total Number of Official Documents
                                             </h5>
@@ -53,7 +52,6 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
-                                                <i class="mdi mdi-cart-plus widget-icon"></i>
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Pending Document">Pending Document</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($s_sql);
@@ -65,7 +63,6 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
-                                                <i class="mdi mdi-cart-plus widget-icon"></i>
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Uploaded Document">Uploaded Document</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($upload_sql);
@@ -80,7 +77,6 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
-                                                <i class="mdi mdi-currency-usd widget-icon"></i>
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Approved Document">Approved Document</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($app_sql);
@@ -92,7 +88,6 @@ $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
-                                                <i class="mdi mdi-pulse widget-icon"></i>
                                             </div>
                                             <h5 class="text-muted fw-normal mt-0" title="Categories">Categories</h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($categories_sql);

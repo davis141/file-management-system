@@ -39,9 +39,8 @@ $app_sql = "SELECT f.id, f.file_name, f.date_time, u.full_name, c.category_name,
                                     <div class="card widget-flat">
                                         <div class="card-body">
                                             <div class="float-end">
-                                    
                                             </div>
-                                            <h5 class="text-muted fw-normal mt-0" title="Total Number of Uploaded Documents">Total Number of Uploaded Documents
+                                            <h5 class="text-muted fw-normal mt-0" title="Total Number of Official Documents">Total Number of Official Documents
                                             </h5>
                                             <h3 class="mt-3 mb-3"><?php $count = $app->fetch_query($dash_sql);
                                                                     echo number_format(count($count)); ?></h3>

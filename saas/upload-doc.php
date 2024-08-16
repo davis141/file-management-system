@@ -125,13 +125,13 @@ include_once "inc/checkers.php";
                                                                                     <div class="btn-group dropdown">
                                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                                            <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                                            <a class="dropdown-item" href="doc_file/<?= $value['file_path']; ?>" download="doc_file/<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                                             <a class="dropdown-item delete_emp" href="#" data-id="<?= $value['id']; ?>" data-cat="<?php echo $value['file_name'] ?>"><i class="ri-delete-bin-line me-2 text-muted vertical-middle"></i>Delete
                                                                                                 Document</a>
                                                                                             <?php if (!empty($value['category_name'])) : ?>
                                                                                                 <a class="dropdown-item delete_emps" href="#" data-id="<?= $value['id']; ?>" data-cat="<?= $value['file_name']; ?>"><i class="ri-refresh-line me-2 text-muted vertical-middle"></i>Convert to Official</a>
                                                                                             <?php endif; ?>
-                                                                                            <a class="dropdown-item <?php echo $disabledClass; ?>" <?php if ($to_admin) : ?> href="to_admin?fid=<?php echo base64_encode($value['id']); ?>&cat_name=<?php echo base64_encode($value['file_name']); ?>" <?php endif; ?>>
+                                                                                            <a class="dropdown-item <?php echo $disabledClass; ?>" <?php if ($to_admin) : ?> href="to_admin?fid=<?php echo base64_encode($value['id']); ?>&cat_name=<?php echo base64_encode($value['file_name']); ?>&cat_id=<?php echo base64_encode($value['category_name']); ?>" <?php endif; ?>>
                                                                                                 <i class="mdi mdi-share-variant me-2 text-muted vertical-middle"></i>Share Official Document
                                                                                             </a>
 

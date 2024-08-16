@@ -5,8 +5,8 @@ $folder_name = $app->post_request('folder_name');
 $c_id = $app->post_request('encrypt_c');
 $u_id = $app->post_request('encrypt');
 
-if (isset($folder_name)) { 
-    $folder_path = "../folders/" . $folder_name;
+if (isset($folder_name)) {
+    $folder_path = "../../saas/folders/" . $u_id . "/" . $folder_name;
     if (!file_exists($folder_path)) {
         mkdir($folder_path, 0777, true);
         $query = "INSERT INTO `folders` (`id`, `folder_name`, `company_id`, `user_id`) VALUES (NULL, '$folder_name', '$c_id', '$u_id')";
@@ -20,4 +20,5 @@ if (isset($folder_name)) {
         echo "Folder already exists!";
     }
 }
+
 

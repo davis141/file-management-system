@@ -82,7 +82,7 @@ $folder_id = base64_decode($app->get_request('folder'));
                                             <form method="post" name="myForm" id="myForm">
                                                 <input type="hidden" value="<?php echo $user_id ?>" name="encrypt">
                                                 <input type="hidden" value="<?php echo $c_id ?>" name="encrypt_c">
-                                                <input type="text" value="<?php echo $folder_id ?>" name="folderid">
+                                                <input type="hidden" value="<?php echo $folder_id ?>" name="folderid">
                                                 <div class="form-group">
                                                     <label for="additional-input">Folder Name</label>
                                                     <input type="text" class="form-control" name="folder_name" id="file-name" placeholder="Please insert folder name">

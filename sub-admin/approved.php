@@ -88,7 +88,7 @@ include_once "inc/checkers.php";
                                                                     </thead>
                                                                     <tbody>
                                                                         <?php
-                                                                        $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_name, c.category_name FROM admin_share ad JOIN file_table f ON ad.file_id = f.id JOIN user u ON ad.user_id = u.user_id JOIN category c ON ad.company_id = c.company_id WHERE ad.shared_admin = '$user_id' AND ad.company_id = '$c_id' AND  f.to_admin = TRUE AND f.status = TRUE";
+                                                                        $app_sql = "SELECT ad.id, ad.date, ad.file_path,ad.file_id, f.file_name, u.full_name, ad.category FROM admin_share ad JOIN file_table f ON ad.file_id = f.id JOIN user u ON ad.user_id = u.user_id WHERE ad.shared_admin = '$user_id' AND ad.company_id = '$c_id' AND  f.to_admin = TRUE AND f.status = TRUE";
                                                                         $fetch_query = $app->fetch_query($app_sql);
                                                                         foreach ($fetch_query as $value) {
                                                                         ?>
@@ -105,7 +105,7 @@ include_once "inc/checkers.php";
                                                                                     <div class="btn-group dropdown">
                                                                                         <a href="#" class="table-action-btn dropdown-toggle arrow-none btn btn-primary btn-xs" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                                            <a class="dropdown-item" href="../saas/doc_file/<?= $value['file_path']; ?>" download="<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
+                                                                                            <a class="dropdown-item" href="../saas/doc_file/<?= $value['file_path']; ?>" download="../saas/doc_file/<?= $value['file_path']; ?>"><i class="mdi mdi-download me-2 text-muted vertical-middle"></i>Download</a>
                                                                                         </div>
                                                                                     </div>
                                                                                 </td>

@@ -204,7 +204,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <input class="form-control" type="text" id="id" name="id_del">
+                            <input class="form-control" type="hidden" id="id" name="id_del">
                         </div>
 
                         <div class="mb-3">
